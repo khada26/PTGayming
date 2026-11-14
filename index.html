@@ -170,7 +170,7 @@ h1 { margin: 0; font: 700 26px/1.1 var(--f-head); letter-spacing: -.01em; }
 .sub { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin-top: 6px; color: var(--muted); font-size: 13px; }
 .pill { font: 500 12px var(--f-num); border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 3px 10px; color: var(--fg); }
 .controls { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
-.btn { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 8px 12px; font-weight: 600; transition: border-color .15s, background .15s; }
+.btn { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 8px 12px; font-weight: 500; transition: border-color .15s, background .15s; }
 .btn:hover { border-color: var(--muted); }
 .btn.icon { width: 38px; padding: 8px 0; text-align: center; }
 .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
@@ -181,6 +181,10 @@ h1 { margin: 0; font: 700 26px/1.1 var(--f-head); letter-spacing: -.01em; }
 .banner b { color: var(--fg); }
 
 /* KPI strip */
+.kpi-collapse > summary { display: flex; align-items: center; gap: 7px; cursor: pointer; list-style: none; padding: 2px 4px; color: var(--muted); font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
+.kpi-collapse > summary::-webkit-details-marker { display: none; }
+.kpi-collapse > summary::after { content: ""; width: 7px; height: 7px; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: rotate(45deg); margin-top: -4px; transition: transform .15s; }
+.kpi-collapse[open] > summary::after { transform: rotate(225deg); margin-top: 4px; }
 .kpis { display: grid; grid-template-columns: repeat(4, 1fr); background: var(--surface); border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow); }
 .kpi { padding: 16px 18px; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
 .kpi + .kpi { border-left: 1px solid var(--line); }
@@ -197,8 +201,8 @@ h1 { margin: 0; font: 700 26px/1.1 var(--f-head); letter-spacing: -.01em; }
 .cpbtn { flex: 1 1 180px; text-align: left; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; display: flex; flex-direction: column; gap: 2px; transition: border-color .15s, box-shadow .15s; }
 .cpbtn:hover { border-color: var(--muted); }
 .cpbtn[aria-pressed="true"] { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent) inset; }
-.cpbtn .t { font: 600 12px var(--f-num); color: var(--muted); }
-.cpbtn .v { font: 700 19px var(--f-num); }
+.cpbtn .t { font: 500 12px var(--f-num); color: var(--muted); }
+.cpbtn .v { font: 600 19px var(--f-num); }
 .cpbtn .d { font: 500 12px var(--f-num); color: var(--muted); }
 .cpbtn .d.unpaid { color: var(--extra); font-weight: 600; }
 
@@ -219,9 +223,9 @@ h2 { margin: 0; font: 600 17px var(--f-head); }
 .addbox { padding: 0; }
 .addbox > summary { list-style: none; cursor: pointer; display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; padding: 12px 14px; }
 .addbox > summary::-webkit-details-marker { display: none; }
-.addbox .ah { font: 700 17px var(--f-head); margin-right: auto; }
+.addbox .ah { font: 600 17px var(--f-head); margin-right: auto; }
 .addbox .ah .count { font-weight: 400; }
-.addcta { font-weight: 600; font-size: 13px; color: var(--accent-ink); background: var(--accent); border-radius: 8px; padding: 7px 12px; }
+.addcta { font-weight: 500; font-size: 13px; color: var(--extra-ink); background: var(--salary); border-radius: 8px; padding: 7px 12px; }
 .addbox[open] .addcta { background: transparent; color: var(--muted); border: 1px solid var(--line); }
 .addbox[open] .addcta::before { content: "Close  "; }
 .addbox[open] .addcta { font-size: 0; } .addbox[open] .addcta::before { font-size: 13px; content: "Close"; }
@@ -229,6 +233,15 @@ h2 { margin: 0; font: 600 17px var(--f-head); }
 .addbox[open] .addrow { padding-bottom: 14px; }
 .paidseg { align-self: flex-start; }
 .paidseg .n { font-family: var(--f-num); opacity: .75; margin-left: 2px; }
+.filter-tools { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; }
+.filter-tools > .paidseg, .filter-tools > #pay-start, .filter-tools > .managerqr:not([open]) { height: 36px; box-sizing: border-box; }
+.managerqr { min-width: 220px; max-width: 100%; border: 1px solid var(--fv-line); border-radius: 10px; background: color-mix(in srgb, var(--fv-surface) 82%, transparent); color: var(--fv-fg); }
+.managerqr summary { display: flex; justify-content: space-between; align-items: center; gap: 12px; min-height: 34px; box-sizing: border-box; padding: 0 12px; cursor: pointer; font-weight: 600; }
+.managerqr summary span { color: var(--fv-muted); font: 500 11px var(--f-num); }
+.managerqr-body { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 0 10px 10px; }
+.managerqr-thumb { width: 52px; height: 52px; border: 1px solid var(--fv-line); border-radius: 7px; padding: 2px; background: #fff; overflow: hidden; }
+.managerqr-thumb img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.managerqr-body .btn { padding: 6px 9px; font-size: 12px; }
 .more { position: relative; }
 .more > summary { list-style: none; cursor: pointer; display: inline-block; }
 .more > summary::-webkit-details-marker { display: none; }
@@ -250,6 +263,7 @@ input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner
 select.in { width: auto; padding-right: 8px; }
 
 .card { padding: 16px; display: flex; flex-direction: column; gap: 12px; scroll-margin-top: 16px; }
+.card.paid { border-color: color-mix(in srgb, var(--salary) 65%, var(--line)); box-shadow: 0 0 0 1px color-mix(in srgb, var(--salary) 24%, transparent); }
 .card[hidden] { display: none; }
 .card.flash { animation: flash 1.4s ease-out; }
 @keyframes flash { 0% { box-shadow: 0 0 0 3px var(--accent); } 100% { box-shadow: var(--shadow); } }
@@ -263,10 +277,10 @@ select.in { width: auto; padding-right: 8px; }
 .card.collapsed > :not(.card-head) { display: none; }
 .card.collapsed { gap: 0; padding-block: 12px; }
 .rank { font: 600 12px var(--f-num); color: var(--muted); background: var(--surface-2); border-radius: 6px; padding: 3px 7px; flex: none; }
-.name-in { font: 600 18px var(--f-head); background: transparent; border: 1px solid transparent; border-radius: 6px; padding: 3px 6px; margin-left: -6px; min-width: 0; width: 100%; }
+.name-in { font: 500 18px var(--f-head); background: transparent; border: 1px solid transparent; border-radius: 6px; padding: 3px 6px; margin-left: -6px; min-width: 0; width: 100%; }
 .name-in:hover { border-color: var(--line); }
 .amt { text-align: right; flex: none; }
-.amt strong { display: block; font: 700 24px/1.15 var(--f-num); }
+.amt strong { display: block; font: 600 24px/1.15 var(--f-num); }
 .amt small { color: var(--muted); font: 400 12px var(--f-num); }
 .accts { border: 1px solid var(--line); border-radius: 10px; background: var(--bg); }
 .accts > summary { list-style: none; cursor: pointer; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 4px 12px; padding: 10px 12px; font-weight: 600; }
@@ -331,12 +345,12 @@ select.in { width: auto; padding-right: 8px; }
 .slot.on .sst { color: var(--extra); font-weight: 600; }
 @media (max-width: 720px) { .slots { grid-template-columns: minmax(0, 1fr); } }
 .vbtn { border: 0; border-radius: 10px; background: var(--salary-dim); color: var(--fg); min-height: 46px; padding: 6px 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; transition: transform .1s, background .15s; }
-.vbtn span { font-size: 11.5px; font-weight: 600; opacity: .85; }
-.vbtn b { font: 700 14px var(--f-num); }
+.vbtn span { font-size: 11.5px; font-weight: 500; opacity: .85; }
+.vbtn b { font: 600 14px var(--f-num); }
 .vbtn:hover { transform: translateY(-1px); background: color-mix(in srgb, var(--salary) 45%, var(--salary-dim)); }
 .vbtn.on { background: var(--extra); color: var(--extra-ink); }
 .vbtn.on.late { opacity: .4; }
-.paidbtn { margin-top: 6px; border: 1px solid var(--line); background: var(--surface-2); border-radius: 8px; padding: 4px 10px; font-size: 12px; font-weight: 600; color: var(--fg); white-space: nowrap; }
+.paidbtn { margin-top: 6px; border: 1px solid var(--line); background: var(--surface-2); border-radius: 8px; padding: 4px 10px; font-size: 12px; font-weight: 500; color: var(--fg); white-space: nowrap; }
 .paidbtn:hover:not(:disabled) { border-color: var(--muted); }
 .paidbtn:disabled { opacity: .45; cursor: not-allowed; }
 .paidbtn[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
@@ -509,6 +523,7 @@ button.cp:not(:disabled):hover { background: var(--salary-dim); }
   color-scheme: var(--fv-scheme); color: var(--fg); border: 1px solid var(--fv-border); border-radius: 18px;
   background: var(--fv-bg-card);
   box-shadow: var(--fv-shadow-card); }
+.card:not(.paid) { border-color: color-mix(in srgb, var(--fv-line) 35%, var(--fv-surface)); }
 .name-in { color: var(--fv-title); }
 .slots { align-items: start; }
 .cps { gap: 6px; }
@@ -540,6 +555,7 @@ button.cp:not(:disabled):hover { background: var(--salary-dim); }
 .qmini .qbtn:not(.on):hover { border-color: var(--muted); color: var(--fg); }
 .qmini .qbtn:not(.on) span::after { content: " ·"; }
 .qmini .qbtn:not(.on) b { font-weight: 600; font-size: 12px; }
+.qmini .qbtn.on { background: var(--salary); color: var(--extra-ink); }
 .card.collapsed > .qmini { display: grid; margin-top: 10px; }
 .card:not(.collapsed) > .qmini { display: none; }
 /* page backdrop: soft teal and gold in light mode, plain in dark mode */
@@ -554,10 +570,16 @@ body { background: var(--page); background-attachment: fixed; }
 .qname .paybtns { flex: none; flex-wrap: nowrap; justify-content: flex-start; }
 .qname .paidbtn { margin-top: 0; }
 .qtop { flex-wrap: wrap; }
-.who .paybtns { flex: none; flex-wrap: nowrap; justify-content: flex-start; }
+.who .paybtns { flex: none; flex-wrap: nowrap; justify-content: flex-start; align-items: center; gap: 18px; }
+.who .paybtns:has(.paidnote:not(:empty)) { align-items: flex-start; }
+.who .amt { display: grid; grid-template-columns: auto auto; grid-template-areas: "status total" "note note"; align-items: center; column-gap: 18px; min-height: 28px; margin-left: 0; }
+.who .amt strong { grid-area: total; }
+.who .amt .pbadge { grid-area: status; margin: 0; white-space: nowrap; }
+.who .amt .paidnote { grid-area: note; justify-self: end; white-space: nowrap; }
+.who .amt .paidnote:empty { display: none; }
 .who .paidbtn { margin-top: 0; }
 .who .name-in { flex: 1 1 60px; width: auto; }
-@media (max-width: 560px) { .card-head { flex-wrap: wrap; } .who { flex: 1 1 100%; flex-wrap: wrap; } .who .name-in { flex: 1 1 120px; } .amt { margin-left: auto; text-align: right; } }
+@media (max-width: 560px) { .card-head { flex-wrap: wrap; } .who { flex: 1 1 100%; flex-wrap: wrap; } .who .name-in { flex: 1 1 120px; } }
 .chartbg:has(#chart[hidden]) { display: none; }
 .plot { position: absolute; left: var(--lab); right: var(--val); top: 0; bottom: 22px; pointer-events: none; }
 .gl { position: absolute; top: 0; bottom: 0; width: 1px; background: var(--grid); }
@@ -569,13 +591,13 @@ body { background: var(--page); background-attachment: fixed; }
 .crow:hover .name, .crow:focus-visible .name { text-decoration: underline; text-underline-offset: 3px; }
 .crow .who2 { display: flex; align-items: baseline; gap: 8px; min-width: 0; padding-right: 10px; }
 .crow .rk { font: 500 12px var(--f-num); color: var(--muted); width: 20px; flex: none; }
-.crow .name { font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.crow .name { font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .track { height: 22px; display: flex; align-items: center; position: relative; }
 .bar { height: 100%; flex: none; transition: width .5s cubic-bezier(.2, .8, .2, 1); }
 .bar.s { background: var(--salary); }
 .bar.e { background: var(--extra); }
 .bar.e.gap { margin-left: 2px; }
-.crow .val { text-align: right; font: 700 13px var(--f-num); padding-left: 8px; white-space: nowrap; }
+.crow .val { text-align: right; font: 600 13px var(--f-num); padding-left: 8px; white-space: nowrap; }
 .crow.top1 .val { color: var(--fg); }
 .tip { position: fixed; z-index: 50; pointer-events: none; background: var(--fg); color: var(--bg); border-radius: 8px; padding: 7px 10px; font: 500 12px/1.45 var(--f-num); white-space: pre-line; max-width: 260px; box-shadow: 0 6px 20px rgba(0, 0, 0, .3); opacity: 0; transition: opacity .1s; }
 .tip.on { opacity: 1; }
@@ -629,9 +651,7 @@ body { background: var(--page); background-attachment: fixed; }
         <button class="btn" id="today">Today</button>
       </span>
       <div class="barR">
-        <span class="pill barpill" id="bar-total" title="Today's payroll" hidden></span>
         <span class="saved" id="saved">Saved on this device</span>
-        <button class="btn primary" id="pay-start">Start payout</button>
         <button class="btn icon" id="signout" hidden aria-label="Sign out" title="Sign out" style="display:inline-grid;place-items:center"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg></button>
         <button class="btn icon" id="theme" aria-label="Switch theme" style="display:inline-grid;place-items:center">Theme</button>
       </div>
@@ -643,12 +663,15 @@ body { background: var(--page); background-attachment: fixed; }
     <button class="btn" id="clear-sample">Clear sample data</button>
   </div>
 
-  <section class="kpis" aria-label="Payroll summary">
-    <div class="kpi"><div class="l">Total payroll</div><div class="v" id="k-total">₱0.00</div><div class="m" id="k-asof"></div></div>
-    <div class="kpi"><div class="l"><i class="sw e"></i>Vouchers claimed</div><div class="v" id="k-adds">0</div></div>
-    <div class="kpi"><div class="l">Accounts</div><div class="v" id="k-acc">0</div><div class="m" id="k-emps"></div></div>
-    <div class="kpi"><div class="l">Highest earner</div><div class="n" id="k-top">—</div><div class="m" id="k-topv"></div></div>
-  </section>
+  <details class="kpi-collapse" open>
+    <summary>Payroll summary</summary>
+    <section class="kpis" aria-label="Payroll summary">
+      <div class="kpi"><div class="l">Total payroll</div><div class="v" id="k-total">₱0.00</div><div class="m" id="k-asof"></div></div>
+      <div class="kpi"><div class="l"><i class="sw e"></i>Vouchers claimed</div><div class="v" id="k-adds">0</div></div>
+      <div class="kpi"><div class="l">Accounts</div><div class="v" id="k-acc">0</div><div class="m" id="k-emps"></div></div>
+      <div class="kpi"><div class="l">Highest earner</div><div class="n" id="k-top">—</div><div class="m" id="k-topv"></div></div>
+    </section>
+  </details>
 
   <div class="main">
     <section class="left" aria-label="Employees">
@@ -678,7 +701,14 @@ body { background: var(--page); background-attachment: fixed; }
           </div>
         </details>
       </div>
-      <div class="seg paidseg" id="paidseg" role="group" aria-label="Filter by payment status"><button data-pf="all">All <span class="n"></span></button><button data-pf="unpaid">Unpaid <span class="n"></span></button><button data-pf="paid">Paid <span class="n"></span></button></div>
+      <div class="filter-tools">
+        <div class="seg paidseg" id="paidseg" role="group" aria-label="Filter by payment status"><button data-pf="all">All <span class="n"></span></button><button data-pf="unpaid">Unpaid <span class="n"></span></button><button data-pf="paid">Paid <span class="n"></span></button></div>
+        <details class="managerqr" id="managerqr">
+          <summary>Manager's QR <span id="managerqr-status">Not added</span></summary>
+          <div class="managerqr-body" id="managerqr-body"></div>
+        </details>
+        <button class="btn primary" id="pay-start">Start payout</button>
+      </div>
       <div id="list" style="display:flex;flex-direction:column;gap:12px"></div>
     </section>
 
@@ -738,11 +768,12 @@ body { background: var(--page); background-attachment: fixed; }
 </div>
 
 <input type="file" id="qr-file" accept="image/png,image/jpeg,image/webp,image/gif" multiple hidden>
+<input type="file" id="manager-qr-file" accept="image/png,image/jpeg,image/webp,image/gif" multiple hidden>
 <div class="modal" id="qrview" hidden role="dialog" aria-modal="true" aria-label="Payment QR code">
   <div class="mbox">
     <img id="qrimg" alt="Payment QR code">
     <div class="mcap" id="qrcap"></div>
-    <div class="macts"><button class="btn" id="qr-prev" hidden aria-label="Previous QR">‹ Prev</button><button class="btn" id="qr-next" hidden aria-label="Next QR">Next ›</button><button class="btn" id="qr-replace" hidden>Replace</button><button class="btn" id="qr-remove" hidden>Remove QR</button><button class="btn primary" id="qr-close">Close</button></div>
+    <div class="macts"><button class="btn" id="qr-prev" hidden aria-label="Previous QR">‹ Prev</button><button class="btn" id="qr-next" hidden aria-label="Next QR">Next ›</button><button class="btn" id="qr-add-more" hidden>Add QR</button><button class="btn" id="qr-replace" hidden>Replace</button><button class="btn" id="qr-remove" hidden>Remove QR</button><button class="btn primary" id="qr-close">Close</button></div>
   </div>
 </div>
 <div class="modal" id="loginview" hidden role="dialog" aria-modal="true" aria-label="Sign in">
@@ -819,6 +850,8 @@ function load() {
   } catch (e) { return null; }
 }
 let S = load() || seed();
+S.managerQrs = Array.isArray(S.managerQrs) ? S.managerQrs : (typeof S.managerQr === 'string' && S.managerQr ? [S.managerQr] : []);
+delete S.managerQr;
 S.ui.collapsed = S.ui.collapsed || {};
 S.ui.quick = false;
 S.ui.acctOpen = S.ui.acctOpen || {};
@@ -955,6 +988,7 @@ const SB_KEY = 'sb_publishable_h8lHrhhjVOy9sU9Lr86Arg_VbLRj6qY';
 let saveTimer, lastEdit = 0;
 let db = null, userCanWrite = true, flushing = false, again = false;
 const lastSaved = new Map();
+const appData = () => ({ employees: S.employees, sample: S.sample, settings: S.settings, managerQrs: S.managerQrs });
 function setStatus(txt, off) { const el = $('#saved'); if (!el) return; el.classList.toggle('off', !!off); el.textContent = txt; }
 const loadScript = src => new Promise((res, rej) => { const s = document.createElement('script'); s.src = src; s.onload = res; s.onerror = () => rej(new Error('Could not load ' + src)); document.head.appendChild(s); });
 function askLogin(sb) {
@@ -1014,7 +1048,7 @@ async function flush() {
     do {
       again = false;
       setStatus('Saving…');
-      const empJson = JSON.stringify({ employees: S.employees, sample: S.sample, settings: S.settings });
+      const empJson = JSON.stringify(appData());
       if (lastSaved.get('app/employees') !== empJson) { await db.doc('app/employees').set(JSON.parse(empJson)); lastSaved.set('app/employees', empJson); }
       const keys = new Set(Object.keys(S.days).filter(k => Object.keys(S.days[k]).length));
       for (const k of keys) {
@@ -1053,8 +1087,9 @@ function applyRemote(emp, days) {
   const data = JSON.parse(JSON.stringify(emp.data()));
   S.employees = data.employees || []; S.sample = !!data.sample; S.days = {};
   S.settings = data.settings && Array.isArray(data.settings.rates) && data.settings.rates.length ? data.settings : { rates: DEFAULT_RATES.map(r => ({ ...r })) };
+  S.managerQrs = Array.isArray(data.managerQrs) ? data.managerQrs : (typeof data.managerQr === 'string' && data.managerQr ? [data.managerQr] : []);
   lastSaved.clear();
-  lastSaved.set('app/employees', JSON.stringify({ employees: S.employees, sample: S.sample, settings: S.settings }));
+  lastSaved.set('app/employees', JSON.stringify(appData()));
   days.docs.forEach(x => { S.days[x.id] = JSON.parse(JSON.stringify(x.data())).records || {}; lastSaved.set('days/' + x.id, JSON.stringify(S.days[x.id])); });
   const up = upgradeSample();
   S.employees.forEach(ensureAccts);
@@ -1064,7 +1099,7 @@ function applyRemote(emp, days) {
 }
 /* Pick up changes other people made, but never while this person has unsaved edits or is typing. */
 function localDirty() {
-  if (lastSaved.get('app/employees') !== JSON.stringify({ employees: S.employees, sample: S.sample, settings: S.settings })) return true;
+  if (lastSaved.get('app/employees') !== JSON.stringify(appData())) return true;
   for (const k of Object.keys(S.days)) { if (Object.keys(S.days[k]).length && lastSaved.get('days/' + k) !== JSON.stringify(S.days[k])) return true; }
   return false;
 }
@@ -1136,10 +1171,18 @@ function extrasHTML(e) {
   if (!list.length) return '';
   return '<ul class="xs">' + list.map(({ x }) => `<li><span class="t">${hl(x.hour)}</span><span class="n">${esc(x.label)}</span><span class="a">+${fmt(x.amount)}</span><button type="button" class="link" data-act="del-x" data-xid="${x.id}" aria-label="Remove ${esc(x.label)}">Remove</button></li>`).join('') + '</ul>';
 }
-let assetsApi = null, qrCtx = null, pendingQr = null;
+let assetsApi = null, qrCtx = null, pendingQr = null, pendingManagerQr = null;
 const qrsOf = e => (e && Array.isArray(e.qrs) ? e.qrs : []);
 const MAX_QR = 6;
 const qrSource = value => /^data:image\/(?:png|jpeg|webp|gif);base64,/i.test(value) ? value : '/_blob/' + encodeURIComponent(value);
+function renderManagerQr() {
+  const body = $('#managerqr-body');
+  if (!body) return;
+  const q = S.managerQrs;
+  $('#managerqr-status').textContent = q.length ? q.length + (q.length === 1 ? ' picture' : ' pictures') : 'Not added';
+  body.innerHTML = q.map((src, i) => `<button type="button" class="managerqr-thumb" data-manager-qr="${i}" aria-label="View manager QR ${i + 1} of ${q.length}"><img src="${esc(qrSource(src))}" alt="Manager QR ${i + 1}"></button>`).join('')
+    + (q.length < MAX_QR ? `<button type="button" class="btn${q.length ? '' : ' primary'}" id="managerqr-add">Add QR</button>` : '');
+}
 const qrThumbs = (e, max) => { const q = qrsOf(e); return q.slice(0, max).map((v, k) => `<button type="button" class="qrthumb" data-act="qr-view" data-i="${k}" aria-label="View payroll QR ${k + 1} of ${q.length} for ${esc(e.name)}"><img src="${esc(qrSource(v))}" alt="Payroll QR ${k + 1} for ${esc(e.name)}"></button>`).join('') + (q.length > max ? `<button type="button" class="qrmore" data-act="qr-view" data-i="${max}" aria-label="Show ${q.length - max} more QR codes">+${q.length - max}</button>` : ''); };
 const qrRowHTML = e => { const n = qrsOf(e).length; return `<details class="accts qbox" data-id="${e.id}" ${S.ui.qOpen[e.id] ? 'open' : ''}><summary><span>Payroll QR${n > 1 ? 's' : ''}</span><span class="am">${n ? n + (n === 1 ? ' picture' : ' pictures') : 'None yet · tap to add'}</span></summary><div class="qrrow"><small>${n ? 'Tap a picture to enlarge it' : 'Add one or more QR pictures for paying ' + esc(e.name)}</small><div class="qrthumbs">${qrThumbs(e, 4)}${n < MAX_QR ? `<button type="button" class="btn qrbtn" data-act="qr-add" aria-label="Upload payroll QR code for ${esc(e.name)}">${n ? '+ Add' : 'Add QR'}</button>` : ''}</div></div></details>`; };
 function acctSummaryText(e) {
@@ -1165,8 +1208,7 @@ function cardHTML(e) {
   const i = info(e, date);
   return `<article class="panel card${isCol(e.id) ? ' collapsed' : ''}" id="emp-${e.id}" data-id="${e.id}" data-name="${esc(searchKey(e))}">
   <div class="card-head">
-    <div class="who"><button type="button" class="grip" data-grip aria-label="Reorder ${esc(e.name)}. Drag, or press the up and down arrow keys" title="Drag to reorder"><svg viewBox="0 0 10 16" width="10" height="16" fill="currentColor" aria-hidden="true"><circle cx="2.5" cy="3" r="1.4"/><circle cx="7.5" cy="3" r="1.4"/><circle cx="2.5" cy="8" r="1.4"/><circle cx="7.5" cy="8" r="1.4"/><circle cx="2.5" cy="13" r="1.4"/><circle cx="7.5" cy="13" r="1.4"/></svg></button><button type="button" class="chev" data-act="toggle" aria-expanded="${!S.ui.collapsed[e.id]}" aria-label="Collapse or expand ${esc(e.name)}"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6l5 5 5-5"/></svg></button><span class="rank" data-rank>#–</span><input class="name-in" data-act="rename" value="${esc(e.name)}" maxlength="40" aria-label="Employee name"><div class="paybtns"><button type="button" class="paidbtn" data-act="payout">Payout</button><button type="button" class="paidbtn" data-act="paid">Mark paid</button></div></div>
-    <div class="amt"><span class="pbadge" data-pbadge hidden></span><strong data-total>₱0.00</strong><small data-rate></small><small class="paidnote" data-paidnote></small></div>
+    <div class="who"><button type="button" class="grip" data-grip aria-label="Reorder ${esc(e.name)}. Drag, or press the up and down arrow keys" title="Drag to reorder"><svg viewBox="0 0 10 16" width="10" height="16" fill="currentColor" aria-hidden="true"><circle cx="2.5" cy="3" r="1.4"/><circle cx="7.5" cy="3" r="1.4"/><circle cx="2.5" cy="8" r="1.4"/><circle cx="7.5" cy="8" r="1.4"/><circle cx="2.5" cy="13" r="1.4"/><circle cx="7.5" cy="13" r="1.4"/></svg></button><button type="button" class="chev" data-act="toggle" aria-expanded="${!S.ui.collapsed[e.id]}" aria-label="Collapse or expand ${esc(e.name)}"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6l5 5 5-5"/></svg></button><span class="rank" data-rank>#–</span><input class="name-in" data-act="rename" value="${esc(e.name)}" maxlength="40" aria-label="Employee name"><div class="paybtns"><button type="button" class="paidbtn" data-act="payout">Payout</button><div class="amt"><span class="pbadge" data-pbadge hidden></span><strong data-total>₱0.00</strong><small class="paidnote" data-paidnote></small></div></div></div>
   </div>
   <div class="qmini qslots" data-qmini>${qminiHTML(e)}</div>
   <div><div class="slots" data-slots>${slotsHTML(e)}</div></div>
@@ -1237,7 +1279,6 @@ function refreshNumbers() {
   const top = rows.slice().sort((a, b) => b.total - a.total)[0];
   $('#k-total').textContent = fmt(sum('total'));
   const owedAll = activeEmps().reduce((s, e) => s + payState(e, date).owed, 0), anyPay = activeEmps().some(e => payState(e, date).status !== 'none');
-  { const bt = $('#bar-total'); bt.textContent = fmt(sum('total')) + (owedAll > 0 ? ' · ' + fmt(owedAll) + ' unpaid' : anyPay ? ' · all paid' : ''); bt.hidden = view !== 'tracker'; }
   $('#k-asof').textContent = asOf === END ? (owedAll > 0 ? 'Unpaid ' + fmt(owedAll) : anyPay ? 'All paid' : '') : 'As of ' + hl(asOf);
   const payers = activeEmps().filter(e => payState(e, date).status !== 'none'), allPaid = payers.length > 0 && payers.every(e => payState(e, date).status === 'paid');
   $('#paid-all').textContent = allPaid ? 'Unmark all paid' : 'Mark all paid'; $('#paid-all').disabled = !payers.length;
@@ -1261,11 +1302,10 @@ function refreshNumbers() {
   activeEmps().forEach(e => {
     const c = $('#emp-' + e.id); if (!c) return;
     const i = info(e, date), d = at(e, date, END), ps = payState(e, date);
-    const pb = $('[data-act="paid"]', c); pb.textContent = paidLabel(ps); pb.setAttribute('aria-pressed', ps.status === 'paid'); pb.disabled = ps.status === 'none'; pb.classList.toggle('warn', ps.status === 'partial');
+    c.classList.toggle('paid', ps.status === 'paid');
     $('[data-paidnote]', c).textContent = ps.status === 'partial' ? 'Paid ' + fmt(ps.paid) + ' earlier' : '';
     $('[data-total]', c).textContent = fmt(d.total);
     const pbd = $('[data-pbadge]', c); if (pbd) { pbd.className = 'pbadge ' + ps.status; pbd.textContent = ps.status === 'paid' ? 'Paid' : ps.status === 'partial' ? 'Partly paid' : 'Unpaid'; pbd.hidden = ps.status === 'none'; }
-    $('[data-rate]', c).textContent = i.nClaims + ' of ' + CHECKS.length + ' vouchers claimed';
     $('[data-xsum]', c).textContent = xsumText(e);
     $('[data-sum]', c).textContent = 'Vouchers ' + fmt(d.add) + ' + additional vouchers ' + fmt(d.extra);
     CHECKS.forEach(h => {
@@ -1354,7 +1394,7 @@ function renderHeader() {
   $('#sort').value = S.ui.sort;
 }
 const refresh = () => { refreshNumbers(); applyFilter(); renderChart(); if (view === 'history') renderHistory(); save(); };
-function renderAll(noSave) { renderHeader(); renderList(); refreshNumbers(); applyFilter(); renderChart(); if (!noSave) save(); }
+function renderAll(noSave) { renderHeader(); renderManagerQr(); renderList(); refreshNumbers(); applyFilter(); renderChart(); if (!noSave) save(); }
 
 /* ---------- history ---------- */
 function dayStats(k) {
@@ -1419,7 +1459,7 @@ function renderSettings() {
 }
 function setView(v) {
   view = v;
-  $('#v-tracker').hidden = v !== 'tracker'; $('#v-history').hidden = v !== 'history'; $('#v-settings').hidden = v !== 'settings'; $('#datenav').hidden = v !== 'tracker'; $('#pay-start').hidden = v !== 'tracker'; $('#bar-total').hidden = v !== 'tracker';
+  $('#v-tracker').hidden = v !== 'tracker'; $('#v-history').hidden = v !== 'history'; $('#v-settings').hidden = v !== 'settings'; $('#datenav').hidden = v !== 'tracker'; $('#pay-start').hidden = v !== 'tracker';
   if (v === 'settings') renderSettings();
   if (v === 'tracker') renderAll(true);
   $$('#tabs button').forEach(b => b.setAttribute('aria-pressed', b.dataset.view === v));
@@ -1538,12 +1578,29 @@ function finishPay() {
 function openQr(eid, idx) {
   const e = find(eid), q = qrsOf(e); if (!e || !q.length) return;
   const k = Math.max(0, Math.min(q.length - 1, idx || 0));
-  qrCtx = { eid, i: k };
+  qrCtx = { eid, i: k, manager: false };
   $('#qrimg').src = qrSource(q[k]);
   $('#qrcap').innerHTML = esc(e.name) + '<small>Payroll QR' + (q.length > 1 ? ' ' + (k + 1) + ' of ' + q.length : '') + '</small>';
   $('#qr-prev').hidden = $('#qr-next').hidden = q.length < 2;
+  $('#qr-add-more').hidden = true;
   $('#qr-replace').hidden = false; $('#qr-remove').hidden = false;
   $('#qrview').hidden = false; $('#qr-close').focus();
+}
+function openManagerQr(idx) {
+  const q = S.managerQrs;
+  if (!q.length) return;
+  const k = Math.max(0, Math.min(q.length - 1, Number(idx) || 0));
+  qrCtx = { manager: true, i: k };
+  $('#qrimg').src = qrSource(q[k]);
+  $('#qrcap').innerHTML = "Manager's QR" + (q.length > 1 ? '<small>' + (k + 1) + ' of ' + q.length + '</small>' : '');
+  $('#qr-prev').hidden = $('#qr-next').hidden = q.length < 2;
+  $('#qr-add-more').hidden = q.length >= MAX_QR;
+  $('#qr-replace').hidden = false; $('#qr-remove').hidden = false;
+  $('#qrview').hidden = false; $('#qr-close').focus();
+}
+function openQrAt(idx) {
+  if (qrCtx && qrCtx.manager) openManagerQr(idx);
+  else if (qrCtx) openQr(qrCtx.eid, idx);
 }
 function closeQr() { $('#qrview').hidden = true; qrCtx = null; }
 function localQrData(file) {
@@ -1603,6 +1660,34 @@ async function uploadQr(files) {
     if (done) { rerenderCard(e.id); refresh(); if (payCtx) renderPay(); save(); }
     const c = err && err.code;
     toast(c === 'too_large' ? 'That image is too large (max 20 MB)' : c === 'unsupported_type' ? 'Use a PNG, JPG or WebP image' : c === 'quota_or_state' ? 'Storage is full, so the QR code was not saved' : c === 'rate_limited' ? 'Too many uploads. Try again in a moment' : err && err.message ? err.message : 'The QR code could not be saved');
+  }
+}
+async function uploadManagerQr(files, replaceIndex) {
+  files = Array.from(files || []);
+  if (!files.length) return;
+  const replacing = Number.isInteger(replaceIndex);
+  files = replacing ? files.slice(0, 1) : files.slice(0, MAX_QR - S.managerQrs.length);
+  if (!files.length) return toast('Up to ' + MAX_QR + ' manager QR pictures');
+  if (files.some(file => !/^image\/(png|jpeg|webp|gif)$/.test(file.type))) return toast('Use PNG, JPG or WebP images');
+  const wasOpen = !$('#qrview').hidden && qrCtx && qrCtx.manager;
+  const oldCount = S.managerQrs.length;
+  toast(assetsApi ? 'Uploading manager QR…' : 'Saving manager QR…');
+  let done = 0;
+  try {
+    for (const file of files) {
+      const src = assetsApi ? (await assetsApi.upload(file)).id : await localQrData(file);
+      if (replacing) S.managerQrs[replaceIndex] = src;
+      else S.managerQrs.push(src);
+      done++;
+    }
+    const at = replacing ? replaceIndex : S.managerQrs.length - 1;
+    renderManagerQr(); save();
+    if (wasOpen || oldCount === 0) openManagerQr(at);
+    toast(done === 1 ? "Manager's QR saved" : done + " manager QR pictures saved");
+  } catch (err) {
+    if (done) { renderManagerQr(); save(); if (wasOpen || oldCount === 0) openManagerQr(S.managerQrs.length - 1); }
+    const c = err && err.code;
+    toast(c === 'too_large' ? 'That image is too large (max 20 MB)' : c === 'unsupported_type' ? 'Use a PNG, JPG or WebP image' : c === 'quota_or_state' ? 'Storage is full, so the QR code was not saved' : c === 'rate_limited' ? 'Too many uploads. Try again in a moment' : err && err.message ? err.message : "Manager's QR could not be saved");
   }
 }
 async function initAssets() {
@@ -1679,6 +1764,7 @@ document.addEventListener('click', ev => {
   const t = ev.target.closest('button'); if (!t) return;
   const card = t.closest('.card, .qrow'), id = card && card.dataset.id;
   if (t.id === 'qr-close') return closeQr();
+  if (t.id === 'managerqr-add') { pendingManagerQr = null; $('#manager-qr-file').multiple = true; return $('#manager-qr-file').click(); }
   if (t.id === 'pay-close') return closePay();
   if (t.dataset.pslot && payCtx) { const e = find(payCtx.eid), h = +t.dataset.pslot; if (e) { setSlotPaid(date, e, h, slotPaid(e, date, h) < slotTotal(e, date, h) - 0.004); refresh(); renderPay(); } return; }
   if (t.id === 'pay-done' && payCtx) return finishPay();
@@ -1686,13 +1772,22 @@ document.addEventListener('click', ev => {
   if (t.id === 'pay-qr-add' && payCtx) { pendingQr = { eid: payCtx.eid }; $('#qr-file').multiple = true; return $('#qr-file').click(); }
   if (t.id === 'pay-start') { const n = nextUnpaid(null); return n ? openPay(n.id) : toast('Nothing left to pay'); }
   if (t.dataset.copynum) { const num = t.dataset.copynum; return navigator.clipboard.writeText(num).then(() => toast('Number copied'), () => toast('Copy was blocked by the browser')); }
-  if (t.id === 'qr-prev' && qrCtx) { const n = qrsOf(find(qrCtx.eid)).length; return openQr(qrCtx.eid, (qrCtx.i + n - 1) % n); }
-  if (t.id === 'qr-next' && qrCtx) { const n = qrsOf(find(qrCtx.eid)).length; return openQr(qrCtx.eid, (qrCtx.i + 1) % n); }
+  if (t.id === 'qr-prev' && qrCtx) { const n = qrCtx.manager ? S.managerQrs.length : qrsOf(find(qrCtx.eid)).length; return openQrAt((qrCtx.i + n - 1) % n); }
+  if (t.id === 'qr-next' && qrCtx) { const n = qrCtx.manager ? S.managerQrs.length : qrsOf(find(qrCtx.eid)).length; return openQrAt((qrCtx.i + 1) % n); }
+  if (t.id === 'qr-add-more' && qrCtx && qrCtx.manager) { pendingManagerQr = null; $('#manager-qr-file').multiple = true; return $('#manager-qr-file').click(); }
+  if (t.id === 'qr-replace' && qrCtx && qrCtx.manager) { pendingManagerQr = qrCtx.i; $('#manager-qr-file').multiple = false; return $('#manager-qr-file').click(); }
   if (t.id === 'qr-replace' && qrCtx) { pendingQr = { ...qrCtx }; $('#qr-file').multiple = false; return $('#qr-file').click(); }
   if (t.id === 'qr-remove' && qrCtx) {
+    if (qrCtx.manager) {
+      const k = qrCtx.i;
+      S.managerQrs.splice(k, 1);
+      if (S.managerQrs.length) openManagerQr(Math.min(k, S.managerQrs.length - 1)); else closeQr();
+      renderManagerQr(); save(); return toast("Manager's QR removed");
+    }
     const e = find(qrCtx.eid); if (!e) return;
     const snap = snapshot(); e.qrs.splice(qrCtx.i, 1); const k = qrCtx.i; if (e.qrs.length) openQr(e.id, Math.min(k, e.qrs.length - 1)); else closeQr(); rerenderCard(e.id); refresh(); if (payCtx) renderPay(); return toast('QR code removed', snap);
   }
+  if (t.dataset.managerQr !== undefined) return openManagerQr(+t.dataset.managerQr);
   if (t.dataset.pf) { S.ui.pf = t.dataset.pf; applyFilter(); save(); return; }
   if (t.dataset.view) return setView(t.dataset.view);
   if (t.dataset.hpaid) { const e = find(t.dataset.id); if (e) { setPaid(t.dataset.hpaid, e, payState(e, t.dataset.hpaid).status !== 'paid'); renderHistory(); save(); } return; }
@@ -1740,7 +1835,6 @@ document.addEventListener('click', ev => {
   }
   if (act === 'payout') return openPay(id);
   if (act === 'slot-paid') { const h = +t.dataset.h; setSlotPaid(date, e, h, slotPaid(e, date, h) < slotTotal(e, date, h) - 0.004); refresh(); return; }
-  if (act === 'paid') { setPaid(date, e, payState(e, date).status !== 'paid'); refresh(); return; }
   if (act === 'toggle') {
     const col = !S.ui.collapsed[id]; S.ui.collapsed[id] = col;
     card.classList.toggle('collapsed', col); t.setAttribute('aria-expanded', !col); syncToggleAll(); return save();
@@ -1822,6 +1916,7 @@ document.addEventListener('change', ev => {
     refresh(); return;
   }
   if (t.id === 'qr-file') { const f = Array.from(t.files || []); t.value = ''; uploadQr(f); return; }
+  if (t.id === 'manager-qr-file') { const files = Array.from(t.files || []), index = pendingManagerQr; pendingManagerQr = null; t.value = ''; uploadManagerQr(files, index); return; }
   if (t.dataset.act === 'acct-f') {
     const card = t.closest('.card'), e = find(card.dataset.id), a = e.accts.find(x => x.id === t.closest('.arow').dataset.aid);
     if (!a) return;
