@@ -764,9 +764,10 @@ function extrasHTML(e) {
   return '<ul class="xs">' + list.map(({ x }) => `<li><span class="t">${hl(x.hour)}</span><span class="n">${esc(x.label)}</span><span class="a">+${fmt(x.amount)}</span><button type="button" class="link" data-act="del-x" data-xid="${x.id}" aria-label="Remove ${esc(x.label)}">Remove</button></li>`).join('') + '</ul>';
 }
 let assetsApi = null, qrCtx = null, pendingQr = null;
+const qrSource = value => /^data:image\/(?:png|jpeg|webp|gif);base64,/i.test(value) ? value : '/_blob/' + encodeURIComponent(value);
 const qrRowHTML = e => `<div class="qrrow"><div><b>Payroll QR</b><small>${e.qr ? 'Tap the picture to enlarge it' : 'One QR code for paying ' + esc(e.name)}</small></div>${e.qr
-  ? `<button type="button" class="qrthumb" data-act="qr-view" aria-label="View payroll QR code for ${esc(e.name)}"><img src="/_blob/${esc(e.qr)}" alt="Payroll QR code for ${esc(e.name)}"></button>`
-  : assetsApi ? `<button type="button" class="btn qrbtn" data-act="qr-add" aria-label="Upload payroll QR code for ${esc(e.name)}">Add QR</button>` : '<small>Not added yet</small>'}</div>`;
+  ? `<button type="button" class="qrthumb" data-act="qr-view" aria-label="View payroll QR code for ${esc(e.name)}"><img src="${esc(qrSource(e.qr))}" alt="Payroll QR code for ${esc(e.name)}"></button>`
+  : `<button type="button" class="btn qrbtn" data-act="qr-add" aria-label="Upload payroll QR code for ${esc(e.name)}">Add QR</button>`}</div>`;
 function acctSummaryText(e) {
   const count = w => e.accts.filter(a => a.wallet === w).length, none = e.accts.filter(a => !a.wallet).length;
   return count('GCash') + ' GCash · ' + count('Maya') + ' Maya' + (none ? ' · ' + none + ' no wallet' : '');
@@ -809,7 +810,7 @@ function quickInner(e) {
     const paired = odd && crossPairs(date, c).has(e.id);
     return `<button type="button" class="qbtn${on ? ' on' : ''}${odd && !paired ? ' need' : ''}" data-act="claim" data-h="${c}" aria-pressed="${on}" aria-label="${hl(c)} voucher for ${esc(e.name)}"><span>${hl(c)}${on ? ' · ' + gotOf(i, c) + '/' + e.accts.length : ''}</span><b>${on ? fmt(slotPay(e, date, c)) : 'Claim'}</b>${odd && !paired ? '<i>needs pair</i>' : ''}</button>`;
   }).join('');
-  const thumb = e.qr ? `<button type="button" class="qrthumb" data-act="qr-view" aria-label="View payroll QR code for ${esc(e.name)}"><img src="/_blob/${esc(e.qr)}" alt="Payroll QR code for ${esc(e.name)}"></button>` : '';
+  const thumb = e.qr ? `<button type="button" class="qrthumb" data-act="qr-view" aria-label="View payroll QR code for ${esc(e.name)}"><img src="${esc(qrSource(e.qr))}" alt="Payroll QR code for ${esc(e.name)}"></button>` : '';
   const accts = e.accts.map(a => `<div class="prow"><div><b>${esc(a.name)}</b><small>${esc(a.wallet || 'No wallet')}</small></div><span class="pnum">${esc(a.number || 'No number')}</span>${a.number ? `<button type="button" class="btn" data-copynum="${esc(a.number)}">Copy</button>` : '<span></span>'}</div>`).join('');
   return `<div class="qwho"><b>${esc(e.name)}</b><div class="qmeta"><small>${i.accounts} ${i.accounts === 1 ? 'account' : 'accounts'}</small>${thumb}</div><button type="button" class="link" data-act="detail">Details</button></div>
     <div class="qslots">${btns}</div>
@@ -1041,7 +1042,7 @@ function renderPay() {
   $('#pay-label').textContent = ps.status === 'paid' ? 'Paid' : ps.status === 'partial' ? 'Still owed' : 'Amount to pay';
   $('#pay-amt').textContent = fmt(ps.status === 'partial' ? ps.owed : ps.total);
   $('#pay-break').textContent = 'Vouchers ' + fmt(d.add) + ' + additional ' + fmt(d.extra) + (ps.status === 'partial' ? ' · ' + fmt(ps.paid) + ' paid earlier' : '');
-  $('#pay-qr').innerHTML = e.qr ? `<img src="/_blob/${esc(e.qr)}" alt="Payroll QR code for ${esc(e.name)}">` : `<div class="noqr">No payroll QR yet${assetsApi ? '<button type="button" class="btn" id="pay-qr-add">Add QR</button>' : ''}</div>`;
+  $('#pay-qr').innerHTML = e.qr ? `<img src="${esc(qrSource(e.qr))}" alt="Payroll QR code for ${esc(e.name)}">` : `<div class="noqr">No payroll QR yet<button type="button" class="btn" id="pay-qr-add">Add QR</button></div>`;
   $('#pay-accts').innerHTML = e.accts.map(a => {
     const times = CHECKS.filter(c => Array.isArray(i.acctGot[c]) && i.acctGot[c].includes(a.id)).map(hl).join(' · ');
     return `<div class="prow"><div><b>${esc(a.name)}</b><small>${esc(a.wallet || 'No wallet')}${times ? ' · got voucher at ' + times : ''}</small></div><span class="pnum">${esc(a.number || 'No number')}</span>${a.number ? `<button type="button" class="btn" data-copynum="${esc(a.number)}">Copy</button>` : '<span></span>'}</div>`;
@@ -1066,24 +1067,52 @@ function finishPay() {
 function openQr(eid) {
   const e = find(eid); if (!e || !e.qr) return;
   qrCtx = { eid };
-  $('#qrimg').src = '/_blob/' + e.qr;
+  $('#qrimg').src = qrSource(e.qr);
   $('#qrcap').innerHTML = esc(e.name) + '<small>Payroll QR code</small>';
-  $('#qr-replace').hidden = !assetsApi; $('#qr-remove').hidden = !assetsApi;
+  $('#qr-replace').hidden = false; $('#qr-remove').hidden = false;
   $('#qrview').hidden = false; $('#qr-close').focus();
 }
 function closeQr() { $('#qrview').hidden = true; qrCtx = null; }
+function localQrData(file) {
+  return new Promise((resolve, reject) => {
+    const url = URL.createObjectURL(file), image = new Image();
+    const fail = () => { URL.revokeObjectURL(url); reject(new Error('The photo could not be read. Try a PNG, JPG or WebP image.')); };
+    image.onload = () => {
+      URL.revokeObjectURL(url);
+      try {
+        const longest = Math.max(image.naturalWidth, image.naturalHeight);
+        if (!longest) throw new Error('The photo has no readable image data.');
+        for (const maxSide of [1600, 1200, 900]) {
+          const scale = Math.min(1, maxSide / longest), canvas = document.createElement('canvas');
+          canvas.width = Math.max(1, Math.round(image.naturalWidth * scale));
+          canvas.height = Math.max(1, Math.round(image.naturalHeight * scale));
+          const ctx = canvas.getContext('2d');
+          if (!ctx) throw new Error('Image processing is unavailable in this browser.');
+          ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+          const png = canvas.toDataURL('image/png');
+          if (png.length <= 700000) return resolve(png);
+          const webp = canvas.toDataURL('image/webp', 0.9);
+          if (webp.length <= 700000) return resolve(webp);
+        }
+        reject(new Error('That photo is too large to save locally. Choose a smaller image.'));
+      } catch (err) { reject(err); }
+    };
+    image.onerror = fail;
+    image.src = url;
+  });
+}
 async function uploadQr(file) {
   const ctx = pendingQr; pendingQr = null;
-  if (!file || !ctx || !assetsApi) return;
+  if (!file || !ctx) return;
   const e = find(ctx.eid); if (!e) return;
   if (!/^image\/(png|jpeg|webp|gif)$/.test(file.type)) return toast('Use a PNG, JPG or WebP image');
-  toast('Uploading QR code…');
+  toast(assetsApi ? 'Uploading QR code…' : 'Saving QR code…');
   try {
-    const res = await assetsApi.upload(file);
-    e.qr = res.id; closeQr(); rerenderCard(e.id); refresh(); if (payCtx) renderPay(); toast('Payroll QR saved for ' + e.name);
+    e.qr = assetsApi ? (await assetsApi.upload(file)).id : await localQrData(file);
+    closeQr(); rerenderCard(e.id); refresh(); if (payCtx) renderPay(); toast('Payroll QR saved for ' + e.name);
   } catch (err) {
     const c = err && err.code;
-    toast(c === 'too_large' ? 'That image is too large (max 20 MB)' : c === 'unsupported_type' ? 'Use a PNG, JPG or WebP image' : c === 'quota_or_state' ? 'Storage is full, so the QR code was not saved' : c === 'rate_limited' ? 'Too many uploads. Try again in a moment' : 'The QR code could not be uploaded');
+    toast(c === 'too_large' ? 'That image is too large (max 20 MB)' : c === 'unsupported_type' ? 'Use a PNG, JPG or WebP image' : c === 'quota_or_state' ? 'Storage is full, so the QR code was not saved' : c === 'rate_limited' ? 'Too many uploads. Try again in a moment' : err && err.message ? err.message : 'The QR code could not be saved');
   }
 }
 async function initAssets() {
