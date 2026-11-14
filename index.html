@@ -21,6 +21,22 @@
   --accent-ink: #ffffff; --extra-ink: #ffffff;
   --danger: #b3321f;
   --shadow: 0 1px 2px rgba(17, 32, 31, .06), 0 6px 20px rgba(17, 32, 31, .05);
+  /* Frame theme (header, toolbar, KPI strip, chart panel, employee cards). Light by default; dark teal frames are set in the dark blocks below. */
+  --fv-bg: #f1f5f5; --fv-surface: #ffffff; --fv-surface-2: #edf2f2; --fv-fg: #11201f; --fv-muted: #566a6b; --fv-line: rgba(185, 138, 46, .30); --fv-grid: rgba(185, 138, 46, .14);
+  --fv-accent: #e0b865; --fv-accent-ink: #1a1304; --fv-gold: #8a6417; --fv-salary: #0f8f7d; --fv-salary-dim: #bfe0da; --fv-extra: #b86e00; --fv-extra-ink: #ffffff; --fv-danger: #b3321f;
+  --fv-title: #11201f; --fv-scheme: light; --fv-ctl: #ffffff; --fv-ctl2: #f1f5f5; --fv-border: rgba(185, 138, 46, .40);
+  --fv-pill-bg: rgba(185, 138, 46, .10); --fv-pill-line: rgba(185, 138, 46, .35);
+  --fv-h1: linear-gradient(180deg, #11201f, #2a5f56);
+  --fv-mark: linear-gradient(180deg, rgba(185, 138, 46, .26), rgba(185, 138, 46, .03));
+  --fv-sheen: repeating-linear-gradient(115deg, rgba(185, 138, 46, .05) 0 1px, transparent 1px 14px), linear-gradient(100deg, transparent 38%, rgba(230, 194, 122, .20) 50%, transparent 62%);
+  --fv-bg-top: radial-gradient(560px 260px at 0% -30%, rgba(230, 194, 122, .30), transparent 70%), radial-gradient(520px 260px at 100% 130%, rgba(15, 143, 125, .14), transparent 70%), linear-gradient(135deg, #ffffff 0%, #fcf9f0 52%, #f2f7f4 100%);
+  --fv-bg-panel: radial-gradient(520px 240px at 0% -20%, rgba(230, 194, 122, .24), transparent 70%), radial-gradient(480px 260px at 100% 120%, rgba(15, 143, 125, .12), transparent 70%), linear-gradient(135deg, #ffffff 0%, #fbf9f2 52%, #f2f7f4 100%);
+  --fv-bg-kpis: radial-gradient(520px 220px at 0% -40%, rgba(230, 194, 122, .24), transparent 70%), radial-gradient(480px 240px at 100% 140%, rgba(15, 143, 125, .12), transparent 70%), linear-gradient(135deg, #ffffff 0%, #fbf9f2 52%, #f2f7f4 100%);
+  --fv-bg-card: radial-gradient(420px 200px at 0% -30%, rgba(230, 194, 122, .20), transparent 70%), linear-gradient(135deg, #ffffff 0%, #f9fbf8 55%, #f2f7f4 100%);
+  --fv-bg-bar: linear-gradient(135deg, rgba(255, 255, 255, .94), rgba(247, 250, 248, .94));
+  --fv-shadow: 0 1px 0 rgba(255, 255, 255, .9) inset, 0 18px 40px -22px rgba(17, 32, 31, .28), 0 2px 6px rgba(17, 32, 31, .07);
+  --fv-shadow-card: 0 1px 0 rgba(255, 255, 255, .9) inset, 0 12px 28px -18px rgba(17, 32, 31, .26);
+  --fv-shadow-bar: 0 10px 28px -14px rgba(17, 32, 31, .28);
   --f-head: "Space Grotesk", "Inter", system-ui, sans-serif;
   --f-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   --f-num: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
@@ -32,6 +48,21 @@
     --accent: #2cc4ae; --accent-ink: #04201b; --extra-ink: #1a1100; --danger: #f08a78;
     --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .25);
     color-scheme: dark;
+    --fv-bg: rgba(255, 255, 255, .05); --fv-surface: rgba(255, 255, 255, .06); --fv-surface-2: rgba(255, 255, 255, .08); --fv-fg: #f6f1e4; --fv-muted: #a8b9b4; --fv-line: rgba(226, 190, 112, .28); --fv-grid: rgba(226, 190, 112, .14);
+    --fv-accent: #e0b865; --fv-accent-ink: #1a1304; --fv-gold: #e6c27a; --fv-salary: #23ab98; --fv-salary-dim: #1b4a45; --fv-extra: #d98e1f; --fv-extra-ink: #1a1100; --fv-danger: #f08a78;
+    --fv-title: #fffaf0; --fv-scheme: dark; --fv-ctl: rgba(255, 255, 255, .06); --fv-ctl2: rgba(255, 255, 255, .05); --fv-border: rgba(226, 190, 112, .38);
+    --fv-pill-bg: rgba(226, 190, 112, .10); --fv-pill-line: rgba(226, 190, 112, .35);
+    --fv-h1: linear-gradient(180deg, #fffaf0, #ecd9a8);
+    --fv-mark: linear-gradient(180deg, rgba(230, 194, 122, .26), rgba(230, 194, 122, .02));
+    --fv-sheen: repeating-linear-gradient(115deg, rgba(255, 236, 190, .035) 0 1px, transparent 1px 14px), linear-gradient(100deg, transparent 38%, rgba(255, 236, 190, .09) 50%, transparent 62%);
+    --fv-bg-top: radial-gradient(560px 260px at 0% -30%, rgba(230, 194, 122, .20), transparent 70%), radial-gradient(520px 260px at 100% 130%, rgba(35, 171, 152, .26), transparent 70%), linear-gradient(135deg, #07191a 0%, #0b2a2a 52%, #10211c 100%);
+    --fv-bg-panel: radial-gradient(520px 240px at 0% -20%, rgba(230, 194, 122, .18), transparent 70%), radial-gradient(480px 260px at 100% 120%, rgba(35, 171, 152, .24), transparent 70%), linear-gradient(135deg, #07191a 0%, #0b2a2a 52%, #10211c 100%);
+    --fv-bg-kpis: radial-gradient(520px 220px at 0% -40%, rgba(230, 194, 122, .18), transparent 70%), radial-gradient(480px 240px at 100% 140%, rgba(35, 171, 152, .24), transparent 70%), linear-gradient(135deg, #07191a 0%, #0b2a2a 52%, #10211c 100%);
+    --fv-bg-card: radial-gradient(420px 200px at 0% -30%, rgba(230, 194, 122, .16), transparent 70%), linear-gradient(135deg, #07191a 0%, #0b2a2a 55%, #10211c 100%);
+    --fv-bg-bar: linear-gradient(135deg, rgba(7, 25, 26, .92), rgba(11, 42, 42, .92));
+    --fv-shadow: 0 1px 0 rgba(255, 236, 190, .18) inset, 0 18px 40px -18px rgba(4, 22, 22, .65), 0 2px 6px rgba(4, 22, 22, .25);
+    --fv-shadow-card: 0 1px 0 rgba(255, 236, 190, .14) inset, 0 12px 28px -16px rgba(4, 22, 22, .6);
+    --fv-shadow-bar: 0 10px 28px -12px rgba(4, 22, 22, .7);
   }
 }
 :root[data-theme="dark"] {
@@ -40,6 +71,21 @@
   --accent: #2cc4ae; --accent-ink: #04201b; --extra-ink: #1a1100; --danger: #f08a78;
   --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .25);
   color-scheme: dark;
+  --fv-bg: rgba(255, 255, 255, .05); --fv-surface: rgba(255, 255, 255, .06); --fv-surface-2: rgba(255, 255, 255, .08); --fv-fg: #f6f1e4; --fv-muted: #a8b9b4; --fv-line: rgba(226, 190, 112, .28); --fv-grid: rgba(226, 190, 112, .14);
+  --fv-accent: #e0b865; --fv-accent-ink: #1a1304; --fv-gold: #e6c27a; --fv-salary: #23ab98; --fv-salary-dim: #1b4a45; --fv-extra: #d98e1f; --fv-extra-ink: #1a1100; --fv-danger: #f08a78;
+  --fv-title: #fffaf0; --fv-scheme: dark; --fv-ctl: rgba(255, 255, 255, .06); --fv-ctl2: rgba(255, 255, 255, .05); --fv-border: rgba(226, 190, 112, .38);
+  --fv-pill-bg: rgba(226, 190, 112, .10); --fv-pill-line: rgba(226, 190, 112, .35);
+  --fv-h1: linear-gradient(180deg, #fffaf0, #ecd9a8);
+  --fv-mark: linear-gradient(180deg, rgba(230, 194, 122, .26), rgba(230, 194, 122, .02));
+  --fv-sheen: repeating-linear-gradient(115deg, rgba(255, 236, 190, .035) 0 1px, transparent 1px 14px), linear-gradient(100deg, transparent 38%, rgba(255, 236, 190, .09) 50%, transparent 62%);
+  --fv-bg-top: radial-gradient(560px 260px at 0% -30%, rgba(230, 194, 122, .20), transparent 70%), radial-gradient(520px 260px at 100% 130%, rgba(35, 171, 152, .26), transparent 70%), linear-gradient(135deg, #07191a 0%, #0b2a2a 52%, #10211c 100%);
+  --fv-bg-panel: radial-gradient(520px 240px at 0% -20%, rgba(230, 194, 122, .18), transparent 70%), radial-gradient(480px 260px at 100% 120%, rgba(35, 171, 152, .24), transparent 70%), linear-gradient(135deg, #07191a 0%, #0b2a2a 52%, #10211c 100%);
+  --fv-bg-kpis: radial-gradient(520px 220px at 0% -40%, rgba(230, 194, 122, .18), transparent 70%), radial-gradient(480px 240px at 100% 140%, rgba(35, 171, 152, .24), transparent 70%), linear-gradient(135deg, #07191a 0%, #0b2a2a 52%, #10211c 100%);
+  --fv-bg-card: radial-gradient(420px 200px at 0% -30%, rgba(230, 194, 122, .16), transparent 70%), linear-gradient(135deg, #07191a 0%, #0b2a2a 55%, #10211c 100%);
+  --fv-bg-bar: linear-gradient(135deg, rgba(7, 25, 26, .92), rgba(11, 42, 42, .92));
+  --fv-shadow: 0 1px 0 rgba(255, 236, 190, .18) inset, 0 18px 40px -18px rgba(4, 22, 22, .65), 0 2px 6px rgba(4, 22, 22, .25);
+  --fv-shadow-card: 0 1px 0 rgba(255, 236, 190, .14) inset, 0 12px 28px -16px rgba(4, 22, 22, .6);
+  --fv-shadow-bar: 0 10px 28px -12px rgba(4, 22, 22, .7);
 }
 * { box-sizing: border-box; }
 body {
@@ -58,6 +104,10 @@ button { cursor: pointer; }
 .vwrap[hidden] { display: none; }
 .dnav { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 8px; }
 .dnav[hidden] { display: none; }
+.hright { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; }
+.hcal { display: flex; flex-wrap: wrap; gap: 8px; }
+.hdate { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; color: var(--muted); }
+.hdate .date-in { padding: 6px 8px; font-size: 13px; }
 .subt { margin: 2px 0 0; color: var(--muted); font-size: 12.5px; }
 .hbar { padding: 14px 16px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 16px; }
 .hpanel { padding: 16px; display: flex; flex-direction: column; gap: 10px; }
@@ -81,7 +131,39 @@ table.t tr:last-child td { border-bottom: 0; }
 .dbody .acts { display: flex; justify-content: flex-end; }
 @media (max-width: 720px) { .dayrow summary { grid-template-columns: minmax(0, 1fr) auto 14px; } .dayrow .dv { display: none; } }
 /* header */
-.top { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 14px 20px; }
+.top, .bar { --bg: var(--fv-bg); --surface: var(--fv-surface); --surface-2: var(--fv-surface-2); --fg: var(--fv-fg); --muted: var(--fv-muted); --line: var(--fv-line); --accent: var(--fv-accent); --accent-ink: var(--fv-accent-ink); --gold: var(--fv-gold); --gold-2: #b98a2e;
+}
+.top { position: relative; isolation: isolate; overflow: hidden; color: var(--fg); display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 14px 20px; padding: 22px 24px 20px; border: 1px solid var(--fv-border); border-radius: 18px;
+  background: var(--fv-bg-top);
+  box-shadow: var(--fv-shadow); }
+.top::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: var(--fv-sheen); }
+.top::after { content: "₱"; position: absolute; right: 22px; top: -30px; z-index: -1; pointer-events: none; font: 700 170px/1 var(--f-head); background: var(--fv-mark); -webkit-background-clip: text; background-clip: text; color: transparent; transform: rotate(10deg); }
+.top .logo { background: linear-gradient(145deg, #f2d792, #c79a3d 60%, #a97a22); color: #1a1304; box-shadow: 0 0 0 1px rgba(255, 236, 190, .5) inset, 0 6px 16px rgba(201, 154, 61, .35); }
+.top h1 { background: var(--fv-h1); -webkit-background-clip: text; background-clip: text; color: transparent; letter-spacing: -.015em; }
+.top .pill { background: var(--fv-pill-bg); border-color: var(--fv-pill-line); color: var(--gold); letter-spacing: .02em; }
+.top .btn, .top .date-in, .top .seg { backdrop-filter: blur(6px); }
+.bar { position: sticky; top: max(8px, env(safe-area-inset-top, 0px)); z-index: 30; padding: 8px 10px; border: 1px solid var(--fv-border); border-radius: 14px; background: var(--fv-bg-bar); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); box-shadow: var(--fv-shadow-bar); color: var(--fg); }
+.bar .btn, .bar .date-in, .bar .seg { background: var(--fv-ctl); border-color: var(--line); color: var(--fg); }
+.bar .seg { background: var(--fv-ctl2); }
+.bar .btn:hover { border-color: var(--gold); }
+@media (max-width: 720px) { .controls.bar { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; padding: 6px 8px; gap: 6px; } .bar::-webkit-scrollbar { display: none; } .bar > *, .bar .dnav { flex: none; } .bar .dnav { flex-wrap: nowrap; display: inline-flex; gap: 6px; align-items: center; } .bar .btn, .bar .date-in { padding: 6px 10px; } .bar .btn.icon { width: 34px; } }
+.bar .date-in { color-scheme: var(--fv-scheme); }
+/* minimal date navigation: no boxes, just arrows and the date */
+.bar .dnav { gap: 2px; }
+.bar .dnav .btn, .bar .dnav .date-in { background: transparent; border-color: transparent; box-shadow: none; }
+.bar .dnav .btn:hover, .bar .dnav .date-in:hover { background: var(--fv-ctl); border-color: var(--line); }
+.bar .dnav .btn.icon { width: 30px; padding: 6px 0; color: var(--muted); }
+.bar .dnav .btn.icon:hover { color: var(--fg); }
+.bar .dnav .date-in { padding: 6px 4px; font-weight: 600; }
+.bar .dnav .date-in::-webkit-calendar-picker-indicator { opacity: .45; cursor: pointer; }
+.bar .dnav .date-in::-webkit-calendar-picker-indicator:hover { opacity: 1; }
+.bar .dnav #today { color: var(--gold); font-size: 13px; font-weight: 700; padding: 6px 12px; margin-left: 6px; background: var(--fv-pill-bg); border-color: var(--fv-pill-line); }
+.bar .dnav #today:hover { border-color: var(--gold); }
+.barR { margin-left: auto; display: inline-flex; align-items: center; gap: 10px; flex: none; }
+.bar .barpill { background: var(--fv-pill-bg); border-color: var(--fv-pill-line); color: var(--gold); font-weight: 600; font-size: 13px; padding: 6px 12px; white-space: nowrap; }
+.bar .saved { white-space: nowrap; }
+.bar .btn.primary, .bar .seg button[aria-pressed="true"], .top .btn.primary, .top .seg button[aria-pressed="true"] { background: linear-gradient(145deg, #f0d38c, #c99a3e); color: #1a1304; border-color: transparent; }
+@media (max-width: 720px) { .top { padding: 16px; } .top::after { font-size: 120px; top: -18px; } }
 .brand { display: flex; align-items: center; gap: 12px; min-width: 0; }
 .logo { width: 40px; height: 40px; border-radius: 10px; background: var(--accent); color: var(--accent-ink); display: grid; place-items: center; font: 700 15px var(--f-head); letter-spacing: .02em; flex: none; }
 h1 { margin: 0; font: 700 26px/1.1 var(--f-head); letter-spacing: -.01em; }
@@ -117,7 +199,8 @@ h1 { margin: 0; font: 700 26px/1.1 var(--f-head); letter-spacing: -.01em; }
 .cpbtn[aria-pressed="true"] { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent) inset; }
 .cpbtn .t { font: 600 12px var(--f-num); color: var(--muted); }
 .cpbtn .v { font: 700 19px var(--f-num); }
-.cpbtn .d { font-size: 12px; color: var(--muted); }
+.cpbtn .d { font: 500 12px var(--f-num); color: var(--muted); }
+.cpbtn .d.unpaid { color: var(--extra); font-weight: 600; }
 
 /* layout */
 .main { display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr); gap: 16px; align-items: start; }
@@ -128,12 +211,30 @@ h2 { margin: 0; font: 600 17px var(--f-head); }
 .saved { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--muted); }
 .saved::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--salary); }
 .saved.off::before { background: var(--danger); }
-.live { display: inline-flex; align-items: center; gap: 6px; font: 600 11px var(--f-num); letter-spacing: .06em; text-transform: uppercase; color: var(--accent); }
+.live { display: inline-flex; align-items: center; gap: 6px; font: 600 11px var(--f-num); letter-spacing: .06em; text-transform: uppercase; color: var(--gold, var(--accent)); }
 .live::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); animation: pulse 1.8s ease-out infinite; }
 @keyframes pulse { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 60%, transparent); } 100% { box-shadow: 0 0 0 8px transparent; } }
 
 .left { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
-.addbox { padding: 14px; }
+.addbox { padding: 0; }
+.addbox > summary { list-style: none; cursor: pointer; display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; padding: 12px 14px; }
+.addbox > summary::-webkit-details-marker { display: none; }
+.addbox .ah { font: 700 17px var(--f-head); margin-right: auto; }
+.addbox .ah .count { font-weight: 400; }
+.addcta { font-weight: 600; font-size: 13px; color: var(--accent-ink); background: var(--accent); border-radius: 8px; padding: 7px 12px; }
+.addbox[open] .addcta { background: transparent; color: var(--muted); border: 1px solid var(--line); }
+.addbox[open] .addcta::before { content: "Close  "; }
+.addbox[open] .addcta { font-size: 0; } .addbox[open] .addcta::before { font-size: 13px; content: "Close"; }
+.addbox .addrow, .addbox .err { margin: 0 14px; }
+.addbox[open] .addrow { padding-bottom: 14px; }
+.paidseg { align-self: flex-start; }
+.paidseg .n { font-family: var(--f-num); opacity: .75; margin-left: 2px; }
+.more { position: relative; }
+.more > summary { list-style: none; cursor: pointer; display: inline-block; }
+.more > summary::-webkit-details-marker { display: none; }
+.more .menu { position: absolute; right: 0; top: calc(100% + 6px); z-index: 25; min-width: 210px; display: flex; flex-direction: column; gap: 8px; padding: 12px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow), 0 12px 30px rgba(0, 0, 0, .18); }
+.more .menu .btn { text-align: left; }
+.more .menu .field { gap: 4px; }
 .addrow { display: grid; grid-template-columns: minmax(0, 1fr) 110px auto; gap: 10px; align-items: end; }
 .field { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
 .field > span, .flabel { font-size: 12px; font-weight: 600; color: var(--muted); }
@@ -154,6 +255,7 @@ select.in { width: auto; padding-right: 8px; }
 @keyframes flash { 0% { box-shadow: 0 0 0 3px var(--accent); } 100% { box-shadow: var(--shadow); } }
 .card-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
 .who { display: flex; align-items: center; gap: 10px; min-width: 0; flex: 1; }
+@media (max-width: 480px) { .who { gap: 6px; } .who .rank { display: none; } .who .grip { width: 18px; } }
 .chev { width: 28px; height: 28px; flex: none; border: 1px solid var(--line); background: var(--surface-2); border-radius: 8px; display: grid; place-items: center; padding: 0; color: var(--muted); }
 .chev:hover { color: var(--fg); border-color: var(--muted); }
 .chev svg { width: 14px; height: 14px; transition: transform .15s; }
@@ -176,6 +278,7 @@ select.in { width: auto; padding-right: 8px; }
 .arows { display: flex; flex-direction: column; gap: 8px; padding: 0 12px 10px; }
 .arow { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr) 96px auto; gap: 8px; align-items: center; }
 .addacct { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr) 96px auto; gap: 8px; align-items: center; }
+.qbox .qrrow { border: 0; background: transparent; padding: 0 12px 12px; }
 .qrrow { display: flex; align-items: center; justify-content: space-between; gap: 10px; border: 1px solid var(--line); border-radius: 10px; background: var(--bg); padding: 8px 12px; }
 .qrrow b { font-weight: 600; display: block; }
 .qrrow small { color: var(--muted); font-size: 12px; }
@@ -193,6 +296,19 @@ select.in { width: auto; padding-right: 8px; }
 .arow input[data-f="number"], .addacct input[name="number"] { font-family: var(--f-num); }
 .arow button:disabled { opacity: .4; cursor: not-allowed; }
 .addacct { padding: 10px 12px 12px; border-top: 1px solid var(--line); }
+.aedit { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 0 12px 8px; font-size: 12px; color: var(--muted); }
+.aedit .btn { padding: 5px 12px; font-size: 12.5px; }
+.accts.hasedit > summary > span:first-child { flex: none; }
+.accts.hasedit > summary .am { margin-left: auto; }
+.esm { padding: 3px 12px; font-size: 12px; }
+.aview { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; gap: 4px 12px; align-items: center; padding: 8px 0; border-top: 1px solid var(--line); }
+.aview:first-child { border-top: 0; }
+.aview .an { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; min-width: 0; }
+.aview .an b { font-weight: 600; overflow-wrap: anywhere; }
+.aview .wal { font: 600 11px var(--f-body); border: 1px solid var(--line); border-radius: 999px; padding: 1px 8px; color: var(--muted); white-space: nowrap; }
+.aview .wal.none, .aview .anum.none { opacity: .6; }
+.aview .anum { font: 600 13px var(--f-num); }
+@media (max-width: 480px) { .aview { grid-template-columns: minmax(0, 1fr) auto; } .aview .anum { grid-column: 1; } .aview .link { grid-row: 1 / 3; grid-column: 2; } }
 @media (max-width: 720px) { .arow, .addacct { grid-template-columns: minmax(0, 1fr) 96px; } .arow [data-f="name"], .addacct [name="name"] { grid-column: 1 / -1; } .addacct .btn { grid-column: 1 / -1; } .arow .link { justify-self: end; } }
 .salary-row { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 10px 14px; }
 .money { position: relative; width: 150px; }
@@ -208,7 +324,12 @@ select.in { width: auto; padding-right: 8px; }
 .link[hidden] { display: none; }
 
 .slots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
-.slot { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
+.slot { display: flex; flex-direction: column; gap: 8px; min-width: 0; padding: 10px; border: 1px solid var(--line); border-radius: 12px; background: var(--bg); box-shadow: 0 1px 0 rgba(255, 255, 255, .04) inset; }
+.slot.on { border-color: var(--extra); }
+.shead { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding-bottom: 8px; border-bottom: 1px solid var(--line); }
+.sst { font-size: 11.5px; color: var(--muted); }
+.slot.on .sst { color: var(--extra); font-weight: 600; }
+@media (max-width: 720px) { .slots { grid-template-columns: minmax(0, 1fr); } }
 .vbtn { border: 0; border-radius: 10px; background: var(--salary-dim); color: var(--fg); min-height: 46px; padding: 6px 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; transition: transform .1s, background .15s; }
 .vbtn span { font-size: 11.5px; font-weight: 600; opacity: .85; }
 .vbtn b { font: 700 14px var(--f-num); }
@@ -223,6 +344,12 @@ select.in { width: auto; padding-right: 8px; }
 .paidnote { display: block; font-size: 11.5px; color: var(--muted); }
 .qrow { padding: 12px 14px; display: grid; grid-template-columns: minmax(110px, 1fr) auto minmax(100px, auto); gap: 10px 14px; align-items: center; }
 .qrow[hidden] { display: none; }
+.grip { width: 22px; height: 30px; flex: none; display: none; place-items: center; padding: 0; border: 0; background: transparent; color: var(--muted); cursor: grab; touch-action: none; border-radius: 6px; }
+.grip:hover, .grip:focus-visible { color: var(--fg); background: var(--surface-2); }
+.sortable .grip { display: grid; }
+.qname { display: flex; align-items: center; gap: 6px; min-width: 0; }
+.dragging { opacity: .92; box-shadow: 0 14px 34px rgba(0, 0, 0, .28); outline: 2px solid var(--accent); position: relative; z-index: 5; }
+body.isdrag, body.isdrag * { cursor: grabbing !important; user-select: none; -webkit-user-select: none; }
 .qwho { display: flex; flex-direction: column; min-width: 0; gap: 2px; align-items: flex-start; }
 .qwho b { font: 600 15px var(--f-head); overflow-wrap: anywhere; }
 .qwho small { color: var(--muted); font-size: 12px; }
@@ -265,6 +392,48 @@ select.in { width: auto; padding-right: 8px; }
 .qacc { grid-column: 1 / -1; }
 .qmeta { display: flex; align-items: center; gap: 8px; }
 .qwho .qrthumb { width: 38px; height: 38px; }
+.qrthumbs { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; justify-content: flex-end; }
+.qrmore { width: 46px; height: 46px; border: 1px dashed var(--line); border-radius: 8px; background: var(--surface-2); color: var(--muted); font: 600 13px var(--f-num); }
+.qwho .qrmore { width: 38px; height: 38px; }
+.qrgrid { display: grid; gap: 10px; justify-items: center; }
+.qrgrid.multi { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+.qrgrid figure { margin: 0; text-align: center; }
+.qrgrid img { width: 100%; max-width: 300px; background: #fff; border-radius: 10px; display: block; margin: 0 auto; }
+.qrgrid figcaption { font-size: 12px; color: var(--muted); margin-top: 4px; }
+.pqr { display: flex; flex-direction: column; gap: 10px; align-items: center; }
+/* payout panel */
+.pbox { gap: 16px; padding: 18px; }
+.psec { display: flex; flex-direction: column; gap: 8px; }
+.psec > h3 { margin: 0; font: 600 11px var(--f-body); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.pamt { background: var(--surface-2); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; gap: 4px; }
+.pamt-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.pstat { font: 600 11.5px var(--f-body); font-style: normal; border-radius: 999px; padding: 3px 10px; border: 1px solid var(--line); color: var(--muted); white-space: nowrap; }
+.pstat.paid { background: var(--salary); border-color: var(--salary); color: var(--accent-ink); }
+.pstat.unpaid, .pstat.partial { color: var(--extra); border-color: var(--extra); }
+.pslots { display: flex; flex-direction: column; gap: 6px; }
+.srow { display: grid; grid-template-columns: 52px minmax(0, 1fr) auto; gap: 10px; align-items: center; border: 1px solid var(--line); border-radius: 10px; padding: 9px 10px 9px 12px; background: var(--surface); }
+.srow.ok { border-color: var(--salary); }
+.stm { font: 700 14px var(--f-num); }
+.smid { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 10px; min-width: 0; }
+.sam { font: 700 15px var(--f-num); }
+.sst2 { font-size: 12px; font-weight: 600; color: var(--extra); }
+.srow.ok .sst2 { color: var(--salary); }
+.srow .btn { padding: 6px 12px; font-size: 12.5px; }
+.srow.ok .btn { background: transparent; color: var(--muted); }
+.qtile { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 10px; width: 100%; max-width: 260px; }
+.qtile img { border-radius: 6px; }
+.pqr .qrgrid.multi .qtile { max-width: none; }
+.pqr .qadd { font-size: 12.5px; padding: 6px 12px; }
+.noqr { padding: 12px 14px; flex-direction: row; justify-content: space-between; text-align: left; width: 100%; font-size: 13px; }
+.pacc { border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; background: var(--surface); display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 10px; align-items: center; }
+.pacc .an { font-weight: 600; overflow-wrap: anywhere; }
+.pacc .wal { font: 600 11px var(--f-body); border: 1px solid var(--line); border-radius: 999px; padding: 1px 8px; color: var(--muted); margin-left: 8px; white-space: nowrap; }
+.pacc .num { font: 600 16px var(--f-num); letter-spacing: .02em; overflow-wrap: anywhere; }
+.pacc .nonum { font-size: 12.5px; color: var(--muted); }
+.pacc .got { grid-column: 1 / -1; font-size: 11.5px; color: var(--muted); }
+.pacc .cp2 { grid-row: 1 / 3; grid-column: 2; padding: 7px 12px; }
+.pfoot { position: sticky; bottom: -18px; background: var(--surface); padding: 12px 0 2px; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end; }
+.pfoot .primary { flex: 1 1 160px; min-height: 44px; font-size: 15px; }
 .gotrow { display: flex; align-items: center; justify-content: space-between; gap: 6px; font-size: 12px; color: var(--muted); }
 .gotrow button { width: 26px; height: 26px; border: 1px solid var(--line); background: var(--surface-2); border-radius: 6px; padding: 0; font-weight: 700; line-height: 1; }
 .gotrow button:disabled { opacity: .35; cursor: not-allowed; }
@@ -273,8 +442,8 @@ select.in { width: auto; padding-right: 8px; }
 .pairrow { display: flex; flex-direction: column; gap: 3px; font-size: 11.5px; color: var(--muted); }
 .pairsel { width: 100%; padding: 6px 8px; font-size: 12.5px; }
 .pnote { font-size: 11.5px; color: var(--muted); min-height: 16px; line-height: 1.3; }
-.pnote.ok { color: var(--accent); }
-.slabel { font: 500 11px var(--f-num); color: var(--muted); padding-left: 2px; }
+.pnote.ok { color: var(--fv-gold, var(--accent)); }
+.slabel { font: 700 13px var(--f-num); color: var(--fg); padding-left: 2px; }
 .tiebtn { border: 1px solid var(--line); background: transparent; border-radius: 8px; padding: 5px 8px; font-size: 12.5px; font-weight: 600; color: var(--muted); }
 .tiebtn:disabled { opacity: .4; cursor: not-allowed; }
 .tiebtn:not(:disabled):hover { color: var(--fg); border-color: var(--muted); }
@@ -288,10 +457,16 @@ select.in { width: auto; padding-right: 8px; }
 .stepper button:hover { border-color: var(--muted); }
 .cps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
 .cp { background: var(--surface-2); border-radius: 8px; padding: 8px 10px; display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+.cp { border: 0; text-align: left; color: inherit; }
+button.cp:not(:disabled):hover { background: var(--salary-dim); }
 .cp span { font: 500 11px var(--f-num); color: var(--muted); }
+.cp i { font: 600 11px var(--f-body); font-style: normal; color: var(--muted); }
+.cp.unpaid i { color: var(--extra); }
+.cp.paid { outline: 1px solid var(--salary); }
+.cp.paid i { color: var(--salary); }
 .cp b { font: 700 14px var(--f-num); overflow-wrap: anywhere; }
 .sum { font-size: 12.5px; color: var(--muted); margin: 0; }
-.xbox { display: flex; flex-direction: column; gap: 10px; border-top: 1px solid var(--line); padding-top: 12px; }
+.xbox .xin { display: flex; flex-direction: column; gap: 10px; padding: 0 12px 12px; }
 .xs { list-style: none; margin: 0; padding: 0; }
 .xs li { display: grid; grid-template-columns: 58px minmax(0, 1fr) auto auto; gap: 10px; align-items: baseline; padding: 7px 0; border-bottom: 1px solid var(--line); }
 .xs .t { font: 500 12px var(--f-num); color: var(--muted); }
@@ -304,11 +479,76 @@ select.in { width: auto; padding-right: 8px; }
 .empty b { display: block; color: var(--fg); font: 600 16px var(--f-head); margin-bottom: 4px; }
 
 /* leaderboard chart */
-.chartp { padding: 16px; position: sticky; top: 16px; }
+.chartp { padding: 16px; position: sticky; top: 76px; display: flex; flex-direction: column; gap: 14px; }
+.chartp .checks { gap: 8px; }
+.chartp .checks .check, .chartp .checks > button { flex: 1 1 90px; }
 .chartp .subt { margin: 2px 0 0; color: var(--muted); font-size: 12.5px; }
 .legend { display: flex; flex-wrap: wrap; gap: 6px 16px; margin: 12px 0 8px; font-size: 12.5px; color: var(--muted); }
 .legend span { display: inline-flex; align-items: center; gap: 7px; }
 .chart { --lab: 138px; --val: 104px; position: relative; }
+.hebox { display: flex; flex-direction: column; gap: 12px; padding: 16px; border-radius: 12px; border: 1px solid color-mix(in srgb, var(--accent) 38%, var(--line)); background: linear-gradient(160deg, color-mix(in srgb, var(--accent) 18%, var(--surface-2)), var(--surface-2) 75%); }
+.hebox .legend { margin: 0; }
+.chartbg { padding: 4px 0 0; }
+/* chart panel framed like the header */
+.chartp { --bg: var(--fv-bg); --surface: var(--fv-surface); --surface-2: var(--fv-surface-2); --fg: var(--fv-fg); --muted: var(--fv-muted); --line: var(--fv-line); --grid: var(--fv-grid); --accent: var(--fv-accent); --accent-ink: var(--fv-accent-ink); --gold: var(--fv-gold); --salary: var(--fv-salary); --extra: var(--fv-extra); --extra-ink: var(--fv-extra-ink);
+  color: var(--fg); border: 1px solid var(--fv-border); border-radius: 18px; padding: 20px;
+  background: var(--fv-bg-panel);
+  box-shadow: var(--fv-shadow); }
+.chartp .hebox { background: none; border: 0; padding: 0; }
+.chartp .seg button[aria-pressed="true"] { background: linear-gradient(145deg, #f0d38c, #c99a3e); color: #1a1304; }
+.chartp .cpbtn[aria-pressed="true"] { border-color: var(--gold); box-shadow: 0 0 0 1px var(--gold) inset; }
+.chartp h2 { color: var(--fv-title); }
+/* summary strips framed like the header */
+.kpis { --surface: var(--fv-surface); --fg: var(--fv-fg); --muted: var(--fv-muted); --line: var(--fv-line); --extra: var(--fv-extra); --salary: var(--fv-salary);
+  color: var(--fg); border: 1px solid var(--fv-border); border-radius: 18px; overflow: hidden;
+  background: var(--fv-bg-kpis);
+  box-shadow: var(--fv-shadow); }
+.kpis .v, .kpis .n { color: var(--fv-title); }
+/* employee panels framed like the header */
+.addbox, .card, .qrow, .hbar, .hpanel { --bg: var(--fv-bg); --surface: var(--fv-surface); --surface-2: var(--fv-surface-2); --fg: var(--fv-fg); --muted: var(--fv-muted); --line: var(--fv-line); --grid: var(--fv-grid); --accent: var(--fv-accent); --accent-ink: var(--fv-accent-ink); --salary: var(--fv-salary); --salary-dim: var(--fv-salary-dim); --extra: var(--fv-extra); --extra-ink: var(--fv-extra-ink); --danger: var(--fv-danger);
+  color-scheme: var(--fv-scheme); color: var(--fg); border: 1px solid var(--fv-border); border-radius: 18px;
+  background: var(--fv-bg-card);
+  box-shadow: var(--fv-shadow-card); }
+.name-in { color: var(--fv-title); }
+.slots { align-items: start; }
+.cps { gap: 6px; }
+.cp { flex-direction: row; flex-wrap: wrap; align-items: baseline; gap: 2px 8px; padding: 6px 10px; }
+.pbadge { display: inline-block; font: 600 11px var(--f-body); border-radius: 999px; padding: 2px 9px; margin-bottom: 4px; border: 1px solid var(--line); color: var(--muted); }
+.pbadge[hidden] { display: none; }
+.pbadge.paid { background: var(--salary); border-color: var(--salary); color: var(--accent-ink); }
+.pbadge.unpaid, .pbadge.partial { color: var(--extra); border-color: var(--extra); }
+/* quick list */
+.qrow { display: flex; flex-direction: column; align-items: stretch; justify-content: flex-start; gap: 10px; padding: 12px 14px; }
+.qrow > * { min-width: 0; }
+.qtop, .qslots, .qfoot, .qacc { width: 100%; }
+.qtop { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.qname { flex: 1; min-width: 0; flex-wrap: wrap; }
+.qname b { font: 600 16px var(--f-head); overflow-wrap: anywhere; }
+.qname small { color: var(--muted); font-size: 12px; }
+.qtot { flex-direction: row; align-items: center; gap: 10px; flex: none; }
+.qtot strong { font: 700 20px var(--f-num); }
+.qtot .pbadge { margin: 0; }
+.qslots { order: 0; grid-column: auto; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.qbtn { min-height: 62px; }
+.card.collapsed > .qmini { display: grid; margin-top: 10px; }
+.card:not(.collapsed) > .qmini { display: none; }
+/* page backdrop: soft teal and gold in light mode, plain in dark mode */
+:root { --page: radial-gradient(900px 520px at 8% -8%, rgba(230, 194, 122, .30), transparent 62%), repeating-linear-gradient(115deg, rgba(90, 60, 10, .02) 0 1px, transparent 1px 18px), linear-gradient(180deg, #f8f2e4 0%, #eee4cf 100%); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --page: var(--bg); } }
+:root[data-theme="dark"] { --page: var(--bg); }
+body { background: var(--page); background-attachment: fixed; }
+.banner { background: color-mix(in srgb, var(--surface) 65%, transparent); border-color: color-mix(in srgb, var(--accent) 45%, var(--line)); }
+.toolbar .in, .toolbar .btn:not(.primary) { background: color-mix(in srgb, var(--surface) 78%, transparent); border-color: color-mix(in srgb, var(--accent) 30%, var(--line)); }
+.paidseg { background: color-mix(in srgb, var(--surface) 78%, transparent); border-color: color-mix(in srgb, var(--accent) 30%, var(--line)); }
+.qfoot { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.qname .paybtns { flex: none; flex-wrap: nowrap; justify-content: flex-start; }
+.qname .paidbtn { margin-top: 0; }
+.qtop { flex-wrap: wrap; }
+.who .paybtns { flex: none; flex-wrap: nowrap; justify-content: flex-start; }
+.who .paidbtn { margin-top: 0; }
+.who .name-in { flex: 1 1 60px; width: auto; }
+@media (max-width: 560px) { .card-head { flex-wrap: wrap; } .who { flex: 1 1 100%; flex-wrap: wrap; } .who .name-in { flex: 1 1 120px; } .amt { margin-left: auto; text-align: right; } }
+.chartbg:has(#chart[hidden]) { display: none; }
 .plot { position: absolute; left: var(--lab); right: var(--val); top: 0; bottom: 22px; pointer-events: none; }
 .gl { position: absolute; top: 0; bottom: 0; width: 1px; background: var(--grid); }
 .gl.z { background: var(--line); }
@@ -336,7 +576,7 @@ select.in { width: auto; padding-right: 8px; }
 
 @media (max-width: 980px) {
   .main { grid-template-columns: minmax(0, 1fr); }
-  .chartp { position: static; order: -1; }
+  .chartp { position: static; }
 }
 @media (max-width: 720px) {
   .kpis { grid-template-columns: repeat(2, 1fr); }
@@ -365,7 +605,8 @@ select.in { width: auto; padding-right: 8px; }
         <div class="sub"><span class="pill">Voucher claims · 12 PM · 3 PM · 9 PM</span><span id="datelong"></span></div>
       </div>
     </div>
-    <div class="controls">
+  </header>
+  <div class="controls bar">
       <div class="seg" id="tabs" role="group" aria-label="View">
         <button data-view="tracker" aria-pressed="true">Tracker</button>
         <button data-view="history" aria-pressed="false">History</button>
@@ -377,9 +618,13 @@ select.in { width: auto; padding-right: 8px; }
         <button class="btn icon" id="next" aria-label="Next day">›</button>
         <button class="btn" id="today">Today</button>
       </span>
-      <button class="btn" id="theme" aria-label="Switch theme">Theme</button>
-    </div>
-  </header>
+      <div class="barR">
+        <span class="pill barpill" id="bar-total" title="Today's payroll" hidden></span>
+        <span class="saved" id="saved">Saved on this device</span>
+        <button class="btn primary" id="pay-start">Start payout</button>
+        <button class="btn icon" id="theme" aria-label="Switch theme" style="display:inline-grid;place-items:center">Theme</button>
+      </div>
+  </div>
 
   <div id="v-tracker" class="vwrap">
   <div class="banner" id="banner" hidden>
@@ -394,40 +639,43 @@ select.in { width: auto; padding-right: 8px; }
     <div class="kpi"><div class="l">Highest earner</div><div class="n" id="k-top">—</div><div class="m" id="k-topv"></div></div>
   </section>
 
-  <section class="checks" id="checks" aria-label="Payroll by time of day">
-    <div class="lbl">Payroll per time slot · tap to chart running totals</div>
-  </section>
-
   <div class="main">
     <section class="left" aria-label="Employees">
-      <div class="panel addbox">
-        <div class="panel-h" style="margin-bottom:10px">
-          <h2>Employees<span class="count" id="count">0</span></h2>
-          <span class="saved" id="saved">Saved on this device</span>
-        </div>
+      <details class="panel addbox" id="addbox">
+        <summary>
+          <span class="ah"><b>Employees</b><span class="count" id="count">0</span></span>
+          <span class="addcta">+ Add employee</span>
+        </summary>
         <form id="add-form" class="addrow" autocomplete="off">
           <label class="field"><span>Name</span><input class="in" id="emp-name" placeholder="Employee name" maxlength="40"></label>
           <label class="field"><span>Accounts</span><input class="in" id="emp-acc" type="number" inputmode="numeric" min="1" step="1" value="1"></label>
           <button class="btn primary" type="submit">Add employee</button>
         </form>
         <div class="err" id="add-err" role="alert"></div>
-      </div>
+      </details>
       <div class="toolbar">
         <input class="in grow" id="search" type="search" placeholder="Search employees" aria-label="Search employees">
-        <div class="seg" id="modeseg" role="group" aria-label="Employee list style"><button data-mode="cards">Cards</button><button data-mode="quick">Quick</button></div>
-        <label class="field" style="flex-direction:row;align-items:center;gap:8px"><span>Sort</span>
-          <select class="in" id="sort" aria-label="Sort employees"><option value="added">Order added</option><option value="pay">Highest pay</option><option value="name">Name A–Z</option></select>
-        </label>
-        <button class="btn" id="copy">Copy summary</button>
-        <button class="btn" id="toggle-all">Collapse all</button>
-        <button class="btn" id="paid-all">Mark all paid</button>
-        <button class="btn primary" id="pay-start">Start payout</button>
+        <details class="more" id="more">
+          <summary class="btn">More ▾</summary>
+          <div class="menu">
+            <label class="field"><span>Sort by</span>
+              <select class="in" id="sort" aria-label="Sort employees"><option value="added">My order (drag to rearrange)</option><option value="pay">Highest pay</option><option value="name">Name A–Z</option></select>
+            </label>
+            <button class="btn" id="toggle-all">Collapse all</button>
+            <button class="btn" id="paid-all">Mark all paid</button>
+            <button class="btn" id="copy">Copy summary</button>
+          </div>
+        </details>
       </div>
+      <div class="seg paidseg" id="paidseg" role="group" aria-label="Filter by payment status"><button data-pf="all">All <span class="n"></span></button><button data-pf="unpaid">Unpaid <span class="n"></span></button><button data-pf="paid">Paid <span class="n"></span></button></div>
       <div id="list" style="display:flex;flex-direction:column;gap:12px"></div>
     </section>
 
     <aside class="panel chartp" aria-label="Highest earners">
-      <div class="panel-h" style="margin-bottom:0">
+      <section class="checks" id="checks" aria-label="Payroll by time of day">
+        <div class="lbl">Payroll per time slot · tap to chart running totals</div>
+      </section>
+      <div class="hebox"><div class="panel-h" style="margin-bottom:0">
         <div>
           <h2>Highest earners</h2>
           <p class="subt" id="chart-sub"></p>
@@ -440,8 +688,8 @@ select.in { width: auto; padding-right: 8px; }
         </div>
       </div>
       <div class="legend"><span><i class="sw e"></i><span id="lg-v">Vouchers (₱350 per pair)</span></span><span><i class="sw s"></i>Additional vouchers</span></div>
-      <div class="chart" id="chart"><div class="plot" id="plot"></div><div class="rows" id="rows" role="list"></div></div>
-      <div class="empty" id="chart-empty" hidden><b>No earners yet</b>Add an employee to see the ranking build up live.</div>
+      <div class="chartbg"><div class="chart" id="chart"><div class="plot" id="plot"></div><div class="rows" id="rows" role="list"></div></div></div>
+      <div class="empty" id="chart-empty" hidden><b>No payouts yet</b>Employees appear here as soon as they have a payout for this time.</div></div>
     </aside>
   </div>
   </div>
@@ -465,8 +713,11 @@ select.in { width: auto; padding-right: 8px; }
   <div id="v-history" class="vwrap" hidden>
     <div class="panel hbar">
       <div><h2>Payroll history</h2><p class="subt" id="h-sub"></p></div>
-      <div class="seg" id="hrange" role="group" aria-label="Date range">
-        <button data-range="7">Last 7 days</button><button data-range="30">Last 30 days</button><button data-range="all">All time</button>
+      <div class="hright">
+        <div class="hcal"><label class="hdate"><span>From</span><input class="date-in" type="date" id="hfrom" aria-label="History from date"></label><label class="hdate"><span>To</span><input class="date-in" type="date" id="hto" aria-label="History to date"></label></div>
+        <div class="seg" id="hrange" role="group" aria-label="Date range">
+          <button data-range="7">Last 7 days</button><button data-range="30">Last 30 days</button><button data-range="all">All time</button>
+        </div>
       </div>
     </div>
     <section class="kpis" id="h-kpis" aria-label="History summary"></section>
@@ -475,21 +726,32 @@ select.in { width: auto; padding-right: 8px; }
   </div>
 </div>
 
-<input type="file" id="qr-file" accept="image/png,image/jpeg,image/webp,image/gif" hidden>
+<input type="file" id="qr-file" accept="image/png,image/jpeg,image/webp,image/gif" multiple hidden>
 <div class="modal" id="qrview" hidden role="dialog" aria-modal="true" aria-label="Payment QR code">
   <div class="mbox">
     <img id="qrimg" alt="Payment QR code">
     <div class="mcap" id="qrcap"></div>
-    <div class="macts"><button class="btn" id="qr-replace" hidden>Replace</button><button class="btn" id="qr-remove" hidden>Remove QR</button><button class="btn primary" id="qr-close">Close</button></div>
+    <div class="macts"><button class="btn" id="qr-prev" hidden aria-label="Previous QR">‹ Prev</button><button class="btn" id="qr-next" hidden aria-label="Next QR">Next ›</button><button class="btn" id="qr-replace" hidden>Replace</button><button class="btn" id="qr-remove" hidden>Remove QR</button><button class="btn primary" id="qr-close">Close</button></div>
   </div>
+</div>
+<div class="modal" id="loginview" hidden role="dialog" aria-modal="true" aria-label="Sign in">
+  <form class="mbox" id="login-form" autocomplete="on">
+    <h2>Sign in</h2>
+    <p class="subt">Use the team login to open the shared payroll data.</p>
+    <label class="field"><span>Email</span><input class="in" id="login-email" type="email" autocomplete="username" required></label>
+    <label class="field"><span>Password</span><input class="in" id="login-pass" type="password" autocomplete="current-password" required></label>
+    <div class="err" id="login-err" role="alert"></div>
+    <button class="btn primary" id="login-go" type="submit">Sign in</button>
+  </form>
 </div>
 <div class="modal" id="payview" hidden role="dialog" aria-modal="true" aria-label="Payout">
   <div class="mbox pbox">
     <div class="phead"><div><small id="pay-date"></small><h2 id="pay-name"></h2></div><button class="btn" id="pay-close">Close</button></div>
-    <div class="pamt"><span id="pay-label">Amount to pay</span><strong id="pay-amt">₱0.00</strong><small id="pay-break"></small></div>
-    <div class="pqr" id="pay-qr"></div>
-    <div class="paccts" id="pay-accts"></div>
-    <div class="macts"><button class="btn" id="pay-next" hidden>Skip to next</button><button class="btn primary" id="pay-done">Mark paid</button></div>
+    <div class="pamt"><div class="pamt-top"><span id="pay-label">Amount to pay</span><em class="pstat" id="pay-stat"></em></div><strong id="pay-amt">₱0.00</strong><small id="pay-break"></small></div>
+    <section class="psec" id="sec-slots"><h3>Pay by time</h3><div class="pslots" id="pay-slots"></div></section>
+    <section class="psec"><h3>Scan to pay</h3><div class="pqr" id="pay-qr"></div></section>
+    <section class="psec"><h3>Or send to an account</h3><div class="paccts" id="pay-accts"></div></section>
+    <div class="pfoot"><button class="btn" id="pay-next" hidden>Skip to next</button><button class="btn primary" id="pay-done">Mark all paid</button></div>
   </div>
 </div>
 <div class="tip" id="tip" role="tooltip"></div>
@@ -547,7 +809,10 @@ function load() {
 }
 let S = load() || seed();
 S.ui.collapsed = S.ui.collapsed || {};
+S.ui.quick = false;
 S.ui.acctOpen = S.ui.acctOpen || {};
+S.ui.xOpen = S.ui.xOpen || {};
+S.ui.qOpen = S.ui.qOpen || {};
 S.employees.forEach(ensureAccts);
 S.settings = S.settings && Array.isArray(S.settings.rates) && S.settings.rates.length ? S.settings : { rates: DEFAULT_RATES.map(r => ({ ...r })) };
 let date = todayKey();
@@ -601,8 +866,9 @@ function ensureAccts(e) {
     const n = Math.max(1, e.accounts || 1), base = e.name.toUpperCase().replace(/\s+/g, '');
     for (let k = 1; k <= n; k++) e.accts.push({ id: uid(), name: base + k, number: '', wallet: '' });
   }
-  if (!e.qr) { const q = e.accts.find(a => a.qr); if (q) e.qr = q.qr; }
-  e.accts.forEach(a => { delete a.qr; });
+  if (!Array.isArray(e.qrs)) e.qrs = [];
+  if (e.qr) { if (!e.qrs.includes(e.qr)) e.qrs.push(e.qr); delete e.qr; }
+  e.accts.forEach(a => { if (a.qr && !e.qrs.includes(a.qr)) e.qrs.push(a.qr); delete a.qr; });
   e.accounts = e.accts.length;
 }
 const searchKey = e => [e.name].concat((e.accts || []).map(a => a.name + ' ' + a.number + ' ' + a.wallet)).join(' ').toLowerCase();
@@ -627,13 +893,30 @@ function slotPay(e, d, c) {
   const R = ratesFor(d);
   return Math.floor(n / 2) * R.pair + (n % 2 === 1 && crossPairs(d, c).has(e.id) ? R.cross : 0);
 }
+function legacySplit(e, d) {
+  const r = rec(d, e.id); let left = r && typeof r.paidAmt === 'number' ? r.paidAmt : 0; const o = {};
+  CHECKS.forEach(h => { const t = slotTotal(e, d, h), take = Math.min(left, t); left -= take; o[h] = take; });
+  return o;
+}
+const paidMap = (e, d) => { const r = rec(d, e.id); return r && r.paidBy ? r.paidBy : legacySplit(e, d); };
+const slotPaid = (e, d, h) => Math.min(slotTotal(e, d, h), Math.round((paidMap(e, d)[h] || 0) * 100) / 100);
 function payState(e, d) {
-  const total = Math.round(at(e, d, END).total * 100) / 100, r = rec(d, e.id);
-  const paid = r && typeof r.paidAmt === 'number' ? r.paidAmt : 0;
+  const total = Math.round(at(e, d, END).total * 100) / 100;
+  const paid = Math.round(CHECKS.reduce((s, h) => s + slotPaid(e, d, h), 0) * 100) / 100;
   const owed = Math.max(0, Math.round((total - paid) * 100) / 100);
   return { total, paid, owed, status: total <= 0 ? 'none' : owed <= 0 ? 'paid' : paid > 0 ? 'partial' : 'unpaid' };
 }
-function setPaid(d, e, on) { const r = rec(d, e.id, true); if (on) r.paidAmt = payState(e, d).total; else delete r.paidAmt; }
+function setPaid(d, e, on) {
+  const r = rec(d, e.id, true); delete r.paidAmt;
+  if (on) { r.paidBy = {}; CHECKS.forEach(h => { const t = slotTotal(e, d, h); if (t > 0) r.paidBy[h] = t; }); } else delete r.paidBy;
+}
+function setSlotPaid(d, e, h, on) {
+  const r = rec(d, e.id, true);
+  if (!r.paidBy) { r.paidBy = Object.assign({}, legacySplit(e, d)); delete r.paidAmt; }
+  if (on) r.paidBy[h] = slotTotal(e, d, h); else delete r.paidBy[h];
+  Object.keys(r.paidBy).forEach(k => { if (!(r.paidBy[k] > 0)) delete r.paidBy[k]; });
+  if (!Object.keys(r.paidBy).length) delete r.paidBy;
+}
 const paidLabel = ps => ps.status === 'paid' ? 'Paid ✓' : ps.status === 'partial' ? 'Pay ' + fmt(ps.owed) + ' more' : ps.status === 'none' ? 'No pay yet' : 'Mark paid';
 const slotCount = (e, d, c) => effOf(info(e, d), c);
 function at(e, d, h) {
@@ -653,11 +936,50 @@ const ename = e => e.name + (e.archivedFrom ? ' (archived)' : '');
 const dayTotal = e => at(e, date, END).total;
 
 /* ---------- save / undo / toast ---------- */
-let saveTimer;
+/* ---- Shared database (Supabase) ----
+   Paste your Supabase project URL and anon (public) key below to share one set of data between everyone who opens the link.
+   Leave them empty to keep the app local-only (data stays in each person's own browser). */
+const SB_URL = 'https://spiephbukeyzwhkbhtnp.supabase.co';
+const SB_KEY = 'sb_publishable_h8lHrhhjVOy9sU9Lr86Arg_VbLRj6qY';
+let saveTimer, lastEdit = 0;
 let db = null, userCanWrite = true, flushing = false, again = false;
 const lastSaved = new Map();
 function setStatus(txt, off) { const el = $('#saved'); if (!el) return; el.classList.toggle('off', !!off); el.textContent = txt; }
+const loadScript = src => new Promise((res, rej) => { const s = document.createElement('script'); s.src = src; s.onload = res; s.onerror = () => rej(new Error('Could not load ' + src)); document.head.appendChild(s); });
+function askLogin(sb) {
+  return new Promise(resolve => {
+    const m = $('#loginview'), f = $('#login-form'), err = $('#login-err');
+    m.hidden = false; $('#login-email').focus();
+    f.onsubmit = async ev => {
+      ev.preventDefault(); err.textContent = ''; const btn = $('#login-go'); btn.disabled = true;
+      const { error } = await sb.auth.signInWithPassword({ email: $('#login-email').value.trim(), password: $('#login-pass').value });
+      btn.disabled = false;
+      if (error) { err.textContent = error.message; return; }
+      m.hidden = true; resolve();
+    };
+  });
+}
+/* Adapter that gives Supabase the same small interface the app already uses: doc(path).get/set/delete and collection(name).limit().get() */
+async function makeSupabaseDb() {
+  if (!window.supabase) await loadScript('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2');
+  const sb = window.supabase.createClient(SB_URL, SB_KEY);
+  let session = (await sb.auth.getSession()).data.session;
+  while (!session) { await askLogin(sb); session = (await sb.auth.getSession()).data.session; }
+  const T = 'docs';
+  return {
+    doc: path => ({
+      async get() { const { data, error } = await sb.from(T).select('data').eq('path', path).maybeSingle(); if (error) throw error; return { exists: !!data, id: path.split('/').pop(), data: () => data && data.data }; },
+      async set(obj) { const { error } = await sb.from(T).upsert({ path, data: obj, updated_at: new Date().toISOString() }); if (error) throw error; },
+      async delete() { const { error } = await sb.from(T).delete().eq('path', path); if (error) throw error; }
+    }),
+    collection: name => ({
+      limit() { return this; },
+      async get() { const { data, error } = await sb.from(T).select('path,data').like('path', name + '/%'); if (error) throw error; return { docs: data.map(r => ({ id: r.path.slice(name.length + 1), data: () => r.data })) }; }
+    })
+  };
+}
 function save() {
+  lastEdit = Date.now();
   clearTimeout(saveTimer);
   saveTimer = setTimeout(() => {
     const ok = lsSet(LS, JSON.stringify(S));
@@ -689,28 +1011,56 @@ async function flush() {
 }
 async function initDb() {
   try {
-    if (!window.claude || !window.claude.use) return;
-    const d = await window.claude.use('db'); if (!d) return;
-    const u = await window.claude.use('user');
+    let d = null, u = null;
+    if (SB_URL && SB_KEY) { setStatus('Connecting to database…'); d = await makeSupabaseDb(); }
+    else {
+      if (!window.claude || !window.claude.use) return;
+      d = await window.claude.use('db'); if (!d) return;
+      u = await window.claude.use('user');
+    }
     if (u) { try { if ((await u.can('data.write')) === false) userCanWrite = false; } catch (e) {} }
     setStatus('Connecting to database…');
     const timeout = new Promise((_, rej) => setTimeout(() => rej(new Error('timeout')), 10000));
     const [emp, days] = await Promise.race([Promise.all([d.doc('app/employees').get(), d.collection('days').limit(1000).get()]), timeout]);
     db = d;
-    if (emp.exists) {
-      const data = JSON.parse(JSON.stringify(emp.data()));
-      S.employees = data.employees || []; S.sample = !!data.sample; S.days = {};
-      S.settings = data.settings && Array.isArray(data.settings.rates) && data.settings.rates.length ? data.settings : { rates: DEFAULT_RATES.map(r => ({ ...r })) };
-      lastSaved.set('app/employees', JSON.stringify({ employees: S.employees, sample: S.sample, settings: S.settings }));
-      days.docs.forEach(x => { S.days[x.id] = JSON.parse(JSON.stringify(x.data())).records || {}; lastSaved.set('days/' + x.id, JSON.stringify(S.days[x.id])); });
-      const up = upgradeSample();
-      S.employees.forEach(ensureAccts);
-      freezeAccounts();
-      renderAll(true); if (view === 'history') renderHistory();
-      if (up) save();
-    } else if (!S.sample && S.employees.length) { flush(); }
+    if (emp.exists) { const up = applyRemote(emp, days); if (up) save(); }
+    else if (!S.sample && S.employees.length) { flush(); }
     setStatus(userCanWrite ? 'Saved to database' : 'View only · changes are not saved', !userCanWrite);
+    if (SB_URL && SB_KEY) { setInterval(pull, 15000); document.addEventListener('visibilitychange', () => { if (!document.hidden) pull(); }); }
   } catch (e) { db = null; setStatus('Database unavailable · saved on this device', true); }
+}
+function applyRemote(emp, days) {
+  const data = JSON.parse(JSON.stringify(emp.data()));
+  S.employees = data.employees || []; S.sample = !!data.sample; S.days = {};
+  S.settings = data.settings && Array.isArray(data.settings.rates) && data.settings.rates.length ? data.settings : { rates: DEFAULT_RATES.map(r => ({ ...r })) };
+  lastSaved.clear();
+  lastSaved.set('app/employees', JSON.stringify({ employees: S.employees, sample: S.sample, settings: S.settings }));
+  days.docs.forEach(x => { S.days[x.id] = JSON.parse(JSON.stringify(x.data())).records || {}; lastSaved.set('days/' + x.id, JSON.stringify(S.days[x.id])); });
+  const up = upgradeSample();
+  S.employees.forEach(ensureAccts);
+  freezeAccounts();
+  renderAll(true); if (view === 'history') renderHistory();
+  return up;
+}
+/* Pick up changes other people made, but never while this person has unsaved edits or is typing. */
+function localDirty() {
+  if (lastSaved.get('app/employees') !== JSON.stringify({ employees: S.employees, sample: S.sample, settings: S.settings })) return true;
+  for (const k of Object.keys(S.days)) { if (Object.keys(S.days[k]).length && lastSaved.get('days/' + k) !== JSON.stringify(S.days[k])) return true; }
+  return false;
+}
+async function pull() {
+  if (!db || flushing || Date.now() - lastEdit < 6000 || localDirty()) return;
+  const ae = document.activeElement; if (ae && /^(INPUT|SELECT|TEXTAREA)$/.test(ae.tagName)) return;
+  if (!$('#payview').hidden || !$('#qrview').hidden) return;
+  try {
+    const [emp, days] = await Promise.all([db.doc('app/employees').get(), db.collection('days').limit(1000).get()]);
+    if (!emp.exists || flushing || Date.now() - lastEdit < 6000 || localDirty()) return;
+    let changed = JSON.stringify(emp.data()) !== lastSaved.get('app/employees');
+    const remoteKeys = new Set();
+    days.docs.forEach(x => { remoteKeys.add('days/' + x.id); if (JSON.stringify(x.data().records || {}) !== lastSaved.get('days/' + x.id)) changed = true; });
+    for (const key of lastSaved.keys()) if (key.startsWith('days/') && !remoteKeys.has(key)) changed = true;
+    if (changed) { applyRemote(emp, days); setStatus('Saved to database'); }
+  } catch (e) { /* try again next time */ }
 }
 /* A day keeps the account count it was recorded with, even if the employee's default changes later. */
 function freezeAccounts() {
@@ -751,12 +1101,15 @@ function slotsHTML(e) {
     }
     const gotIds = Array.isArray(i.acctGot[c]) ? i.acctGot[c] : (on ? e.accts.slice(0, got).map(a => a.id) : []);
     const chips = e.accts.map(a => `<button type="button" class="achip" data-act="acct-got" data-h="${c}" data-aid="${a.id}" aria-pressed="${gotIds.includes(a.id)}" title="${esc((a.number || 'No number') + ' · ' + (a.wallet || 'No wallet'))}">${esc(a.name)}</button>`).join('');
-    return `<div class="slot"><button type="button" class="vbtn${on ? ' on' : ''}${c > asOf ? ' late' : ''}" data-act="claim" data-h="${c}" aria-pressed="${on}" data-tip="${esc(tip)}"><span>${on ? 'Claimed' : 'Claim voucher'}</span><b>${on ? fmt(pay) : i.accounts + (i.accounts === 1 ? ' account' : ' accounts')}</b></button>
-      <div class="gotrow"><span>Accounts that got it</span><b>${got}/${e.accts.length}</b></div>
+    return `<div class="slot${on ? ' on' : ''}"><div class="shead"><span class="slabel">${hl(c)}</span><span class="sst">${on ? got + '/' + e.accts.length + ' got it' : 'Not claimed'}</span></div><button type="button" class="vbtn${on ? ' on' : ''}${c > asOf ? ' late' : ''}" data-act="claim" data-h="${c}" aria-pressed="${on}" data-tip="${esc(tip)}"><span>${on ? 'Claimed' : 'Claim voucher'}</span><b>${on ? fmt(pay) : i.accounts + (i.accounts === 1 ? ' account' : ' accounts')}</b></button>${on ? `<div class="gotrow"><span>Accounts that got it</span><b>${got}/${e.accts.length}</b></div>
       <div class="chips" role="group" aria-label="Accounts that got the voucher at ${hl(c)}">${chips}</div>
       <button type="button" class="tiebtn" data-act="tie" data-h="${c}" aria-pressed="${ties > 0}" ${canTie ? '' : 'disabled'} title="Tie: a tied pair of accounts pays nothing">${ties ? 'Tie · ' + ties : 'Tie'}</button>
-      ${pairUI}<span class="slabel">${hl(c)}</span></div>`;
+      ${pairUI}` : ''}</div>`;
   }).join('');
+}
+function xsumText(e) {
+  const x = info(e, date).extras, t = x.reduce((s, v) => s + v.amount, 0);
+  return x.length ? x.length + (x.length === 1 ? ' voucher · ' : ' vouchers · ') + fmt(t) : 'None yet · tap to add';
 }
 function extrasHTML(e) {
   const list = info(e, date).extras.map((x, idx) => ({ x, idx })).sort((a, b) => a.x.hour - b.x.hour || a.idx - b.idx);
@@ -764,18 +1117,25 @@ function extrasHTML(e) {
   return '<ul class="xs">' + list.map(({ x }) => `<li><span class="t">${hl(x.hour)}</span><span class="n">${esc(x.label)}</span><span class="a">+${fmt(x.amount)}</span><button type="button" class="link" data-act="del-x" data-xid="${x.id}" aria-label="Remove ${esc(x.label)}">Remove</button></li>`).join('') + '</ul>';
 }
 let assetsApi = null, qrCtx = null, pendingQr = null;
+const qrsOf = e => (e && Array.isArray(e.qrs) ? e.qrs : []);
+const MAX_QR = 6;
 const qrSource = value => /^data:image\/(?:png|jpeg|webp|gif);base64,/i.test(value) ? value : '/_blob/' + encodeURIComponent(value);
-const qrRowHTML = e => `<div class="qrrow"><div><b>Payroll QR</b><small>${e.qr ? 'Tap the picture to enlarge it' : 'One QR code for paying ' + esc(e.name)}</small></div>${e.qr
-  ? `<button type="button" class="qrthumb" data-act="qr-view" aria-label="View payroll QR code for ${esc(e.name)}"><img src="${esc(qrSource(e.qr))}" alt="Payroll QR code for ${esc(e.name)}"></button>`
-  : `<button type="button" class="btn qrbtn" data-act="qr-add" aria-label="Upload payroll QR code for ${esc(e.name)}">Add QR</button>`}</div>`;
+const qrThumbs = (e, max) => { const q = qrsOf(e); return q.slice(0, max).map((v, k) => `<button type="button" class="qrthumb" data-act="qr-view" data-i="${k}" aria-label="View payroll QR ${k + 1} of ${q.length} for ${esc(e.name)}"><img src="${esc(qrSource(v))}" alt="Payroll QR ${k + 1} for ${esc(e.name)}"></button>`).join('') + (q.length > max ? `<button type="button" class="qrmore" data-act="qr-view" data-i="${max}" aria-label="Show ${q.length - max} more QR codes">+${q.length - max}</button>` : ''); };
+const qrRowHTML = e => { const n = qrsOf(e).length; return `<details class="accts qbox" data-id="${e.id}" ${S.ui.qOpen[e.id] ? 'open' : ''}><summary><span>Payroll QR${n > 1 ? 's' : ''}</span><span class="am">${n ? n + (n === 1 ? ' picture' : ' pictures') : 'None yet · tap to add'}</span></summary><div class="qrrow"><small>${n ? 'Tap a picture to enlarge it' : 'Add one or more QR pictures for paying ' + esc(e.name)}</small><div class="qrthumbs">${qrThumbs(e, 4)}${n < MAX_QR ? `<button type="button" class="btn qrbtn" data-act="qr-add" aria-label="Upload payroll QR code for ${esc(e.name)}">${n ? '+ Add' : 'Add QR'}</button>` : ''}</div></div></details>`; };
 function acctSummaryText(e) {
   const count = w => e.accts.filter(a => a.wallet === w).length, none = e.accts.filter(a => !a.wallet).length;
   return count('GCash') + ' GCash · ' + count('Maya') + ' Maya' + (none ? ' · ' + none + ' no wallet' : '');
 }
+const acctEditing = new Set();
 function acctsHTML(e) {
+  if (acctEditing.has(e.id)) return acctsEditHTML(e).replace('<details class="accts"', '<details class="accts hasedit"').replace('<span class="am" data-am>', '<button type="button" class="btn primary esm" data-act="acct-done">Done</button><span class="am" data-am>');
+  const vrows = e.accts.map(a => `<div class="aview"><div class="an"><b>${esc(a.name)}</b><span class="wal${a.wallet ? '' : ' none'}">${esc(a.wallet || 'No wallet')}</span></div><span class="anum${a.number ? '' : ' none'}">${a.number ? esc(a.number) : 'No number'}</span>${a.number ? `<button type="button" class="link" data-copynum="${esc(a.number)}">Copy</button>` : '<span></span>'}</div>`).join('');
+  return `<details class="accts hasedit" data-id="${e.id}" ${S.ui.acctOpen[e.id] ? 'open' : ''}><summary><span>Accounts · ${e.accts.length}</span><button type="button" class="btn esm" data-act="acct-edit">Edit</button><span class="am" data-am>${acctSummaryText(e)}</span></summary><div class="arows">${vrows}</div></details>`;
+}
+function acctsEditHTML(e) {
   const n = e.accts.length;
   const rows = e.accts.map(a => `<div class="arow" data-aid="${a.id}"><input class="in" data-act="acct-f" data-f="name" value="${esc(a.name)}" maxlength="40" aria-label="Account name"><input class="in" data-act="acct-f" data-f="number" value="${esc(a.number)}" inputmode="tel" maxlength="20" placeholder="Number" aria-label="Account number"><select class="in" data-act="acct-f" data-f="wallet" aria-label="GCash or Maya"><option value="">Wallet</option>${WALLETS.map(w => `<option ${a.wallet === w ? 'selected' : ''}>${w}</option>`).join('')}</select><button type="button" class="link danger" data-act="del-acct" data-aid="${a.id}" ${n > 1 ? '' : 'disabled'}>Remove</button></div>`).join('');
-  return `${qrRowHTML(e)}<details class="accts" data-id="${e.id}" ${S.ui.acctOpen[e.id] ? 'open' : ''}>
+  return `<details class="accts" data-id="${e.id}" ${S.ui.acctOpen[e.id] ? 'open' : ''}>
     <summary><span>Accounts · ${n}</span><span class="am" data-am>${acctSummaryText(e)}</span></summary>
     <div class="arows">${rows}</div>
     <form class="addacct" data-id="${e.id}" autocomplete="off"><input class="in" name="name" placeholder="Account name" maxlength="40" aria-label="New account name"><input class="in" name="number" placeholder="Number" inputmode="tel" maxlength="20" aria-label="New account number"><select class="in" name="wallet" aria-label="GCash or Maya"><option value="">Wallet</option>${WALLETS.map(w => `<option>${w}</option>`).join('')}</select><button class="btn" type="submit">Add account</button></form>
@@ -783,45 +1143,40 @@ function acctsHTML(e) {
 }
 function cardHTML(e) {
   const i = info(e, date);
-  return `<article class="panel card${S.ui.collapsed[e.id] ? ' collapsed' : ''}" id="emp-${e.id}" data-id="${e.id}" data-name="${esc(searchKey(e))}">
+  return `<article class="panel card${isCol(e.id) ? ' collapsed' : ''}" id="emp-${e.id}" data-id="${e.id}" data-name="${esc(searchKey(e))}">
   <div class="card-head">
-    <div class="who"><button type="button" class="chev" data-act="toggle" aria-expanded="${!S.ui.collapsed[e.id]}" aria-label="Collapse or expand ${esc(e.name)}"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6l5 5 5-5"/></svg></button><span class="rank" data-rank>#–</span><input class="name-in" data-act="rename" value="${esc(e.name)}" maxlength="40" aria-label="Employee name"></div>
-    <div class="amt"><strong data-total>₱0.00</strong><small data-rate></small><div class="paybtns"><button type="button" class="paidbtn" data-act="payout">Payout</button><button type="button" class="paidbtn" data-act="paid">Mark paid</button></div><small class="paidnote" data-paidnote></small></div>
+    <div class="who"><button type="button" class="grip" data-grip aria-label="Reorder ${esc(e.name)}. Drag, or press the up and down arrow keys" title="Drag to reorder"><svg viewBox="0 0 10 16" width="10" height="16" fill="currentColor" aria-hidden="true"><circle cx="2.5" cy="3" r="1.4"/><circle cx="7.5" cy="3" r="1.4"/><circle cx="2.5" cy="8" r="1.4"/><circle cx="7.5" cy="8" r="1.4"/><circle cx="2.5" cy="13" r="1.4"/><circle cx="7.5" cy="13" r="1.4"/></svg></button><button type="button" class="chev" data-act="toggle" aria-expanded="${!S.ui.collapsed[e.id]}" aria-label="Collapse or expand ${esc(e.name)}"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6l5 5 5-5"/></svg></button><span class="rank" data-rank>#–</span><input class="name-in" data-act="rename" value="${esc(e.name)}" maxlength="40" aria-label="Employee name"><div class="paybtns"><button type="button" class="paidbtn" data-act="payout">Payout</button><button type="button" class="paidbtn" data-act="paid">Mark paid</button></div></div>
+    <div class="amt"><span class="pbadge" data-pbadge hidden></span><strong data-total>₱0.00</strong><small data-rate></small><small class="paidnote" data-paidnote></small></div>
   </div>
-  ${acctsHTML(e)}
+  <div class="qmini qslots" data-qmini>${qminiHTML(e)}</div>
   <div><div class="slots" data-slots>${slotsHTML(e)}</div></div>
-  <div class="xbox"><div class="flabel">Additional voucher · enter any amount</div>${extrasHTML(e)}
+  <div class="cps">${CHECKS.map(c => `<button type="button" class="cp" data-act="slot-paid" data-h="${c}"><span>At ${hl(c)}</span><b data-cp="${c}">₱0.00</b><i data-cpst="${c}">&nbsp;</i></button>`).join('')}</div>
+  ${acctsHTML(e)}
+  <details class="accts xbox" data-id="${e.id}" data-x ${S.ui.xOpen[e.id] ? 'open' : ''}><summary><span>Additional vouchers</span><span class="am" data-xsum>${xsumText(e)}</span></summary><div class="xin"><div class="flabel">Enter any amount</div>${extrasHTML(e)}
     <form class="addx" data-id="${e.id}" autocomplete="off">
       <label class="field"><span>Time</span><select class="in" name="hour">${CHECKS.map(c => `<option value="${c}">${hl(c)}</option>`).join('')}</select></label>
       <label class="field"><span>Amount (₱)</span><input class="in" name="amount" type="number" inputmode="decimal" min="0" step="any" placeholder="0.00"></label>
       <button class="btn primary" type="submit">Add voucher</button>
-    </form><div class="err" data-err role="alert"></div></div>
-  <p class="sum" data-sum></p>
-  <div class="cps">${CHECKS.map(c => `<div class="cp"><span>At ${hl(c)}</span><b data-cp="${c}">₱0.00</b></div>`).join('')}</div>
+    </form><div class="err" data-err role="alert"></div></div></details>
+  <p class="sum" data-sum hidden></p>
+  ${qrRowHTML(e)}
   <div class="foot"><button class="link danger" data-act="archive-emp">Archive employee</button></div>
 </article>`;
 }
 
 /* ---------- render ---------- */
-function quickInner(e) {
-  const i = info(e, date), d = at(e, date, END), ps = payState(e, date);
-  const btns = CHECKS.map(c => {
+function qminiHTML(e) {
+  const i = info(e, date);
+  return CHECKS.map(c => {
     const on = !!i.claims[c], eff = effOf(i, c), odd = on && eff > 0 && eff % 2 === 1;
     const paired = odd && crossPairs(date, c).has(e.id);
-    return `<button type="button" class="qbtn${on ? ' on' : ''}${odd && !paired ? ' need' : ''}" data-act="claim" data-h="${c}" aria-pressed="${on}" aria-label="${hl(c)} voucher for ${esc(e.name)}"><span>${hl(c)}${on ? ' · ' + gotOf(i, c) + '/' + e.accts.length : ''}</span><b>${on ? fmt(slotPay(e, date, c)) : 'Claim'}</b>${odd && !paired ? '<i>needs pair</i>' : ''}</button>`;
+    const st = odd && !paired ? '<i>needs pair</i>' : (slotTotal(e, date, c) > 0 ? '<i>' + (slotPaid(e, date, c) >= slotTotal(e, date, c) - 0.004 ? 'paid \u2713' : 'unpaid') + '</i>' : '');
+    return `<button type="button" class="qbtn${on ? ' on' : ''}${odd && !paired ? ' need' : ''}" data-act="claim" data-h="${c}" aria-pressed="${on}" aria-label="${hl(c)} voucher for ${esc(e.name)}"><span>${hl(c)}${on ? ' \u00b7 ' + gotOf(i, c) + '/' + e.accts.length : ''}</span><b>${on ? fmt(slotPay(e, date, c)) : 'Claim'}</b>${st}</button>`;
   }).join('');
-  const thumb = e.qr ? `<button type="button" class="qrthumb" data-act="qr-view" aria-label="View payroll QR code for ${esc(e.name)}"><img src="${esc(qrSource(e.qr))}" alt="Payroll QR code for ${esc(e.name)}"></button>` : '';
-  const accts = e.accts.map(a => `<div class="prow"><div><b>${esc(a.name)}</b><small>${esc(a.wallet || 'No wallet')}</small></div><span class="pnum">${esc(a.number || 'No number')}</span>${a.number ? `<button type="button" class="btn" data-copynum="${esc(a.number)}">Copy</button>` : '<span></span>'}</div>`).join('');
-  return `<div class="qwho"><b>${esc(e.name)}</b><div class="qmeta"><small>${i.accounts} ${i.accounts === 1 ? 'account' : 'accounts'}</small>${thumb}</div><button type="button" class="link" data-act="detail">Details</button></div>
-    <div class="qslots">${btns}</div>
-    <div class="qtot"><strong>${fmt(d.total)}</strong><div class="paybtns"><button type="button" class="paidbtn" data-act="payout">Payout</button><button type="button" class="paidbtn${ps.status === 'partial' ? ' warn' : ''}" data-act="paid" aria-pressed="${ps.status === 'paid'}" ${ps.status === 'none' ? 'disabled' : ''}>${paidLabel(ps)}</button></div></div>
-    <details class="accts qacc" data-id="${e.id}" ${S.ui.acctOpen[e.id] ? 'open' : ''}><summary><span>Accounts · ${e.accts.length}</span><span class="am">${acctSummaryText(e)}</span></summary><div class="qaccs">${accts}</div></details>`;
 }
-const quickHTML = e => `<div class="panel qrow" id="emp-${e.id}" data-id="${e.id}" data-name="${esc(searchKey(e))}">${quickInner(e)}</div>`;
+const isCol = id => { if (S.ui.collapsed[id] === undefined) S.ui.collapsed[id] = true; return !!S.ui.collapsed[id]; };
 function renderList() {
   const list = $('#list');
-  $$('#modeseg button').forEach(b => b.setAttribute('aria-pressed', (b.dataset.mode === 'quick') === !!S.ui.quick));
-  $('#toggle-all').hidden = !!S.ui.quick;
   if (!activeEmps().length) {
     list.innerHTML = '<div class="panel empty"><b>No employees yet</b>Add your first employee above to start tracking today\'s payroll.</div>';
     return;
@@ -829,14 +1184,22 @@ function renderList() {
   let arr = activeEmps();
   if (S.ui.sort === 'pay') arr.sort((a, b) => dayTotal(b) - dayTotal(a));
   if (S.ui.sort === 'name') arr.sort((a, b) => a.name.localeCompare(b.name));
-  list.innerHTML = arr.map(S.ui.quick ? quickHTML : cardHTML).join('') + '<div class="panel empty" id="nomatch" hidden>No employee matches your search.</div>';
+  list.innerHTML = arr.map(cardHTML).join('') + '<div class="panel empty" id="nomatch" hidden>No employee matches your search.</div>';
   applyFilter();
 }
 function applyFilter() {
-  const q = $('#search').value.trim().toLowerCase();
+  const q = $('#search').value.trim().toLowerCase(), pf = S.ui.pf || 'all';
+  const cnt = { all: 0, unpaid: 0, paid: 0 };
+  activeEmps().forEach(e => { const st = payState(e, date).status; cnt.all++; if (st === 'unpaid' || st === 'partial') cnt.unpaid++; else if (st === 'paid') cnt.paid++; });
+  $$('#paidseg button').forEach(b => { b.setAttribute('aria-pressed', b.dataset.pf === pf); $('.n', b).textContent = cnt[b.dataset.pf]; });
+  $('#list').classList.toggle('sortable', (S.ui.sort || 'added') === 'added' && pf === 'all' && !q && activeEmps().length > 1);
   let shown = 0;
-  $$('.card, .qrow', $('#list')).forEach(c => { const hit = !q || c.dataset.name.includes(q); c.hidden = !hit; if (hit) shown++; });
-  const nm = $('#nomatch'); if (nm) nm.hidden = shown > 0 || !activeEmps().length;
+  $$('.card, .qrow', $('#list')).forEach(c => {
+    const e = find(c.dataset.id), st = e ? payState(e, date).status : 'none';
+    const okPay = pf === 'all' || (pf === 'unpaid' && (st === 'unpaid' || st === 'partial')) || (pf === 'paid' && st === 'paid');
+    const hit = (!q || c.dataset.name.includes(q)) && okPay; c.hidden = !hit; if (hit) shown++;
+  });
+  const nm = $('#nomatch'); if (nm) { nm.hidden = shown > 0 || !activeEmps().length; nm.textContent = pf !== 'all' && !q ? (pf === 'paid' ? 'Nobody is paid yet.' : 'Everyone is paid. Nothing left to pay.') : 'No employee matches your search.'; }
 }
 function rerenderCard(id) {
   const old = $('#emp-' + id), e = find(id);
@@ -854,6 +1217,7 @@ function refreshNumbers() {
   const top = rows.slice().sort((a, b) => b.total - a.total)[0];
   $('#k-total').textContent = fmt(sum('total'));
   const owedAll = activeEmps().reduce((s, e) => s + payState(e, date).owed, 0), anyPay = activeEmps().some(e => payState(e, date).status !== 'none');
+  { const bt = $('#bar-total'); bt.textContent = fmt(sum('total')) + (owedAll > 0 ? ' · ' + fmt(owedAll) + ' unpaid' : anyPay ? ' · all paid' : ''); bt.hidden = view !== 'tracker'; }
   $('#k-asof').textContent = asOf === END ? (owedAll > 0 ? 'Unpaid ' + fmt(owedAll) : anyPay ? 'All paid' : '') : 'As of ' + hl(asOf);
   const payers = activeEmps().filter(e => payState(e, date).status !== 'none'), allPaid = payers.length > 0 && payers.every(e => payState(e, date).status === 'paid');
   $('#paid-all').textContent = allPaid ? 'Unmark all paid' : 'Mark all paid'; $('#paid-all').disabled = !payers.length;
@@ -863,25 +1227,39 @@ function refreshNumbers() {
   $('#k-emps').textContent = activeEmps().length + (activeEmps().length === 1 ? ' employee' : ' employees');
   $('#k-top').textContent = top && top.total > 0 ? top.e.name : '—';
   $('#k-topv').textContent = top && top.total > 0 ? fmt(top.total) : '';
+  const slotUnpaid = {};
+  activeEmps().forEach(e => CHECKS.forEach(c => { slotUnpaid[c] = (slotUnpaid[c] || 0) + slotTotal(e, date, c) - slotPaid(e, date, c); }));
   $$('#checks .cpbtn').forEach(b => {
     const c = +b.dataset.asof;
     b.setAttribute('aria-pressed', c === asOf);
     $('.v', b).textContent = fmt(activeEmps().reduce((s, e) => s + slotTotal(e, date, c), 0));
+    const tot = activeEmps().reduce((s, e) => s + slotTotal(e, date, c), 0), un = slotUnpaid[c] || 0, d = $('.d', b);
+    d.textContent = tot <= 0 ? '\u00a0' : un > 0.004 ? 'Unpaid ' + fmt(un) : 'All paid';
+    d.classList.toggle('unpaid', tot > 0 && un > 0.004);
   });
   const ranked = activeEmps().sort((a, b) => dayTotal(b) - dayTotal(a));
   activeEmps().forEach(e => {
     const c = $('#emp-' + e.id); if (!c) return;
-    if (c.classList.contains('qrow')) { c.innerHTML = quickInner(e); return; }
     const i = info(e, date), d = at(e, date, END), ps = payState(e, date);
     const pb = $('[data-act="paid"]', c); pb.textContent = paidLabel(ps); pb.setAttribute('aria-pressed', ps.status === 'paid'); pb.disabled = ps.status === 'none'; pb.classList.toggle('warn', ps.status === 'partial');
     $('[data-paidnote]', c).textContent = ps.status === 'partial' ? 'Paid ' + fmt(ps.paid) + ' earlier' : '';
     $('[data-total]', c).textContent = fmt(d.total);
+    const pbd = $('[data-pbadge]', c); if (pbd) { pbd.className = 'pbadge ' + ps.status; pbd.textContent = ps.status === 'paid' ? 'Paid' : ps.status === 'partial' ? 'Partly paid' : 'Unpaid'; pbd.hidden = ps.status === 'none'; }
     $('[data-rate]', c).textContent = i.nClaims + ' of ' + CHECKS.length + ' vouchers claimed';
-    $('[data-rank]', c).textContent = '#' + (ranked.indexOf(e) + 1);
+    $('[data-xsum]', c).textContent = xsumText(e);
     $('[data-sum]', c).textContent = 'Vouchers ' + fmt(d.add) + ' + additional vouchers ' + fmt(d.extra);
-    CHECKS.forEach(h => { $('[data-cp="' + h + '"]', c).textContent = fmt(slotTotal(e, date, h)); });
+    CHECKS.forEach(h => {
+      const t = slotTotal(e, date, h), pd = slotPaid(e, date, h), chip = $('[data-cp="' + h + '"]', c).parentElement;
+      $('[data-cp="' + h + '"]', c).textContent = fmt(t);
+      const st = t <= 0 ? 'none' : t - pd <= 0.004 ? 'paid' : 'unpaid';
+      $('[data-cpst="' + h + '"]', c).textContent = st === 'none' ? '\u00a0' : st === 'paid' ? 'Paid ✓' : (pd > 0 ? 'Owed ' + fmt(t - pd) : 'Mark paid');
+      chip.classList.toggle('paid', st === 'paid'); chip.classList.toggle('unpaid', st === 'unpaid'); chip.disabled = st === 'none';
+      chip.setAttribute('aria-label', hl(h) + ': ' + fmt(t) + (st === 'paid' ? ', paid. Tap to mark unpaid' : st === 'unpaid' ? ', unpaid. Tap to mark paid' : ''));
+    });
     $('[data-slots]', c).innerHTML = slotsHTML(e);
+    $('[data-qmini]', c).innerHTML = qminiHTML(e);
   });
+  renumber();
 }
 
 /* leaderboard */
@@ -897,7 +1275,7 @@ function renderChart() {
   $$('#topseg button').forEach(b => b.setAttribute('aria-pressed', b.dataset.top === String(S.ui.top)));
   $('#lg-v').textContent = 'Vouchers (₱' + ratesFor(date).pair + ' per pair)';
   $('#chart-sub').textContent = (asOf === END ? 'Full-day total in PHP' : 'Running total at ' + hl(asOf) + ' in PHP') + ', highest first';
-  const all = activeEmps().map(e => ({ e, ...at(e, date, asOf) })).sort((a, b) => b.total - a.total || a.e.name.localeCompare(b.e.name));
+  const all = activeEmps().map(e => ({ e, ...at(e, date, asOf) })).filter(r => r.total > 0).sort((a, b) => b.total - a.total || a.e.name.localeCompare(b.e.name));
   const shown = S.ui.top === 'all' ? all : all.slice(0, +S.ui.top);
   $('#chart-empty').hidden = shown.length > 0;
   $('#chart').hidden = shown.length === 0;
@@ -926,6 +1304,7 @@ function renderChart() {
     $('.rk', el).textContent = idx + 1;
     $('.name', el).textContent = r.e.name;
     const be = $('.bar.e', el), bs = $('.bar.s', el);
+    be.hidden = !(r.add > 0); bs.hidden = !(r.extra > 0);
     be.style.width = (r.add / max * 100) + '%';
     bs.style.width = (r.extra / max * 100) + '%';
     bs.classList.toggle('gap', r.add > 0 && r.extra > 0);
@@ -943,7 +1322,7 @@ function renderChecks() {
   CHECKS.forEach(c => {
     const b = document.createElement('button');
     b.className = 'cpbtn'; b.dataset.asof = c;
-    b.innerHTML = `<span class="t">${hl(c)}</span><span class="v num">₱0.00</span>`;
+    b.innerHTML = `<span class="t">${hl(c)}</span><span class="v num">₱0.00</span><span class="d">&nbsp;</span>`;
     box.appendChild(b);
   });
 }
@@ -954,8 +1333,8 @@ function renderHeader() {
   $('#banner').hidden = !S.sample;
   $('#sort').value = S.ui.sort;
 }
-const refresh = () => { refreshNumbers(); renderChart(); if (view === 'history') renderHistory(); save(); };
-function renderAll(noSave) { renderHeader(); renderList(); refreshNumbers(); renderChart(); if (!noSave) save(); }
+const refresh = () => { refreshNumbers(); applyFilter(); renderChart(); if (view === 'history') renderHistory(); save(); };
+function renderAll(noSave) { renderHeader(); renderList(); refreshNumbers(); applyFilter(); renderChart(); if (!noSave) save(); }
 
 /* ---------- history ---------- */
 function dayStats(k) {
@@ -966,6 +1345,7 @@ function dayStats(k) {
 function historyKeys() {
   let keys = Object.keys(S.days).sort().reverse().filter(k => { const st = dayStats(k); return st.total > 0 || st.count > 0; });
   const r = S.ui.hrange || '30';
+  if (r === 'custom') { const f = S.ui.hfrom || '', t = S.ui.hto || '9999-12-31'; return keys.filter(k => k >= f && k <= t); }
   if (r !== 'all') {
     const st = parseKey(todayKey()); st.setDate(st.getDate() - (+r - 1));
     const sk = keyOf(st), tk = todayKey();
@@ -980,7 +1360,14 @@ function renderHistory() {
   $$('#hrange button').forEach(b => b.setAttribute('aria-pressed', b.dataset.range === String(range)));
   const keys = historyKeys(), stats = keys.map(k => ({ k, ...dayStats(k) }));
   const total = stats.reduce((s, d) => s + d.total, 0), count = stats.reduce((s, d) => s + d.count, 0), extra = stats.reduce((s, d) => s + d.extra, 0), owedAll = stats.reduce((s, d) => s + d.owed, 0);
-  $('#h-sub').textContent = range === 'all' ? 'Every day with recorded vouchers' : 'Last ' + range + ' days, up to today';
+  $('#h-sub').textContent = range === 'custom' ? 'From ' + (S.ui.hfrom ? longDay(S.ui.hfrom) : 'the beginning') + ' to ' + (S.ui.hto ? longDay(S.ui.hto) : 'today') : range === 'all' ? 'Every day with recorded vouchers' : 'Last ' + range + ' days, up to today';
+  {
+    let f = '', t = todayKey();
+    if (range === 'custom') { f = S.ui.hfrom || ''; t = S.ui.hto || ''; }
+    else if (range === 'all') { f = keys.length ? keys[keys.length - 1] : ''; }
+    else { const st = parseKey(todayKey()); st.setDate(st.getDate() - (+range - 1)); f = keyOf(st); }
+    $('#hfrom').value = f; $('#hto').value = t;
+  }
   const per = new Map();
   stats.forEach(d => d.rows.forEach(r => {
     const x = per.get(r.e.id) || { name: ename(r.e), count: 0, add: 0, extra: 0, total: 0, owed: 0 };
@@ -1012,7 +1399,7 @@ function renderSettings() {
 }
 function setView(v) {
   view = v;
-  $('#v-tracker').hidden = v !== 'tracker'; $('#v-history').hidden = v !== 'history'; $('#v-settings').hidden = v !== 'settings'; $('#datenav').hidden = v !== 'tracker';
+  $('#v-tracker').hidden = v !== 'tracker'; $('#v-history').hidden = v !== 'history'; $('#v-settings').hidden = v !== 'settings'; $('#datenav').hidden = v !== 'tracker'; $('#pay-start').hidden = v !== 'tracker'; $('#bar-total').hidden = v !== 'tracker';
   if (v === 'settings') renderSettings();
   if (v === 'tracker') renderAll(true);
   $$('#tabs button').forEach(b => b.setAttribute('aria-pressed', b.dataset.view === v));
@@ -1021,10 +1408,66 @@ function setView(v) {
 }
 document.addEventListener('toggle', ev => {
   const d = ev.target;
+  if (d.classList && d.classList.contains('qbox')) { S.ui.qOpen[d.dataset.id] = d.open; return; }
+  if (d.classList && d.classList.contains('xbox')) { S.ui.xOpen[d.dataset.id] = d.open; return; }
   if (d.classList && d.classList.contains('accts')) { S.ui.acctOpen[d.dataset.id] = d.open; return; }
   if (!d.classList || !d.classList.contains('dayrow')) return;
   if (d.open) openDays.add(d.dataset.k); else openDays.delete(d.dataset.k);
 }, true);
+
+/* ---------- reorder ---------- */
+function renumber() { $$('#list > .card').forEach((c, k) => { const r = $('[data-rank]', c); if (r) r.textContent = '#' + (k + 1); }); }
+function commitOrder() {
+  renumber();
+  const ids = $$('#list > [data-id]').map(c => c.dataset.id), set = new Set(ids);
+  const slots = []; S.employees.forEach((e, k) => { if (set.has(e.id)) slots.push(k); });
+  const byId = new Map(S.employees.map(e => [e.id, e])), next = S.employees.slice();
+  ids.forEach((id, n) => { if (slots[n] !== undefined && byId.get(id)) next[slots[n]] = byId.get(id); });
+  if (next.some((e, k) => e !== S.employees[k])) { S.employees = next; save(); }
+}
+let drag = null;
+document.addEventListener('pointerdown', ev => {
+  const g = ev.target.closest && ev.target.closest('[data-grip]'); if (!g || (ev.button && ev.button !== 0)) return;
+  const card = g.closest('[data-id]'); if (!card || !$('#list').classList.contains('sortable')) return;
+  ev.preventDefault();
+  drag = { card, g, id: ev.pointerId, y: ev.clientY, raf: 0 };
+  card.classList.add('dragging'); document.body.classList.add('isdrag');
+  try { g.setPointerCapture(ev.pointerId); } catch (e) {}
+});
+function dragStep() {
+  if (!drag) return;
+  const y = drag.y, card = drag.card, list = $('#list');
+  const others = $$('#list > [data-id]').filter(c => c !== card && !c.hidden);
+  let before = null;
+  for (const c of others) { const r = c.getBoundingClientRect(); if (y < r.top + r.height / 2) { before = c; break; } }
+  const nm = $('#nomatch');
+  if (before) { if (card.nextElementSibling !== before) list.insertBefore(card, before); }
+  else { const last = others[others.length - 1]; if (last && last.nextElementSibling !== card) last.after(card); }
+  renumber();
+  const edge = 70; if (y < edge) window.scrollBy(0, -12); else if (y > window.innerHeight - edge) window.scrollBy(0, 12);
+  drag.raf = requestAnimationFrame(dragStep);
+}
+document.addEventListener('pointermove', ev => {
+  if (!drag || ev.pointerId !== drag.id) return;
+  drag.y = ev.clientY;
+  if (!drag.raf) drag.raf = requestAnimationFrame(dragStep);
+});
+function endDrag(ev) {
+  if (!drag || (ev && ev.pointerId !== drag.id)) return;
+  cancelAnimationFrame(drag.raf); const c = drag.card; drag = null;
+  c.classList.remove('dragging'); document.body.classList.remove('isdrag');
+  commitOrder(); toast('Order saved');
+}
+document.addEventListener('pointerup', endDrag); document.addEventListener('pointercancel', endDrag);
+document.addEventListener('keydown', ev => {
+  const g = ev.target.closest && ev.target.closest('[data-grip]'); if (!g || (ev.key !== 'ArrowUp' && ev.key !== 'ArrowDown')) return;
+  ev.preventDefault();
+  const card = g.closest('[data-id]'); if (!card || !$('#list').classList.contains('sortable')) return;
+  const sib = ev.key === 'ArrowUp' ? card.previousElementSibling : card.nextElementSibling;
+  if (!sib || !sib.dataset.id) return;
+  if (ev.key === 'ArrowUp') sib.before(card); else sib.after(card);
+  commitOrder(); g.focus(); card.scrollIntoView({ block: 'nearest' });
+});
 
 /* ---------- payout ---------- */
 let payCtx = null;
@@ -1041,13 +1484,21 @@ function renderPay() {
   $('#pay-name').textContent = e.name;
   $('#pay-label').textContent = ps.status === 'paid' ? 'Paid' : ps.status === 'partial' ? 'Still owed' : 'Amount to pay';
   $('#pay-amt').textContent = fmt(ps.status === 'partial' ? ps.owed : ps.total);
+  const st = $('#pay-stat'); st.className = 'pstat ' + ps.status;
+  st.textContent = ps.status === 'paid' ? 'Paid' : ps.status === 'partial' ? 'Partly paid' : ps.status === 'unpaid' ? 'Unpaid' : 'No pay yet';
+  $('#sec-slots').hidden = !CHECKS.some(h => slotTotal(e, date, h) > 0);
   $('#pay-break').textContent = 'Vouchers ' + fmt(d.add) + ' + additional ' + fmt(d.extra) + (ps.status === 'partial' ? ' · ' + fmt(ps.paid) + ' paid earlier' : '');
-  $('#pay-qr').innerHTML = e.qr ? `<img src="${esc(qrSource(e.qr))}" alt="Payroll QR code for ${esc(e.name)}">` : `<div class="noqr">No payroll QR yet<button type="button" class="btn" id="pay-qr-add">Add QR</button></div>`;
+  $('#pay-slots').innerHTML = CHECKS.filter(h => slotTotal(e, date, h) > 0).map(h => {
+    const t = slotTotal(e, date, h), pd = slotPaid(e, date, h), ok = t - pd <= 0.004;
+    return `<div class="srow${ok ? ' ok' : ''}"><b class="stm">${hl(h)}</b><div class="smid"><span class="sam">${fmt(t)}</span><span class="sst2">${ok ? '✓ Paid' : pd > 0 ? fmt(t - pd) + ' still owed' : 'Unpaid'}</span></div><button type="button" class="btn" data-pslot="${h}">${ok ? 'Undo' : 'Mark paid'}</button></div>`;
+  }).join('');
+  const qq = qrsOf(e);
+  $('#pay-qr').innerHTML = qq.length ? `<div class="qrgrid${qq.length > 1 ? ' multi' : ''}">${qq.map((v, k) => `<figure><div class="qtile"><img src="${esc(qrSource(v))}" alt="Payroll QR ${k + 1} for ${esc(e.name)}"></div>${qq.length > 1 ? `<figcaption>QR ${k + 1} of ${qq.length}</figcaption>` : ''}</figure>`).join('')}</div>${qq.length < MAX_QR ? '<button type="button" class="btn qadd" id="pay-qr-add">+ Add another QR</button>' : ''}` : `<div class="noqr"><span>No QR saved for ${esc(e.name)}</span><button type="button" class="btn qadd" id="pay-qr-add">Add QR</button></div>`;
   $('#pay-accts').innerHTML = e.accts.map(a => {
     const times = CHECKS.filter(c => Array.isArray(i.acctGot[c]) && i.acctGot[c].includes(a.id)).map(hl).join(' · ');
-    return `<div class="prow"><div><b>${esc(a.name)}</b><small>${esc(a.wallet || 'No wallet')}${times ? ' · got voucher at ' + times : ''}</small></div><span class="pnum">${esc(a.number || 'No number')}</span>${a.number ? `<button type="button" class="btn" data-copynum="${esc(a.number)}">Copy</button>` : '<span></span>'}</div>`;
+    return `<div class="pacc"><div><span class="an">${esc(a.name)}</span>${a.wallet ? `<span class="wal">${esc(a.wallet)}</span>` : ''}</div>${a.number ? `<button type="button" class="btn cp2" data-copynum="${esc(a.number)}">Copy number</button><div class="num">${esc(a.number)}</div>` : '<div class="nonum">No number saved. Add it on the employee card.</div>'}${times ? `<div class="got">Got the voucher at ${times}</div>` : ''}</div>`;
   }).join('');
-  $('#pay-done').textContent = ps.status === 'paid' ? 'Mark unpaid' : 'Mark paid';
+  $('#pay-done').textContent = ps.status === 'paid' ? 'Mark all unpaid' : 'Mark all paid';
   $('#pay-done').disabled = ps.status === 'none';
   const n = nextUnpaid(e.id); $('#pay-next').hidden = !n || n.id === e.id;
 }
@@ -1064,11 +1515,13 @@ function finishPay() {
 }
 
 /* ---------- QR codes ---------- */
-function openQr(eid) {
-  const e = find(eid); if (!e || !e.qr) return;
-  qrCtx = { eid };
-  $('#qrimg').src = qrSource(e.qr);
-  $('#qrcap').innerHTML = esc(e.name) + '<small>Payroll QR code</small>';
+function openQr(eid, idx) {
+  const e = find(eid), q = qrsOf(e); if (!e || !q.length) return;
+  const k = Math.max(0, Math.min(q.length - 1, idx || 0));
+  qrCtx = { eid, i: k };
+  $('#qrimg').src = qrSource(q[k]);
+  $('#qrcap').innerHTML = esc(e.name) + '<small>Payroll QR' + (q.length > 1 ? ' ' + (k + 1) + ' of ' + q.length : '') + '</small>';
+  $('#qr-prev').hidden = $('#qr-next').hidden = q.length < 2;
   $('#qr-replace').hidden = false; $('#qr-remove').hidden = false;
   $('#qrview').hidden = false; $('#qr-close').focus();
 }
@@ -1101,16 +1554,33 @@ function localQrData(file) {
     image.src = url;
   });
 }
-async function uploadQr(file) {
+async function uploadQr(files) {
   const ctx = pendingQr; pendingQr = null;
-  if (!file || !ctx) return;
+  files = Array.from(files || []);
+  if (!files.length || !ctx) return;
   const e = find(ctx.eid); if (!e) return;
-  if (!/^image\/(png|jpeg|webp|gif)$/.test(file.type)) return toast('Use a PNG, JPG or WebP image');
-  toast(assetsApi ? 'Uploading QR code…' : 'Saving QR code…');
+  if (!Array.isArray(e.qrs)) e.qrs = [];
+  const replacing = typeof ctx.i === 'number';
+  if (!replacing) files = files.slice(0, MAX_QR - e.qrs.length);
+  else files = files.slice(0, 1);
+  if (!files.length) return toast('Up to ' + MAX_QR + ' QR pictures per employee');
+  if (files.some(f => !/^image\/(png|jpeg|webp|gif)$/.test(f.type))) return toast('Use PNG, JPG or WebP images');
+  toast(assetsApi ? 'Uploading…' : 'Saving…');
+  let done = 0;
   try {
-    e.qr = assetsApi ? (await assetsApi.upload(file)).id : await localQrData(file);
-    closeQr(); rerenderCard(e.id); refresh(); if (payCtx) renderPay(); toast('Payroll QR saved for ' + e.name);
+    for (const file of files) {
+      const v = assetsApi ? (await assetsApi.upload(file)).id : await localQrData(file);
+      if (replacing) e.qrs[ctx.i] = v; else e.qrs.push(v);
+      done++;
+    }
+    const at = replacing ? ctx.i : e.qrs.length - 1;
+    const wasOpen = !$('#qrview').hidden;
+    if (!wasOpen) closeQr();
+    rerenderCard(e.id); refresh(); if (payCtx) renderPay();
+    if (wasOpen) openQr(e.id, at);
+    toast(done === 1 ? 'Payroll QR saved for ' + e.name : done + ' QR pictures saved for ' + e.name);
   } catch (err) {
+    if (done) { rerenderCard(e.id); refresh(); if (payCtx) renderPay(); save(); }
     const c = err && err.code;
     toast(c === 'too_large' ? 'That image is too large (max 20 MB)' : c === 'unsupported_type' ? 'Use a PNG, JPG or WebP image' : c === 'quota_or_state' ? 'Storage is full, so the QR code was not saved' : c === 'rate_limited' ? 'Too many uploads. Try again in a moment' : err && err.message ? err.message : 'The QR code could not be saved');
   }
@@ -1122,6 +1592,7 @@ async function initAssets() {
     if (assetsApi) { renderList(); refreshNumbers(); }
   } catch (e) { assetsApi = null; }
 }
+document.addEventListener('click', ev => { const m = $('#more'); if (m && m.open && (!m.contains(ev.target) || (ev.target.closest('.menu') && ev.target.closest('button')))) m.open = false; }, true);
 document.addEventListener('keydown', ev => { if (ev.key !== 'Escape') return; if (!$('#qrview').hidden) closeQr(); else if (!$('#payview').hidden) closePay(); });
 $('#payview').addEventListener('click', ev => { if (ev.target.id === 'payview') closePay(); });
 $('#qrview').addEventListener('click', ev => { if (ev.target.id === 'qrview') closeQr(); });
@@ -1130,7 +1601,10 @@ $('#qrview').addEventListener('click', ev => { if (ev.target.id === 'qrview') cl
 function applyTheme() {
   if (S.ui.theme) document.documentElement.dataset.theme = S.ui.theme;
   const dark = effectiveDark();
-  $('#theme').textContent = dark ? 'Light mode' : 'Dark mode';
+  const SUN = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>';
+  const MOON = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>';
+  $('#theme').innerHTML = dark ? SUN : MOON;
+  $('#theme').title = dark ? 'Switch to light mode' : 'Switch to dark mode';
   $('#theme').setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
 }
 const effectiveDark = () => S.ui.theme ? S.ui.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
@@ -1186,18 +1660,21 @@ document.addEventListener('click', ev => {
   const card = t.closest('.card, .qrow'), id = card && card.dataset.id;
   if (t.id === 'qr-close') return closeQr();
   if (t.id === 'pay-close') return closePay();
+  if (t.dataset.pslot && payCtx) { const e = find(payCtx.eid), h = +t.dataset.pslot; if (e) { setSlotPaid(date, e, h, slotPaid(e, date, h) < slotTotal(e, date, h) - 0.004); refresh(); renderPay(); } return; }
   if (t.id === 'pay-done' && payCtx) return finishPay();
   if (t.id === 'pay-next' && payCtx) { const n = nextUnpaid(payCtx.eid); if (n) { payCtx = { eid: n.id }; renderPay(); } return; }
-  if (t.id === 'pay-qr-add' && payCtx) { pendingQr = { eid: payCtx.eid }; return $('#qr-file').click(); }
+  if (t.id === 'pay-qr-add' && payCtx) { pendingQr = { eid: payCtx.eid }; $('#qr-file').multiple = true; return $('#qr-file').click(); }
   if (t.id === 'pay-start') { const n = nextUnpaid(null); return n ? openPay(n.id) : toast('Nothing left to pay'); }
   if (t.dataset.copynum) { const num = t.dataset.copynum; return navigator.clipboard.writeText(num).then(() => toast('Number copied'), () => toast('Copy was blocked by the browser')); }
-  if (t.id === 'qr-replace' && qrCtx) { pendingQr = { ...qrCtx }; return $('#qr-file').click(); }
+  if (t.id === 'qr-prev' && qrCtx) { const n = qrsOf(find(qrCtx.eid)).length; return openQr(qrCtx.eid, (qrCtx.i + n - 1) % n); }
+  if (t.id === 'qr-next' && qrCtx) { const n = qrsOf(find(qrCtx.eid)).length; return openQr(qrCtx.eid, (qrCtx.i + 1) % n); }
+  if (t.id === 'qr-replace' && qrCtx) { pendingQr = { ...qrCtx }; $('#qr-file').multiple = false; return $('#qr-file').click(); }
   if (t.id === 'qr-remove' && qrCtx) {
     const e = find(qrCtx.eid); if (!e) return;
-    const snap = snapshot(); e.qr = ''; closeQr(); rerenderCard(e.id); refresh(); return toast('QR code removed', snap);
+    const snap = snapshot(); e.qrs.splice(qrCtx.i, 1); const k = qrCtx.i; if (e.qrs.length) openQr(e.id, Math.min(k, e.qrs.length - 1)); else closeQr(); rerenderCard(e.id); refresh(); if (payCtx) renderPay(); return toast('QR code removed', snap);
   }
+  if (t.dataset.pf) { S.ui.pf = t.dataset.pf; applyFilter(); save(); return; }
   if (t.dataset.view) return setView(t.dataset.view);
-  if (t.dataset.mode) { S.ui.quick = t.dataset.mode === 'quick'; renderList(); refresh(); return; }
   if (t.dataset.hpaid) { const e = find(t.dataset.id); if (e) { setPaid(t.dataset.hpaid, e, payState(e, t.dataset.hpaid).status !== 'paid'); renderHistory(); save(); } return; }
   if (t.dataset.hpaidday) {
     const k = t.dataset.hpaidday, snap = snapshot(), payers = S.employees.filter(e => payState(e, k).status !== 'none');
@@ -1242,8 +1719,8 @@ document.addEventListener('click', ev => {
     const snap = snapshot(); e.archivedFrom = todayKey(); renderAll(); return toast('Archived ' + e.name, snap);
   }
   if (act === 'payout') return openPay(id);
+  if (act === 'slot-paid') { const h = +t.dataset.h; setSlotPaid(date, e, h, slotPaid(e, date, h) < slotTotal(e, date, h) - 0.004); refresh(); return; }
   if (act === 'paid') { setPaid(date, e, payState(e, date).status !== 'paid'); refresh(); return; }
-  if (act === 'detail') { S.ui.quick = false; renderList(); refresh(); return focusEmployee(id); }
   if (act === 'toggle') {
     const col = !S.ui.collapsed[id]; S.ui.collapsed[id] = col;
     card.classList.toggle('collapsed', col); t.setAttribute('aria-expanded', !col); syncToggleAll(); return save();
@@ -1283,10 +1760,15 @@ document.addEventListener('click', ev => {
     r.acctGot[h] = on ? [] : e.accts.map(a => a.id);
     r.claims[h] = !on;
     if (r.got) delete r.got[h]; if (r.ties) delete r.ties[h]; unpair(date, id, h); refresh();
-    const b = $('#emp-' + id + ' [data-act="claim"][data-h="' + h + '"]'); if (b) b.focus(); return;
+    const b = $$('#emp-' + id + ' [data-act="claim"][data-h="' + h + '"]').find(x => x.offsetParent); if (b) b.focus(); return;
   }
-  if (act === 'qr-view') return openQr(id);
-  if (act === 'qr-add') { pendingQr = { eid: id }; return $('#qr-file').click(); }
+  if (act === 'qr-view') return openQr(id, +t.dataset.i || 0);
+  if (act === 'qr-add') { pendingQr = { eid: id }; $('#qr-file').multiple = true; return $('#qr-file').click(); }
+  if (act === 'acct-edit' || act === 'acct-done') {
+    if (act === 'acct-edit') { acctEditing.add(id); S.ui.acctOpen[id] = true; } else acctEditing.delete(id);
+    rerenderCard(id);
+    const b = $('#emp-' + id + ' [data-act="' + (act === 'acct-edit' ? 'acct-done' : 'acct-edit') + '"]'); if (b) b.focus(); return;
+  }
   if (act === 'del-acct') {
     const snap = snapshot(); e.accts = e.accts.filter(a => a.id !== t.dataset.aid); if (!e.accts.length) ensureAccts(e);
     syncAccounts(e); rerenderCard(id); refresh(); return toast('Account removed', snap);
@@ -1299,6 +1781,12 @@ document.addEventListener('input', ev => {
 document.addEventListener('change', ev => {
   const t = ev.target;
   if (t.id === 'date') { if (t.value) setDate(t.value); return; }
+  if (t.id === 'hfrom' || t.id === 'hto') {
+    let f = $('#hfrom').value, e2 = $('#hto').value;
+    if (f && e2 && f > e2) { const x = f; f = e2; e2 = x; }
+    S.ui.hrange = 'custom'; S.ui.hfrom = f; S.ui.hto = e2;
+    renderHistory(); return save();
+  }
   if (t.id === 'sort') { S.ui.sort = t.value; renderList(); return refresh(); }
   if (t.dataset.act === 'pair') {
     const id = t.closest('.card').dataset.id, h = +t.dataset.h, pid = t.value;
@@ -1313,7 +1801,7 @@ document.addEventListener('change', ev => {
     }
     refresh(); return;
   }
-  if (t.id === 'qr-file') { const f = t.files && t.files[0]; t.value = ''; uploadQr(f); return; }
+  if (t.id === 'qr-file') { const f = Array.from(t.files || []); t.value = ''; uploadQr(f); return; }
   if (t.dataset.act === 'acct-f') {
     const card = t.closest('.card'), e = find(card.dataset.id), a = e.accts.find(x => x.id === t.closest('.arow').dataset.aid);
     if (!a) return;
@@ -1380,5 +1868,6 @@ initDb();
 initAssets();
 })();
 </script>
+
 
 </body></html>
