@@ -166,6 +166,34 @@ select.in { width: auto; padding-right: 8px; }
 .amt { text-align: right; flex: none; }
 .amt strong { display: block; font: 700 24px/1.15 var(--f-num); }
 .amt small { color: var(--muted); font: 400 12px var(--f-num); }
+.accts { border: 1px solid var(--line); border-radius: 10px; background: var(--bg); }
+.accts > summary { list-style: none; cursor: pointer; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 4px 12px; padding: 10px 12px; font-weight: 600; }
+.accts > summary::-webkit-details-marker { display: none; }
+.accts > summary::before { content: ""; width: 7px; height: 7px; border-right: 2px solid var(--muted); border-bottom: 2px solid var(--muted); transform: rotate(-45deg); transition: transform .15s; margin-right: 2px; }
+.accts[open] > summary::before { transform: rotate(45deg); }
+.accts > summary > span:first-child { flex: 1; }
+.accts .am { font: 500 12px var(--f-num); color: var(--muted); }
+.arows { display: flex; flex-direction: column; gap: 8px; padding: 0 12px 10px; }
+.arow { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr) 96px auto; gap: 8px; align-items: center; }
+.addacct { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr) 96px auto; gap: 8px; align-items: center; }
+.qrrow { display: flex; align-items: center; justify-content: space-between; gap: 10px; border: 1px solid var(--line); border-radius: 10px; background: var(--bg); padding: 8px 12px; }
+.qrrow b { font-weight: 600; display: block; }
+.qrrow small { color: var(--muted); font-size: 12px; }
+.qrthumb { width: 46px; height: 46px; border: 1px solid var(--line); border-radius: 8px; padding: 2px; background: #fff; overflow: hidden; }
+.qrthumb img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.qrbtn { padding: 6px 8px; font-size: 12px; }
+.modal { position: fixed; inset: 0; z-index: 70; background: rgba(5, 12, 14, .72); display: grid; place-items: center; padding: max(16px, env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) max(16px, env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); }
+.modal[hidden] { display: none; }
+.mbox { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 16px; max-width: 420px; width: 100%; display: flex; flex-direction: column; gap: 12px; box-shadow: var(--shadow); }
+.mbox img { width: 100%; max-height: 60vh; object-fit: contain; background: #fff; border-radius: 10px; }
+.mcap { font: 600 14px var(--f-head); overflow-wrap: anywhere; }
+.mcap small { display: block; font: 500 12.5px var(--f-num); color: var(--muted); margin-top: 2px; }
+.macts { display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end; }
+.arow .in, .addacct .in { padding: 7px 9px; font-size: 13px; }
+.arow input[data-f="number"], .addacct input[name="number"] { font-family: var(--f-num); }
+.arow button:disabled { opacity: .4; cursor: not-allowed; }
+.addacct { padding: 10px 12px 12px; border-top: 1px solid var(--line); }
+@media (max-width: 720px) { .arow, .addacct { grid-template-columns: minmax(0, 1fr) 96px; } .arow [data-f="name"], .addacct [name="name"] { grid-column: 1 / -1; } .addacct .btn { grid-column: 1 / -1; } .arow .link { justify-self: end; } }
 .salary-row { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 10px 14px; }
 .money { position: relative; width: 150px; }
 .money > span { position: absolute; left: 11px; top: 50%; transform: translateY(-50%); color: var(--muted); font-family: var(--f-num); pointer-events: none; }
@@ -213,6 +241,30 @@ select.in { width: auto; padding-right: 8px; }
   .qslots { grid-column: 1 / -1; order: 3; }
   .rateform { grid-template-columns: minmax(0, 1fr); }
 }
+.chips { display: flex; flex-wrap: wrap; gap: 4px; }
+.achip { border: 1px solid var(--line); background: transparent; border-radius: 999px; padding: 3px 8px; font: 500 11px var(--f-num); color: var(--muted); }
+.achip:hover { border-color: var(--muted); color: var(--fg); }
+.achip[aria-pressed="true"] { background: var(--extra); border-color: var(--extra); color: var(--extra-ink); }
+.paybtns { display: flex; gap: 6px; justify-content: flex-end; flex-wrap: wrap; }
+.pbox { max-width: 520px; max-height: calc(100vh - 32px); overflow: auto; }
+.phead { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+.phead h2 { font: 700 22px var(--f-head); margin: 0; overflow-wrap: anywhere; }
+.phead small { color: var(--muted); font-size: 12.5px; }
+.pamt { display: flex; flex-direction: column; gap: 2px; }
+.pamt span { font-size: 11px; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: .08em; }
+.pamt strong { font: 700 32px/1.15 var(--f-num); }
+.pamt small { color: var(--muted); font-size: 12.5px; }
+.pqr img { width: 100%; max-width: 300px; margin: 0 auto; display: block; background: #fff; border-radius: 10px; }
+.noqr { border: 1px dashed var(--line); border-radius: 10px; padding: 14px; text-align: center; color: var(--muted); display: flex; flex-direction: column; gap: 8px; align-items: center; }
+.paccts, .qaccs { display: flex; flex-direction: column; gap: 6px; }
+.qaccs { padding: 0 12px 10px; }
+.prow { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; gap: 10px; align-items: center; border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px; background: var(--surface); }
+.prow b { font-weight: 600; overflow-wrap: anywhere; }
+.prow small { display: block; color: var(--muted); font-size: 11.5px; }
+.pnum { font: 600 13px var(--f-num); }
+.qacc { grid-column: 1 / -1; }
+.qmeta { display: flex; align-items: center; gap: 8px; }
+.qwho .qrthumb { width: 38px; height: 38px; }
 .gotrow { display: flex; align-items: center; justify-content: space-between; gap: 6px; font-size: 12px; color: var(--muted); }
 .gotrow button { width: 26px; height: 26px; border: 1px solid var(--line); background: var(--surface-2); border-radius: 6px; padding: 0; font-weight: 700; line-height: 1; }
 .gotrow button:disabled { opacity: .35; cursor: not-allowed; }
@@ -369,6 +421,7 @@ select.in { width: auto; padding-right: 8px; }
         <button class="btn" id="copy">Copy summary</button>
         <button class="btn" id="toggle-all">Collapse all</button>
         <button class="btn" id="paid-all">Mark all paid</button>
+        <button class="btn primary" id="pay-start">Start payout</button>
       </div>
       <div id="list" style="display:flex;flex-direction:column;gap:12px"></div>
     </section>
@@ -406,6 +459,7 @@ select.in { width: auto; padding-right: 8px; }
       <div class="err" id="rate-err" role="alert"></div>
     </div>
     <div class="panel hpanel"><h2>Rate history</h2><div class="tablewrap" id="rate-list"></div></div>
+    <div class="panel hpanel"><h2>Archived employees</h2><p class="subt">Archived employees leave the Tracker from the day you archive them. Their earlier days stay in History.</p><div id="arch-list"></div></div>
   </div>
 
   <div id="v-history" class="vwrap" hidden>
@@ -421,6 +475,23 @@ select.in { width: auto; padding-right: 8px; }
   </div>
 </div>
 
+<input type="file" id="qr-file" accept="image/png,image/jpeg,image/webp,image/gif" hidden>
+<div class="modal" id="qrview" hidden role="dialog" aria-modal="true" aria-label="Payment QR code">
+  <div class="mbox">
+    <img id="qrimg" alt="Payment QR code">
+    <div class="mcap" id="qrcap"></div>
+    <div class="macts"><button class="btn" id="qr-replace" hidden>Replace</button><button class="btn" id="qr-remove" hidden>Remove QR</button><button class="btn primary" id="qr-close">Close</button></div>
+  </div>
+</div>
+<div class="modal" id="payview" hidden role="dialog" aria-modal="true" aria-label="Payout">
+  <div class="mbox pbox">
+    <div class="phead"><div><small id="pay-date"></small><h2 id="pay-name"></h2></div><button class="btn" id="pay-close">Close</button></div>
+    <div class="pamt"><span id="pay-label">Amount to pay</span><strong id="pay-amt">₱0.00</strong><small id="pay-break"></small></div>
+    <div class="pqr" id="pay-qr"></div>
+    <div class="paccts" id="pay-accts"></div>
+    <div class="macts"><button class="btn" id="pay-next" hidden>Skip to next</button><button class="btn primary" id="pay-done">Mark paid</button></div>
+  </div>
+</div>
 <div class="tip" id="tip" role="tooltip"></div>
 <div class="toast" id="toast" role="status" aria-live="polite" hidden><span id="toast-msg"></span><button id="toast-undo" hidden>Undo</button></div>
 
@@ -440,6 +511,7 @@ const keyOf = d => d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.g
 const parseKey = k => { const [y, m, d] = k.split('-').map(Number); return new Date(y, m - 1, d); };
 const todayKey = () => keyOf(new Date());
 const LS = 'ptgayming.v2';
+const WALLETS = ['GCash', 'Maya'];
 const DEFAULT_RATES = [{ from: '0000-01-01', pair: 350, cross: 150 }];
 const lsGet = k => { try { return localStorage.getItem(k); } catch (e) { return null; } };
 const lsSet = (k, v) => { try { localStorage.setItem(k, v); return true; } catch (e) { return false; } };
@@ -475,6 +547,8 @@ function load() {
 }
 let S = load() || seed();
 S.ui.collapsed = S.ui.collapsed || {};
+S.ui.acctOpen = S.ui.acctOpen || {};
+S.employees.forEach(ensureAccts);
 S.settings = S.settings && Array.isArray(S.settings.rates) && S.settings.rates.length ? S.settings : { rates: DEFAULT_RATES.map(r => ({ ...r })) };
 let date = todayKey();
 let view = 'tracker';
@@ -492,10 +566,13 @@ const rec = (d, id, make) => {
 function info(e, d) {
   const r = rec(d, e.id);
   const accounts = r && typeof r.accounts === 'number' ? r.accounts : (e.accounts || 1);
-  const claims = (r && r.claims) || {};
-  return { accounts, claims, got: (r && r.got) || {}, pairs: (r && r.pairs) || {}, ties: (r && r.ties) || {}, extras: (r && r.extras) || [], nClaims: CHECKS.filter(c => claims[c]).length };
+  const ag = (r && r.acctGot) || {};
+  const claims = Object.assign({}, (r && r.claims) || {});
+  for (const c of CHECKS) if (Array.isArray(ag[c])) claims[c] = ag[c].length > 0;
+  return { accounts, claims, acctGot: ag, got: (r && r.got) || {}, pairs: (r && r.pairs) || {}, ties: (r && r.ties) || {}, extras: (r && r.extras) || [], nClaims: CHECKS.filter(c => claims[c]).length };
 }
 const gotOf = (i, c) => {
+  if (Array.isArray(i.acctGot[c])) return Math.min(i.accounts, i.acctGot[c].length);
   if (!i.claims[c]) return 0;
   const g = i.got[c], n = typeof g === 'number' ? g : i.accounts;
   return Math.max(0, Math.min(i.accounts, n));
@@ -517,6 +594,28 @@ function unpair(d, id, c) {
   const r = rec(d, id); if (!r || !r.pairs || !r.pairs[c]) return;
   const pid = r.pairs[c]; delete r.pairs[c];
   const o = rec(d, pid); if (o && o.pairs && o.pairs[c] === id) delete o.pairs[c];
+}
+function ensureAccts(e) {
+  if (!Array.isArray(e.accts)) e.accts = [];
+  if (!e.accts.length) {
+    const n = Math.max(1, e.accounts || 1), base = e.name.toUpperCase().replace(/\s+/g, '');
+    for (let k = 1; k <= n; k++) e.accts.push({ id: uid(), name: base + k, number: '', wallet: '' });
+  }
+  if (!e.qr) { const q = e.accts.find(a => a.qr); if (q) e.qr = q.qr; }
+  e.accts.forEach(a => { delete a.qr; });
+  e.accounts = e.accts.length;
+}
+const searchKey = e => [e.name].concat((e.accts || []).map(a => a.name + ' ' + a.number + ' ' + a.wallet)).join(' ').toLowerCase();
+function syncAccounts(e) {
+  e.accounts = e.accts.length;
+  if (date >= todayKey()) {
+    const r = rec(date, e.id);
+    if (r && typeof r.accounts === 'number') {
+      r.accounts = e.accounts; CHECKS.forEach(c => unpair(date, e.id, c));
+      if (r.got) for (const h in r.got) r.got[h] = Math.min(r.got[h], e.accounts);
+      if (r.acctGot) for (const h in r.acctGot) r.acctGot[h] = r.acctGot[h].filter(x => e.accts.some(a => a.id === x));
+    }
+  }
 }
 function ratesFor(d) {
   let cur = S.settings.rates[0];
@@ -544,6 +643,9 @@ function at(e, d, h) {
   return { sal: 0, add, extra, total: add + extra };
 }
 const find = id => S.employees.find(e => e.id === id);
+const visibleOn = (e, d) => !e.archivedFrom || d < e.archivedFrom;
+const activeEmps = () => S.employees.filter(e => visibleOn(e, date));
+const ename = e => e.name + (e.archivedFrom ? ' (archived)' : '');
 const dayTotal = e => at(e, date, END).total;
 
 /* ---------- save / undo / toast ---------- */
@@ -598,6 +700,7 @@ async function initDb() {
       lastSaved.set('app/employees', JSON.stringify({ employees: S.employees, sample: S.sample, settings: S.settings }));
       days.docs.forEach(x => { S.days[x.id] = JSON.parse(JSON.stringify(x.data())).records || {}; lastSaved.set('days/' + x.id, JSON.stringify(S.days[x.id])); });
       const up = upgradeSample();
+      S.employees.forEach(ensureAccts);
       freezeAccounts();
       renderAll(true); if (view === 'history') renderHistory();
       if (up) save();
@@ -631,7 +734,7 @@ function slotsHTML(e) {
     const canTie = on && Math.floor(got / 2) > 0;
     const odd = on && eff > 0 && eff % 2 === 1;
     const partner = odd ? crossPairs(date, c).get(e.id) : null;
-    const cands = odd ? S.employees.filter(o => {
+    const cands = odd ? activeEmps().filter(o => {
       if (o.id === e.id) return false;
       const oe = effOf(info(o, date), c); if (oe <= 0 || oe % 2 !== 1) return false;
       const taken = crossPairs(date, c).get(o.id); return !taken || taken.id === e.id;
@@ -642,8 +745,11 @@ function slotsHTML(e) {
       if (cands.length || partner) pairUI = `<label class="pairrow"><span>Pair the leftover account with</span><select class="in pairsel" data-act="pair" data-h="${c}" aria-label="Pair the leftover account at ${hl(c)} with"><option value="">${partner ? 'Unpair' : 'Choose employee…'}</option>${cands.map(o => `<option value="${o.id}" ${partner && partner.id === o.id ? 'selected' : ''}>${esc(o.name)}</option>`).join('')}</select></label><span class="pnote${partner ? ' ok' : ''}">${partner ? 'Paired · +' + fmt(R.cross) : 'Not paid until paired'}</span>`;
       else pairUI = '<span class="pnote">Leftover account. No other employee has one at this time, so it is not paid.</span>';
     }
+    const gotIds = Array.isArray(i.acctGot[c]) ? i.acctGot[c] : (on ? e.accts.slice(0, got).map(a => a.id) : []);
+    const chips = e.accts.map(a => `<button type="button" class="achip" data-act="acct-got" data-h="${c}" data-aid="${a.id}" aria-pressed="${gotIds.includes(a.id)}" title="${esc((a.number || 'No number') + ' · ' + (a.wallet || 'No wallet'))}">${esc(a.name)}</button>`).join('');
     return `<div class="slot"><button type="button" class="vbtn${on ? ' on' : ''}${c > asOf ? ' late' : ''}" data-act="claim" data-h="${c}" aria-pressed="${on}" data-tip="${esc(tip)}"><span>${on ? 'Claimed' : 'Claim voucher'}</span><b>${on ? fmt(pay) : i.accounts + (i.accounts === 1 ? ' account' : ' accounts')}</b></button>
-      <div class="gotrow"><span>Got it</span><button type="button" data-act="got-" data-h="${c}" aria-label="Fewer accounts got the voucher at ${hl(c)}" ${on && got > 1 ? '' : 'disabled'}>−</button><b>${on ? eff + '/' + i.accounts : '–'}</b><button type="button" data-act="got+" data-h="${c}" aria-label="More accounts got the voucher at ${hl(c)}" ${on && got < i.accounts ? '' : 'disabled'}>+</button></div>
+      <div class="gotrow"><span>Accounts that got it</span><b>${got}/${e.accts.length}</b></div>
+      <div class="chips" role="group" aria-label="Accounts that got the voucher at ${hl(c)}">${chips}</div>
       <button type="button" class="tiebtn" data-act="tie" data-h="${c}" aria-pressed="${ties > 0}" ${canTie ? '' : 'disabled'} title="Tie: a tied pair of accounts pays nothing">${ties ? 'Tie · ' + ties : 'Tie'}</button>
       ${pairUI}<span class="slabel">${hl(c)}</span></div>`;
   }).join('');
@@ -653,16 +759,31 @@ function extrasHTML(e) {
   if (!list.length) return '';
   return '<ul class="xs">' + list.map(({ x }) => `<li><span class="t">${hl(x.hour)}</span><span class="n">${esc(x.label)}</span><span class="a">+${fmt(x.amount)}</span><button type="button" class="link" data-act="del-x" data-xid="${x.id}" aria-label="Remove ${esc(x.label)}">Remove</button></li>`).join('') + '</ul>';
 }
+let assetsApi = null, qrCtx = null, pendingQr = null;
+const qrRowHTML = e => `<div class="qrrow"><div><b>Payroll QR</b><small>${e.qr ? 'Tap the picture to enlarge it' : 'One QR code for paying ' + esc(e.name)}</small></div>${e.qr
+  ? `<button type="button" class="qrthumb" data-act="qr-view" aria-label="View payroll QR code for ${esc(e.name)}"><img src="/_blob/${esc(e.qr)}" alt="Payroll QR code for ${esc(e.name)}"></button>`
+  : assetsApi ? `<button type="button" class="btn qrbtn" data-act="qr-add" aria-label="Upload payroll QR code for ${esc(e.name)}">Add QR</button>` : '<small>Not added yet</small>'}</div>`;
+function acctSummaryText(e) {
+  const count = w => e.accts.filter(a => a.wallet === w).length, none = e.accts.filter(a => !a.wallet).length;
+  return count('GCash') + ' GCash · ' + count('Maya') + ' Maya' + (none ? ' · ' + none + ' no wallet' : '');
+}
+function acctsHTML(e) {
+  const n = e.accts.length;
+  const rows = e.accts.map(a => `<div class="arow" data-aid="${a.id}"><input class="in" data-act="acct-f" data-f="name" value="${esc(a.name)}" maxlength="40" aria-label="Account name"><input class="in" data-act="acct-f" data-f="number" value="${esc(a.number)}" inputmode="tel" maxlength="20" placeholder="Number" aria-label="Account number"><select class="in" data-act="acct-f" data-f="wallet" aria-label="GCash or Maya"><option value="">Wallet</option>${WALLETS.map(w => `<option ${a.wallet === w ? 'selected' : ''}>${w}</option>`).join('')}</select><button type="button" class="link danger" data-act="del-acct" data-aid="${a.id}" ${n > 1 ? '' : 'disabled'}>Remove</button></div>`).join('');
+  return `${qrRowHTML(e)}<details class="accts" data-id="${e.id}" ${S.ui.acctOpen[e.id] ? 'open' : ''}>
+    <summary><span>Accounts · ${n}</span><span class="am" data-am>${acctSummaryText(e)}</span></summary>
+    <div class="arows">${rows}</div>
+    <form class="addacct" data-id="${e.id}" autocomplete="off"><input class="in" name="name" placeholder="Account name" maxlength="40" aria-label="New account name"><input class="in" name="number" placeholder="Number" inputmode="tel" maxlength="20" aria-label="New account number"><select class="in" name="wallet" aria-label="GCash or Maya"><option value="">Wallet</option>${WALLETS.map(w => `<option>${w}</option>`).join('')}</select><button class="btn" type="submit">Add account</button></form>
+  </details>`;
+}
 function cardHTML(e) {
   const i = info(e, date);
-  return `<article class="panel card${S.ui.collapsed[e.id] ? ' collapsed' : ''}" id="emp-${e.id}" data-id="${e.id}" data-name="${esc(e.name.toLowerCase())}">
+  return `<article class="panel card${S.ui.collapsed[e.id] ? ' collapsed' : ''}" id="emp-${e.id}" data-id="${e.id}" data-name="${esc(searchKey(e))}">
   <div class="card-head">
     <div class="who"><button type="button" class="chev" data-act="toggle" aria-expanded="${!S.ui.collapsed[e.id]}" aria-label="Collapse or expand ${esc(e.name)}"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6l5 5 5-5"/></svg></button><span class="rank" data-rank>#–</span><input class="name-in" data-act="rename" value="${esc(e.name)}" maxlength="40" aria-label="Employee name"></div>
-    <div class="amt"><strong data-total>₱0.00</strong><small data-rate></small><button type="button" class="paidbtn" data-act="paid">Mark paid</button><small class="paidnote" data-paidnote></small></div>
+    <div class="amt"><strong data-total>₱0.00</strong><small data-rate></small><div class="paybtns"><button type="button" class="paidbtn" data-act="payout">Payout</button><button type="button" class="paidbtn" data-act="paid">Mark paid</button></div><small class="paidnote" data-paidnote></small></div>
   </div>
-  <div class="salary-row">
-    <div class="field"><span>Voucher accounts</span><div class="stepper"><button type="button" data-act="acc-" aria-label="Fewer accounts">−</button><input class="in" type="number" inputmode="numeric" min="1" step="1" data-act="accounts" value="${i.accounts}" aria-label="Number of accounts for ${esc(e.name)}"><button type="button" data-act="acc+" aria-label="More accounts">+</button></div></div>
-  </div>
+  ${acctsHTML(e)}
   <div><div class="slots" data-slots>${slotsHTML(e)}</div></div>
   <div class="xbox"><div class="flabel">Additional voucher · enter any amount</div>${extrasHTML(e)}
     <form class="addx" data-id="${e.id}" autocomplete="off">
@@ -672,7 +793,7 @@ function cardHTML(e) {
     </form><div class="err" data-err role="alert"></div></div>
   <p class="sum" data-sum></p>
   <div class="cps">${CHECKS.map(c => `<div class="cp"><span>By ${hl(c)}</span><b data-cp="${c}">₱0.00</b></div>`).join('')}</div>
-  <div class="foot"><button class="link danger" data-act="del-emp">Remove employee</button></div>
+  <div class="foot"><button class="link danger" data-act="archive-emp">Archive employee</button></div>
 </article>`;
 }
 
@@ -682,22 +803,25 @@ function quickInner(e) {
   const btns = CHECKS.map(c => {
     const on = !!i.claims[c], eff = effOf(i, c), odd = on && eff > 0 && eff % 2 === 1;
     const paired = odd && crossPairs(date, c).has(e.id);
-    return `<button type="button" class="qbtn${on ? ' on' : ''}${odd && !paired ? ' need' : ''}" data-act="claim" data-h="${c}" aria-pressed="${on}" aria-label="${hl(c)} voucher for ${esc(e.name)}"><span>${hl(c)}</span><b>${on ? fmt(slotPay(e, date, c)) : 'Claim'}</b>${odd && !paired ? '<i>needs pair</i>' : ''}</button>`;
+    return `<button type="button" class="qbtn${on ? ' on' : ''}${odd && !paired ? ' need' : ''}" data-act="claim" data-h="${c}" aria-pressed="${on}" aria-label="${hl(c)} voucher for ${esc(e.name)}"><span>${hl(c)}${on ? ' · ' + gotOf(i, c) + '/' + e.accts.length : ''}</span><b>${on ? fmt(slotPay(e, date, c)) : 'Claim'}</b>${odd && !paired ? '<i>needs pair</i>' : ''}</button>`;
   }).join('');
-  return `<div class="qwho"><b>${esc(e.name)}</b><small>${i.accounts} ${i.accounts === 1 ? 'account' : 'accounts'}</small><button type="button" class="link" data-act="detail">Details</button></div>
+  const thumb = e.qr ? `<button type="button" class="qrthumb" data-act="qr-view" aria-label="View payroll QR code for ${esc(e.name)}"><img src="/_blob/${esc(e.qr)}" alt="Payroll QR code for ${esc(e.name)}"></button>` : '';
+  const accts = e.accts.map(a => `<div class="prow"><div><b>${esc(a.name)}</b><small>${esc(a.wallet || 'No wallet')}</small></div><span class="pnum">${esc(a.number || 'No number')}</span>${a.number ? `<button type="button" class="btn" data-copynum="${esc(a.number)}">Copy</button>` : '<span></span>'}</div>`).join('');
+  return `<div class="qwho"><b>${esc(e.name)}</b><div class="qmeta"><small>${i.accounts} ${i.accounts === 1 ? 'account' : 'accounts'}</small>${thumb}</div><button type="button" class="link" data-act="detail">Details</button></div>
     <div class="qslots">${btns}</div>
-    <div class="qtot"><strong>${fmt(d.total)}</strong><button type="button" class="paidbtn${ps.status === 'partial' ? ' warn' : ''}" data-act="paid" aria-pressed="${ps.status === 'paid'}" ${ps.status === 'none' ? 'disabled' : ''}>${paidLabel(ps)}</button></div>`;
+    <div class="qtot"><strong>${fmt(d.total)}</strong><div class="paybtns"><button type="button" class="paidbtn" data-act="payout">Payout</button><button type="button" class="paidbtn${ps.status === 'partial' ? ' warn' : ''}" data-act="paid" aria-pressed="${ps.status === 'paid'}" ${ps.status === 'none' ? 'disabled' : ''}>${paidLabel(ps)}</button></div></div>
+    <details class="accts qacc" data-id="${e.id}" ${S.ui.acctOpen[e.id] ? 'open' : ''}><summary><span>Accounts · ${e.accts.length}</span><span class="am">${acctSummaryText(e)}</span></summary><div class="qaccs">${accts}</div></details>`;
 }
-const quickHTML = e => `<div class="panel qrow" id="emp-${e.id}" data-id="${e.id}" data-name="${esc(e.name.toLowerCase())}">${quickInner(e)}</div>`;
+const quickHTML = e => `<div class="panel qrow" id="emp-${e.id}" data-id="${e.id}" data-name="${esc(searchKey(e))}">${quickInner(e)}</div>`;
 function renderList() {
   const list = $('#list');
   $$('#modeseg button').forEach(b => b.setAttribute('aria-pressed', (b.dataset.mode === 'quick') === !!S.ui.quick));
   $('#toggle-all').hidden = !!S.ui.quick;
-  if (!S.employees.length) {
+  if (!activeEmps().length) {
     list.innerHTML = '<div class="panel empty"><b>No employees yet</b>Add your first employee above to start tracking today\'s payroll.</div>';
     return;
   }
-  let arr = S.employees.slice();
+  let arr = activeEmps();
   if (S.ui.sort === 'pay') arr.sort((a, b) => dayTotal(b) - dayTotal(a));
   if (S.ui.sort === 'name') arr.sort((a, b) => a.name.localeCompare(b.name));
   list.innerHTML = arr.map(S.ui.quick ? quickHTML : cardHTML).join('') + '<div class="panel empty" id="nomatch" hidden>No employee matches your search.</div>';
@@ -707,7 +831,7 @@ function applyFilter() {
   const q = $('#search').value.trim().toLowerCase();
   let shown = 0;
   $$('.card, .qrow', $('#list')).forEach(c => { const hit = !q || c.dataset.name.includes(q); c.hidden = !hit; if (hit) shown++; });
-  const nm = $('#nomatch'); if (nm) nm.hidden = shown > 0 || !S.employees.length;
+  const nm = $('#nomatch'); if (nm) nm.hidden = shown > 0 || !activeEmps().length;
 }
 function rerenderCard(id) {
   const old = $('#emp-' + id), e = find(id);
@@ -718,29 +842,29 @@ function rerenderCard(id) {
 }
 function refreshNumbers() {
   const asOf = S.ui.asOf;
-  $('#count').textContent = S.employees.length;
+  $('#count').textContent = activeEmps().length;
   syncToggleAll();
-  const rows = S.employees.map(e => ({ e, ...at(e, date, asOf) }));
+  const rows = activeEmps().map(e => ({ e, ...at(e, date, asOf) }));
   const sum = k => rows.reduce((s, r) => s + r[k], 0);
   const top = rows.slice().sort((a, b) => b.total - a.total)[0];
   $('#k-total').textContent = fmt(sum('total'));
-  const owedAll = S.employees.reduce((s, e) => s + payState(e, date).owed, 0), anyPay = S.employees.some(e => payState(e, date).status !== 'none');
+  const owedAll = activeEmps().reduce((s, e) => s + payState(e, date).owed, 0), anyPay = activeEmps().some(e => payState(e, date).status !== 'none');
   $('#k-asof').textContent = asOf === END ? (owedAll > 0 ? 'Unpaid ' + fmt(owedAll) : anyPay ? 'All paid' : '') : 'As of ' + hl(asOf);
-  const payers = S.employees.filter(e => payState(e, date).status !== 'none'), allPaid = payers.length > 0 && payers.every(e => payState(e, date).status === 'paid');
+  const payers = activeEmps().filter(e => payState(e, date).status !== 'none'), allPaid = payers.length > 0 && payers.every(e => payState(e, date).status === 'paid');
   $('#paid-all').textContent = allPaid ? 'Unmark all paid' : 'Mark all paid'; $('#paid-all').disabled = !payers.length;
-  const nAdd = S.employees.reduce((s, e) => { const i = info(e, date); return s + CHECKS.reduce((n, c) => n + (c <= asOf ? slotCount(e, date, c) : 0), 0); }, 0);
+  const nAdd = activeEmps().reduce((s, e) => { const i = info(e, date); return s + CHECKS.reduce((n, c) => n + (c <= asOf ? slotCount(e, date, c) : 0), 0); }, 0);
   $('#k-adds').textContent = nAdd;
-  $('#k-acc').textContent = S.employees.reduce((s, e) => s + info(e, date).accounts, 0);
-  $('#k-emps').textContent = S.employees.length + (S.employees.length === 1 ? ' employee' : ' employees');
+  $('#k-acc').textContent = activeEmps().reduce((s, e) => s + info(e, date).accounts, 0);
+  $('#k-emps').textContent = activeEmps().length + (activeEmps().length === 1 ? ' employee' : ' employees');
   $('#k-top').textContent = top && top.total > 0 ? top.e.name : '—';
   $('#k-topv').textContent = top && top.total > 0 ? fmt(top.total) : '';
   $$('#checks .cpbtn').forEach(b => {
     const c = +b.dataset.asof;
     b.setAttribute('aria-pressed', c === asOf);
-    $('.v', b).textContent = fmt(S.employees.reduce((s, e) => s + at(e, date, c).total, 0));
+    $('.v', b).textContent = fmt(activeEmps().reduce((s, e) => s + at(e, date, c).total, 0));
   });
-  const ranked = S.employees.slice().sort((a, b) => dayTotal(b) - dayTotal(a));
-  S.employees.forEach(e => {
+  const ranked = activeEmps().sort((a, b) => dayTotal(b) - dayTotal(a));
+  activeEmps().forEach(e => {
     const c = $('#emp-' + e.id); if (!c) return;
     if (c.classList.contains('qrow')) { c.innerHTML = quickInner(e); return; }
     const i = info(e, date), d = at(e, date, END), ps = payState(e, date);
@@ -768,7 +892,7 @@ function renderChart() {
   $$('#topseg button').forEach(b => b.setAttribute('aria-pressed', b.dataset.top === String(S.ui.top)));
   $('#lg-v').textContent = 'Vouchers (₱' + ratesFor(date).pair + ' per pair)';
   $('#chart-sub').textContent = (asOf === END ? 'Full-day total in PHP' : 'Running total at ' + hl(asOf) + ' in PHP') + ', highest first';
-  const all = S.employees.map(e => ({ e, ...at(e, date, asOf) })).sort((a, b) => b.total - a.total || a.e.name.localeCompare(b.e.name));
+  const all = activeEmps().map(e => ({ e, ...at(e, date, asOf) })).sort((a, b) => b.total - a.total || a.e.name.localeCompare(b.e.name));
   const shown = S.ui.top === 'all' ? all : all.slice(0, +S.ui.top);
   $('#chart-empty').hidden = shown.length > 0;
   $('#chart').hidden = shown.length === 0;
@@ -854,7 +978,7 @@ function renderHistory() {
   $('#h-sub').textContent = range === 'all' ? 'Every day with recorded vouchers' : 'Last ' + range + ' days, up to today';
   const per = new Map();
   stats.forEach(d => d.rows.forEach(r => {
-    const x = per.get(r.e.id) || { name: r.e.name, count: 0, add: 0, extra: 0, total: 0, owed: 0 };
+    const x = per.get(r.e.id) || { name: ename(r.e), count: 0, add: 0, extra: 0, total: 0, owed: 0 };
     x.count += r.count; x.add += r.add; x.extra += r.extra; x.total += r.total; x.owed += r.owed; per.set(r.e.id, x);
   }));
   const perArr = [...per.values()].sort((a, b) => b.total - a.total);
@@ -869,7 +993,7 @@ function renderHistory() {
     : '<div class="empty"><b>No employees yet</b>Add employees in the Tracker tab.</div>';
   $('#h-days').innerHTML = stats.length ? stats.map(d => `<details class="dayrow" data-k="${d.k}" ${openDays.has(d.k) ? 'open' : ''}>
     <summary><span class="dd">${longDay(d.k)}${d.k === todayKey() ? '<i>TODAY</i>' : ''}</span><span class="dv">${d.count} ${d.count === 1 ? 'voucher' : 'vouchers'} claimed · ${d.total <= 0 ? 'no pay' : d.owed > 0 ? fmt(d.owed) + ' unpaid' : 'all paid'}</span><span class="dt">${fmt(d.total)}</span></summary>
-    <div class="dbody"><div class="tablewrap"><table class="t"><thead><tr><th>Employee</th><th>Claimed at</th><th class="r">Accounts</th><th class="r">Vouchers</th><th class="r">Additional</th><th class="r">Total</th><th class="r">Status</th></tr></thead><tbody>${d.rows.map(r => `<tr><td>${esc(r.e.name)}</td><td>${claimTimes(r.i)}</td><td class="r">${r.i.accounts}</td><td class="r">${fmt(r.add)}</td><td class="r">${fmt(r.extra)}</td><td class="r"><b>${fmt(r.total)}</b></td><td class="r">${r.status === 'none' ? '—' : `<button type="button" class="paidbtn${r.status === 'partial' ? ' warn' : ''}" style="margin:0" data-hpaid="${d.k}" data-id="${r.e.id}" aria-pressed="${r.status === 'paid'}">${paidLabel({ status: r.status, owed: r.owed })}</button>`}</td></tr>`).join('')}</tbody></table></div>
+    <div class="dbody"><div class="tablewrap"><table class="t"><thead><tr><th>Employee</th><th>Claimed at</th><th class="r">Accounts</th><th class="r">Vouchers</th><th class="r">Additional</th><th class="r">Total</th><th class="r">Status</th></tr></thead><tbody>${d.rows.map(r => `<tr><td>${esc(ename(r.e))}</td><td>${claimTimes(r.i)}</td><td class="r">${r.i.accounts}</td><td class="r">${fmt(r.add)}</td><td class="r">${fmt(r.extra)}</td><td class="r"><b>${fmt(r.total)}</b></td><td class="r">${r.status === 'none' ? '—' : `<button type="button" class="paidbtn${r.status === 'partial' ? ' warn' : ''}" style="margin:0" data-hpaid="${d.k}" data-id="${r.e.id}" aria-pressed="${r.status === 'paid'}">${paidLabel({ status: r.status, owed: r.owed })}</button>`}</td></tr>`).join('')}</tbody></table></div>
     <div class="acts" style="gap:8px"><button class="btn" data-hpaidday="${d.k}">${d.owed > 0 ? 'Mark day paid' : 'Unmark day paid'}</button><button class="btn" data-opendate="${d.k}">Open this day in Tracker</button></div></div></details>`).join('')
     : '<div class="empty"><b>No payroll in this range</b>Claim a voucher in the Tracker tab and the day will appear here.</div>';
 }
@@ -877,6 +1001,8 @@ function renderSettings() {
   const R = ratesFor(todayKey());
   $('#rate-pair').value = R.pair; $('#rate-cross').value = R.cross; $('#rate-from').value = todayKey(); $('#rate-err').textContent = '';
   const cur = ratesFor(todayKey());
+  const arch = S.employees.filter(e => e.archivedFrom);
+  $('#arch-list').innerHTML = arch.length ? `<table class="t"><thead><tr><th>Employee</th><th>Archived on</th><th></th></tr></thead><tbody>${arch.map(e => `<tr><td>${esc(e.name)}</td><td>${longDay(e.archivedFrom)}</td><td class="r"><button type="button" class="btn" data-restore="${e.id}">Restore</button> <button type="button" class="link danger" data-delforever="${e.id}">Delete for good</button></td></tr>`).join('')}</tbody></table>` : '<div class="empty" style="padding:16px"><b>No archived employees</b>Use "Archive employee" on a card to move someone here.</div>';
   $('#rate-list').innerHTML = `<table class="t"><thead><tr><th>Starts on</th><th class="r">Per pair of accounts</th><th class="r">Leftover pair, each</th><th></th></tr></thead><tbody>${S.settings.rates.map((r, idx) => `<tr><td>${idx === 0 ? 'Original rates (all earlier days)' : longDay(r.from)}${r === cur ? ' <b style="color:var(--accent)">· in use today</b>' : ''}</td><td class="r">${fmt(r.pair)}</td><td class="r">${fmt(r.cross)}</td><td class="r">${idx === 0 ? '' : `<button type="button" class="link danger" data-rmrate="${r.from}">Remove</button>`}</td></tr>`).join('')}</tbody></table>`;
 }
 function setView(v) {
@@ -889,9 +1015,83 @@ function setView(v) {
   window.scrollTo(0, 0);
 }
 document.addEventListener('toggle', ev => {
-  const d = ev.target; if (!d.classList || !d.classList.contains('dayrow')) return;
+  const d = ev.target;
+  if (d.classList && d.classList.contains('accts')) { S.ui.acctOpen[d.dataset.id] = d.open; return; }
+  if (!d.classList || !d.classList.contains('dayrow')) return;
   if (d.open) openDays.add(d.dataset.k); else openDays.delete(d.dataset.k);
 }, true);
+
+/* ---------- payout ---------- */
+let payCtx = null;
+function nextUnpaid(afterId) {
+  const list = activeEmps().filter(e => { const st = payState(e, date).status; return st === 'unpaid' || st === 'partial'; });
+  if (!list.length) return null;
+  const idx = list.findIndex(e => e.id === afterId);
+  return list[(idx + 1) % list.length];
+}
+function renderPay() {
+  const e = payCtx && find(payCtx.eid); if (!e) return closePay();
+  const ps = payState(e, date), d = at(e, date, END), i = info(e, date);
+  $('#pay-date').textContent = longDay(date);
+  $('#pay-name').textContent = e.name;
+  $('#pay-label').textContent = ps.status === 'paid' ? 'Paid' : ps.status === 'partial' ? 'Still owed' : 'Amount to pay';
+  $('#pay-amt').textContent = fmt(ps.status === 'partial' ? ps.owed : ps.total);
+  $('#pay-break').textContent = 'Vouchers ' + fmt(d.add) + ' + additional ' + fmt(d.extra) + (ps.status === 'partial' ? ' · ' + fmt(ps.paid) + ' paid earlier' : '');
+  $('#pay-qr').innerHTML = e.qr ? `<img src="/_blob/${esc(e.qr)}" alt="Payroll QR code for ${esc(e.name)}">` : `<div class="noqr">No payroll QR yet${assetsApi ? '<button type="button" class="btn" id="pay-qr-add">Add QR</button>' : ''}</div>`;
+  $('#pay-accts').innerHTML = e.accts.map(a => {
+    const times = CHECKS.filter(c => Array.isArray(i.acctGot[c]) && i.acctGot[c].includes(a.id)).map(hl).join(' · ');
+    return `<div class="prow"><div><b>${esc(a.name)}</b><small>${esc(a.wallet || 'No wallet')}${times ? ' · got voucher at ' + times : ''}</small></div><span class="pnum">${esc(a.number || 'No number')}</span>${a.number ? `<button type="button" class="btn" data-copynum="${esc(a.number)}">Copy</button>` : '<span></span>'}</div>`;
+  }).join('');
+  $('#pay-done').textContent = ps.status === 'paid' ? 'Mark unpaid' : 'Mark paid';
+  $('#pay-done').disabled = ps.status === 'none';
+  const n = nextUnpaid(e.id); $('#pay-next').hidden = !n || n.id === e.id;
+}
+function openPay(id) { payCtx = { eid: id }; renderPay(); if (payCtx) { $('#payview').hidden = false; $('#pay-done').focus(); } }
+function closePay() { $('#payview').hidden = true; payCtx = null; }
+function finishPay() {
+  const e = find(payCtx.eid); if (!e) return closePay();
+  const wasPaid = payState(e, date).status === 'paid';
+  setPaid(date, e, !wasPaid); refresh();
+  if (wasPaid) return renderPay();
+  const n = nextUnpaid(null);
+  if (n) { payCtx = { eid: n.id }; renderPay(); toast(e.name + ' paid. Next: ' + n.name); }
+  else { closePay(); toast('Everyone is paid'); }
+}
+
+/* ---------- QR codes ---------- */
+function openQr(eid) {
+  const e = find(eid); if (!e || !e.qr) return;
+  qrCtx = { eid };
+  $('#qrimg').src = '/_blob/' + e.qr;
+  $('#qrcap').innerHTML = esc(e.name) + '<small>Payroll QR code</small>';
+  $('#qr-replace').hidden = !assetsApi; $('#qr-remove').hidden = !assetsApi;
+  $('#qrview').hidden = false; $('#qr-close').focus();
+}
+function closeQr() { $('#qrview').hidden = true; qrCtx = null; }
+async function uploadQr(file) {
+  const ctx = pendingQr; pendingQr = null;
+  if (!file || !ctx || !assetsApi) return;
+  const e = find(ctx.eid); if (!e) return;
+  if (!/^image\/(png|jpeg|webp|gif)$/.test(file.type)) return toast('Use a PNG, JPG or WebP image');
+  toast('Uploading QR code…');
+  try {
+    const res = await assetsApi.upload(file);
+    e.qr = res.id; closeQr(); rerenderCard(e.id); refresh(); if (payCtx) renderPay(); toast('Payroll QR saved for ' + e.name);
+  } catch (err) {
+    const c = err && err.code;
+    toast(c === 'too_large' ? 'That image is too large (max 20 MB)' : c === 'unsupported_type' ? 'Use a PNG, JPG or WebP image' : c === 'quota_or_state' ? 'Storage is full, so the QR code was not saved' : c === 'rate_limited' ? 'Too many uploads. Try again in a moment' : 'The QR code could not be uploaded');
+  }
+}
+async function initAssets() {
+  try {
+    if (!window.claude || !window.claude.use) return;
+    assetsApi = await window.claude.use('assets');
+    if (assetsApi) { renderList(); refreshNumbers(); }
+  } catch (e) { assetsApi = null; }
+}
+document.addEventListener('keydown', ev => { if (ev.key !== 'Escape') return; if (!$('#qrview').hidden) closeQr(); else if (!$('#payview').hidden) closePay(); });
+$('#payview').addEventListener('click', ev => { if (ev.target.id === 'payview') closePay(); });
+$('#qrview').addEventListener('click', ev => { if (ev.target.id === 'qrview') closeQr(); });
 
 /* ---------- theme ---------- */
 function applyTheme() {
@@ -919,8 +1119,7 @@ function place(ev) {
 }
 
 /* ---------- actions ---------- */
-function syncToggleAll() { const b = $('#toggle-all'); if (b) b.textContent = S.employees.some(e => !S.ui.collapsed[e.id]) ? 'Collapse all' : 'Expand all'; }
-function setAccounts(id, n) { const e = find(id), r = rec(date, id, true); CHECKS.forEach(c => unpair(date, id, c)); r.accounts = n; if (date >= todayKey()) e.accounts = n; refresh(); }
+function syncToggleAll() { const b = $('#toggle-all'); if (b) b.textContent = activeEmps().some(e => !S.ui.collapsed[e.id]) ? 'Collapse all' : 'Expand all'; }
 function setDate(k) { date = k; renderAll(); }
 function shiftDate(n) { const d = parseKey(date); d.setDate(d.getDate() + n); setDate(keyOf(d)); }
 function focusEmployee(id) {
@@ -930,9 +1129,12 @@ function focusEmployee(id) {
   c.classList.remove('flash'); void c.offsetWidth; c.classList.add('flash');
 }
 function summaryText() {
-  const rows = S.employees.map(e => ({ e, ...at(e, date, END) })).sort((a, b) => b.total - a.total);
+  const rows = activeEmps().map(e => ({ e, ...at(e, date, END) })).sort((a, b) => b.total - a.total);
   const lines = ['PT Gayming payroll · ' + parseKey(date).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }), 'Shift 12:00 PM – 9:00 PM', ''];
-  rows.forEach((r, i) => lines.push((i + 1) + '. ' + r.e.name + ': ' + fmt(r.total) + ' (' + info(r.e, date).nClaims + ' of 3 vouchers × ' + info(r.e, date).accounts + (info(r.e, date).accounts === 1 ? ' account' : ' accounts') + (r.extra ? ', plus ' + fmt(r.extra) + ' additional' : '') + ')'));
+  rows.forEach((r, i) => {
+    lines.push((i + 1) + '. ' + r.e.name + ': ' + fmt(r.total) + ' (' + info(r.e, date).nClaims + ' of 3 vouchers × ' + info(r.e, date).accounts + (info(r.e, date).accounts === 1 ? ' account' : ' accounts') + (r.extra ? ', plus ' + fmt(r.extra) + ' additional' : '') + ')');
+    r.e.accts.forEach(a => lines.push('     ' + a.name + ' ' + (a.number || '(no number)') + ' - ' + (a.wallet ? a.wallet.toUpperCase() : '(no wallet)')));
+  });
   lines.push('', 'Total payroll: ' + fmt(rows.reduce((s, r) => s + r.total, 0)));
   return lines.join('\n');
 }
@@ -949,6 +1151,18 @@ async function copySummary() {
 document.addEventListener('click', ev => {
   const t = ev.target.closest('button'); if (!t) return;
   const card = t.closest('.card, .qrow'), id = card && card.dataset.id;
+  if (t.id === 'qr-close') return closeQr();
+  if (t.id === 'pay-close') return closePay();
+  if (t.id === 'pay-done' && payCtx) return finishPay();
+  if (t.id === 'pay-next' && payCtx) { const n = nextUnpaid(payCtx.eid); if (n) { payCtx = { eid: n.id }; renderPay(); } return; }
+  if (t.id === 'pay-qr-add' && payCtx) { pendingQr = { eid: payCtx.eid }; return $('#qr-file').click(); }
+  if (t.id === 'pay-start') { const n = nextUnpaid(null); return n ? openPay(n.id) : toast('Nothing left to pay'); }
+  if (t.dataset.copynum) { const num = t.dataset.copynum; return navigator.clipboard.writeText(num).then(() => toast('Number copied'), () => toast('Copy was blocked by the browser')); }
+  if (t.id === 'qr-replace' && qrCtx) { pendingQr = { ...qrCtx }; return $('#qr-file').click(); }
+  if (t.id === 'qr-remove' && qrCtx) {
+    const e = find(qrCtx.eid); if (!e) return;
+    const snap = snapshot(); e.qr = ''; closeQr(); rerenderCard(e.id); refresh(); return toast('QR code removed', snap);
+  }
   if (t.dataset.view) return setView(t.dataset.view);
   if (t.dataset.mode) { S.ui.quick = t.dataset.mode === 'quick'; renderList(); refresh(); return; }
   if (t.dataset.hpaid) { const e = find(t.dataset.id); if (e) { setPaid(t.dataset.hpaid, e, payState(e, t.dataset.hpaid).status !== 'paid'); renderHistory(); save(); } return; }
@@ -957,9 +1171,15 @@ document.addEventListener('click', ev => {
     const all = payers.length && payers.every(e => payState(e, k).status === 'paid');
     payers.forEach(e => setPaid(k, e, !all)); renderHistory(); save(); return toast(all ? 'Day marked unpaid' : 'Day marked paid', snap);
   }
+  if (t.dataset.restore) { const e = find(t.dataset.restore); if (e) { delete e.archivedFrom; renderSettings(); save(); toast('Restored ' + e.name); } return; }
+  if (t.dataset.delforever) {
+    const e = find(t.dataset.delforever); if (!e) return;
+    const snap = snapshot(); S.employees = S.employees.filter(x => x.id !== e.id); for (const d in S.days) delete S.days[d][e.id];
+    renderSettings(); save(); return toast('Deleted ' + e.name + ' and their days', snap);
+  }
   if (t.dataset.rmrate) { const snap = snapshot(); S.settings.rates = S.settings.rates.filter(r => r.from !== t.dataset.rmrate); renderSettings(); save(); return toast('Rate change removed', snap); }
   if (t.id === 'paid-all') {
-    const snap = snapshot(), payers = S.employees.filter(e => payState(e, date).status !== 'none');
+    const snap = snapshot(), payers = activeEmps().filter(e => payState(e, date).status !== 'none');
     const all = payers.every(e => payState(e, date).status === 'paid');
     payers.forEach(e => setPaid(date, e, !all)); refresh(); return toast(all ? 'Everyone marked unpaid' : 'Everyone marked paid', snap);
   }
@@ -971,8 +1191,8 @@ document.addEventListener('click', ev => {
   if (t.id === 'theme') { S.ui.theme = effectiveDark() ? 'light' : 'dark'; document.documentElement.dataset.theme = S.ui.theme; applyTheme(); return save(); }
   if (t.id === 'copy') return copySummary();
   if (t.id === 'toggle-all') {
-    const collapse = S.employees.some(e => !S.ui.collapsed[e.id]);
-    S.employees.forEach(e => { S.ui.collapsed[e.id] = collapse; });
+    const collapse = activeEmps().some(e => !S.ui.collapsed[e.id]);
+    activeEmps().forEach(e => { S.ui.collapsed[e.id] = collapse; });
     $$('.card').forEach(c => { c.classList.toggle('collapsed', collapse); $('.chev', c).setAttribute('aria-expanded', !collapse); });
     syncToggleAll(); return save();
   }
@@ -985,12 +1205,10 @@ document.addEventListener('click', ev => {
   if (t.classList.contains('crow')) return focusEmployee(t.dataset.id);
   const act = t.dataset.act; if (!act || !id) return;
   const e = find(id);
-  if (act === 'del-emp') {
-    const snap = snapshot();
-    S.employees = S.employees.filter(x => x.id !== id);
-    for (const d in S.days) delete S.days[d][id];
-    renderAll(); return toast('Removed ' + e.name, snap);
+  if (act === 'archive-emp') {
+    const snap = snapshot(); e.archivedFrom = todayKey(); renderAll(); return toast('Archived ' + e.name, snap);
   }
+  if (act === 'payout') return openPay(id);
   if (act === 'paid') { setPaid(date, e, payState(e, date).status !== 'paid'); refresh(); return; }
   if (act === 'detail') { S.ui.quick = false; renderList(); refresh(); return focusEmployee(id); }
   if (act === 'toggle') {
@@ -998,14 +1216,20 @@ document.addEventListener('click', ev => {
     card.classList.toggle('collapsed', col); t.setAttribute('aria-expanded', !col); syncToggleAll(); return save();
   }
   if (act === 'del-x') { const r = rec(date, id, true); r.extras = (r.extras || []).filter(x => x.id !== t.dataset.xid); rerenderCard(id); return refresh(); }
-  if (act === 'got+' || act === 'got-') {
-    const h = +t.dataset.h, r = rec(date, id, true);
+  if (act === 'acct-got') {
+    const h = +t.dataset.h, r = rec(date, id, true), aid = t.dataset.aid;
     if (typeof r.accounts !== 'number') r.accounts = info(e, date).accounts;
     const i = info(e, date);
-    r.got = r.got || {}; r.got[h] = Math.max(1, Math.min(i.accounts, gotOf(i, h) + (act === 'got+' ? 1 : -1)));
+    r.acctGot = r.acctGot || {};
+    if (!Array.isArray(r.acctGot[h])) r.acctGot[h] = i.claims[h] ? e.accts.slice(0, gotOf(i, h)).map(a => a.id) : [];
+    const list = r.acctGot[h], at0 = list.indexOf(aid);
+    if (at0 >= 0) list.splice(at0, 1); else list.push(aid);
+    r.claims = r.claims || {}; r.claims[h] = list.length > 0;
+    if (r.got) delete r.got[h];
+    const max = Math.floor(list.length / 2); if (r.ties && (r.ties[h] || 0) > max) r.ties[h] = max;
     unpair(date, id, h);
     refresh();
-    const nb = $('#emp-' + id + ' [data-act="' + act + '"][data-h="' + h + '"]:not(:disabled)') || $('#emp-' + id + ' [data-act="claim"][data-h="' + h + '"]'); if (nb) nb.focus();
+    const nb = $('#emp-' + id + ' [data-act="acct-got"][data-h="' + h + '"][data-aid="' + aid + '"]'); if (nb) nb.focus();
     return;
   }
   if (act === 'tie') {
@@ -1019,18 +1243,25 @@ document.addEventListener('click', ev => {
     return;
   }
   if (act === 'claim') {
-    const r = rec(date, id, true); if (typeof r.accounts !== 'number') r.accounts = info(e, date).accounts; r.claims = r.claims || {}; const h = +t.dataset.h; r.claims[h] = !r.claims[h]; if (r.got) delete r.got[h]; if (r.ties) delete r.ties[h]; unpair(date, id, h); refresh();
+    const h = +t.dataset.h, r = rec(date, id, true), i = info(e, date);
+    if (typeof r.accounts !== 'number') r.accounts = i.accounts;
+    const on = !!i.claims[h];
+    r.acctGot = r.acctGot || {}; r.claims = r.claims || {};
+    r.acctGot[h] = on ? [] : e.accts.map(a => a.id);
+    r.claims[h] = !on;
+    if (r.got) delete r.got[h]; if (r.ties) delete r.ties[h]; unpair(date, id, h); refresh();
     const b = $('#emp-' + id + ' [data-act="claim"][data-h="' + h + '"]'); if (b) b.focus(); return;
   }
-  if (act === 'acc+' || act === 'acc-') {
-    const inp = $('[data-act="accounts"]', card); setAccounts(id, Math.max(1, (parseInt(inp.value, 10) || 1) + (act === 'acc+' ? 1 : -1))); inp.value = info(e, date).accounts; return;
+  if (act === 'qr-view') return openQr(id);
+  if (act === 'qr-add') { pendingQr = { eid: id }; return $('#qr-file').click(); }
+  if (act === 'del-acct') {
+    const snap = snapshot(); e.accts = e.accts.filter(a => a.id !== t.dataset.aid); if (!e.accts.length) ensureAccts(e);
+    syncAccounts(e); rerenderCard(id); refresh(); return toast('Account removed', snap);
   }
-  
 });
 document.addEventListener('input', ev => {
   const t = ev.target;
   if (t.id === 'search') return applyFilter();
-  if (t.dataset.act === 'accounts') { const n = parseInt(t.value, 10); if (n >= 1) setAccounts(t.closest('.card').dataset.id, n); return; }
 });
 document.addEventListener('change', ev => {
   const t = ev.target;
@@ -1049,10 +1280,18 @@ document.addEventListener('change', ev => {
     }
     refresh(); return;
   }
+  if (t.id === 'qr-file') { const f = t.files && t.files[0]; t.value = ''; uploadQr(f); return; }
+  if (t.dataset.act === 'acct-f') {
+    const card = t.closest('.card'), e = find(card.dataset.id), a = e.accts.find(x => x.id === t.closest('.arow').dataset.aid);
+    if (!a) return;
+    const f = t.dataset.f; a[f] = f === 'wallet' ? t.value : t.value.trim();
+    if (f === 'name' && !a.name) { a.name = e.name.toUpperCase().replace(/\s+/g, '') + (e.accts.indexOf(a) + 1); t.value = a.name; }
+    card.dataset.name = searchKey(e); $('[data-am]', card).textContent = acctSummaryText(e); save(); return;
+  }
   if (t.dataset.act === 'rename') {
     const e = find(t.closest('.card').dataset.id); const v = t.value.trim();
     if (!v) { t.value = e.name; return; }
-    e.name = v; t.closest('.card').dataset.name = v.toLowerCase(); refresh();
+    e.name = v; t.closest('.card').dataset.name = searchKey(e); refresh();
   }
 });
 document.addEventListener('submit', ev => {
@@ -1073,11 +1312,18 @@ document.addEventListener('submit', ev => {
     if (!name) { err.textContent = 'Enter the employee name.'; return $('#emp-name').focus(); }
     err.textContent = '';
     if (S.sample && S.employees.length && false) S.sample = false;
-    S.employees.push({ id: uid(), name, accounts: Math.max(1, parseInt($('#emp-acc').value, 10) || 1) });
+    const ne = { id: uid(), name, accounts: Math.max(1, parseInt($('#emp-acc').value, 10) || 1) }; ensureAccts(ne); S.employees.push(ne);
     f.reset(); $('#emp-acc').value = 1; $('#emp-name').focus();
     renderList(); renderHeader(); refresh(); return toast('Added ' + name);
   }
   
+  if (f.classList.contains('addacct')) {
+    const e = find(f.dataset.id), name = f.name.value.trim();
+    if (!e) return;
+    S.ui.acctOpen[e.id] = true;
+    e.accts.push({ id: uid(), name: name || e.name.toUpperCase().replace(/\s+/g, '') + (e.accts.length + 1), number: f.number.value.trim(), wallet: f.wallet.value });
+    syncAccounts(e); rerenderCard(e.id); refresh(); return;
+  }
   if (f.classList.contains('addx')) {
     const id = f.dataset.id, err = $('[data-err]', f.closest('.card'));
     const amt = parseFloat(f.amount.value);
@@ -1094,9 +1340,11 @@ renderChecks();
 applyTheme();
 matchMedia('(prefers-color-scheme: dark)').addEventListener('change', applyTheme);
 upgradeSample();
+S.employees.forEach(ensureAccts);
 freezeAccounts();
 renderAll(true);
 initDb();
+initAssets();
 })();
 </script>
 
