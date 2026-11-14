@@ -530,6 +530,16 @@ button.cp:not(:disabled):hover { background: var(--salary-dim); }
 .qtot .pbadge { margin: 0; }
 .qslots { order: 0; grid-column: auto; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
 .qbtn { min-height: 62px; }
+/* compact quick-claim row on collapsed cards: quiet outlined chips when unclaimed, solid only when claimed */
+.card.collapsed > .qmini { margin-top: 8px; gap: 6px; }
+.qmini .qbtn { flex-direction: row; flex-wrap: wrap; gap: 2px 6px; min-height: 34px; padding: 5px 8px; border-radius: 8px; line-height: 1.2; }
+.qmini .qbtn span { font-size: 11.5px; opacity: .9; }
+.qmini .qbtn b { font-size: 12.5px; }
+.qmini .qbtn i { font-size: 10.5px; opacity: .85; }
+.qmini .qbtn:not(.on) { background: transparent; border: 1px solid var(--line); color: var(--muted); }
+.qmini .qbtn:not(.on):hover { border-color: var(--muted); color: var(--fg); }
+.qmini .qbtn:not(.on) span::after { content: " ·"; }
+.qmini .qbtn:not(.on) b { font-weight: 600; font-size: 12px; }
 .card.collapsed > .qmini { display: grid; margin-top: 10px; }
 .card:not(.collapsed) > .qmini { display: none; }
 /* page backdrop: soft teal and gold in light mode, plain in dark mode */
@@ -622,6 +632,7 @@ body { background: var(--page); background-attachment: fixed; }
         <span class="pill barpill" id="bar-total" title="Today's payroll" hidden></span>
         <span class="saved" id="saved">Saved on this device</span>
         <button class="btn primary" id="pay-start">Start payout</button>
+        <button class="btn icon" id="signout" hidden aria-label="Sign out" title="Sign out" style="display:inline-grid;place-items:center"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg></button>
         <button class="btn icon" id="theme" aria-label="Switch theme" style="display:inline-grid;place-items:center">Theme</button>
       </div>
   </div>
@@ -965,6 +976,15 @@ async function makeSupabaseDb() {
   const sb = window.supabase.createClient(SB_URL, SB_KEY);
   let session = (await sb.auth.getSession()).data.session;
   while (!session) { await askLogin(sb); session = (await sb.auth.getSession()).data.session; }
+  const so = $('#signout'); so.hidden = false;
+  so.onclick = async () => {
+    so.disabled = true;
+    try { if (db) await flush(); } catch (e) {}
+    if (localDirty() && !confirm('Some changes are not saved yet. Sign out anyway?')) { so.disabled = false; return; }
+    try { await sb.auth.signOut(); } catch (e) {}
+    try { localStorage.removeItem(LS); } catch (e) {}
+    location.reload();
+  };
   const T = 'docs';
   return {
     doc: path => ({
