@@ -395,7 +395,7 @@ select.in { width: auto; padding-right: 8px; }
   </section>
 
   <section class="checks" id="checks" aria-label="Payroll by time of day">
-    <div class="lbl">Running payroll total by time · tap to chart it</div>
+    <div class="lbl">Payroll per time slot · tap to chart running totals</div>
   </section>
 
   <div class="main">
@@ -642,6 +642,10 @@ function at(e, d, h) {
   const extra = i.extras.reduce((s, x) => s + (x.hour <= h ? x.amount : 0), 0);
   return { sal: 0, add, extra, total: add + extra };
 }
+function slotTotal(e, d, h) {
+  const i = info(e, d);
+  return slotPay(e, d, h) + i.extras.reduce((s, x) => s + (x.hour === h ? x.amount : 0), 0);
+}
 const find = id => S.employees.find(e => e.id === id);
 const visibleOn = (e, d) => !e.archivedFrom || d < e.archivedFrom;
 const activeEmps = () => S.employees.filter(e => visibleOn(e, date));
@@ -792,7 +796,7 @@ function cardHTML(e) {
       <button class="btn primary" type="submit">Add voucher</button>
     </form><div class="err" data-err role="alert"></div></div>
   <p class="sum" data-sum></p>
-  <div class="cps">${CHECKS.map(c => `<div class="cp"><span>By ${hl(c)}</span><b data-cp="${c}">₱0.00</b></div>`).join('')}</div>
+  <div class="cps">${CHECKS.map(c => `<div class="cp"><span>At ${hl(c)}</span><b data-cp="${c}">₱0.00</b></div>`).join('')}</div>
   <div class="foot"><button class="link danger" data-act="archive-emp">Archive employee</button></div>
 </article>`;
 }
@@ -861,7 +865,7 @@ function refreshNumbers() {
   $$('#checks .cpbtn').forEach(b => {
     const c = +b.dataset.asof;
     b.setAttribute('aria-pressed', c === asOf);
-    $('.v', b).textContent = fmt(activeEmps().reduce((s, e) => s + at(e, date, c).total, 0));
+    $('.v', b).textContent = fmt(activeEmps().reduce((s, e) => s + slotTotal(e, date, c), 0));
   });
   const ranked = activeEmps().sort((a, b) => dayTotal(b) - dayTotal(a));
   activeEmps().forEach(e => {
@@ -871,10 +875,10 @@ function refreshNumbers() {
     const pb = $('[data-act="paid"]', c); pb.textContent = paidLabel(ps); pb.setAttribute('aria-pressed', ps.status === 'paid'); pb.disabled = ps.status === 'none'; pb.classList.toggle('warn', ps.status === 'partial');
     $('[data-paidnote]', c).textContent = ps.status === 'partial' ? 'Paid ' + fmt(ps.paid) + ' earlier' : '';
     $('[data-total]', c).textContent = fmt(d.total);
-    $('[data-rate]', c).textContent = i.nClaims + ' of 3 vouchers claimed';
+    $('[data-rate]', c).textContent = i.nClaims + ' of ' + CHECKS.length + ' vouchers claimed';
     $('[data-rank]', c).textContent = '#' + (ranked.indexOf(e) + 1);
     $('[data-sum]', c).textContent = 'Vouchers ' + fmt(d.add) + ' + additional vouchers ' + fmt(d.extra);
-    CHECKS.forEach(h => { $('[data-cp="' + h + '"]', c).textContent = fmt(at(e, date, h).total); });
+    CHECKS.forEach(h => { $('[data-cp="' + h + '"]', c).textContent = fmt(slotTotal(e, date, h)); });
     $('[data-slots]', c).innerHTML = slotsHTML(e);
   });
 }
@@ -1132,7 +1136,7 @@ function summaryText() {
   const rows = activeEmps().map(e => ({ e, ...at(e, date, END) })).sort((a, b) => b.total - a.total);
   const lines = ['PT Gayming payroll · ' + parseKey(date).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }), 'Shift 12:00 PM – 9:00 PM', ''];
   rows.forEach((r, i) => {
-    lines.push((i + 1) + '. ' + r.e.name + ': ' + fmt(r.total) + ' (' + info(r.e, date).nClaims + ' of 3 vouchers × ' + info(r.e, date).accounts + (info(r.e, date).accounts === 1 ? ' account' : ' accounts') + (r.extra ? ', plus ' + fmt(r.extra) + ' additional' : '') + ')');
+    lines.push((i + 1) + '. ' + r.e.name + ': ' + fmt(r.total) + ' (' + info(r.e, date).nClaims + ' of ' + CHECKS.length + ' vouchers × ' + info(r.e, date).accounts + (info(r.e, date).accounts === 1 ? ' account' : ' accounts') + (r.extra ? ', plus ' + fmt(r.extra) + ' additional' : '') + ')');
     r.e.accts.forEach(a => lines.push('     ' + a.name + ' ' + (a.number || '(no number)') + ' - ' + (a.wallet ? a.wallet.toUpperCase() : '(no wallet)')));
   });
   lines.push('', 'Total payroll: ' + fmt(rows.reduce((s, r) => s + r.total, 0)));
