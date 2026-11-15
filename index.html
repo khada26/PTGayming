@@ -719,7 +719,6 @@ body { background: var(--page); background-attachment: fixed; }
               <label class="field"><span>Sort by</span>
                 <select class="in" id="sort" aria-label="Sort employees"><option value="added">My order (drag to rearrange)</option><option value="pay">Highest pay</option><option value="name">Name A–Z</option></select>
               </label>
-              <button class="btn" id="toggle-all">Collapse all</button>
               <button class="btn" id="paid-all">Mark all paid</button>
               <button class="btn" id="copy">Copy summary</button>
             </div>
@@ -727,7 +726,8 @@ body { background: var(--page); background-attachment: fixed; }
         </div>
         <div class="filter-tools">
           <div class="seg paidseg" id="paidseg" role="group" aria-label="Filter by payment status"><button data-pf="all">All <span class="n"></span></button><button data-pf="unpaid">Unpaid <span class="n"></span></button><button data-pf="paid">Paid <span class="n"></span></button></div>
-          <details class="managerqr" id="managerqr">
+          <button class="btn" id="toggle-all">Collapse all</button>
+          <details class="managerqr" id="managerqr" hidden>
             <summary>Manager's QR <span id="managerqr-status">Not added</span></summary>
             <div class="managerqr-body" id="managerqr-body"></div>
           </details>
