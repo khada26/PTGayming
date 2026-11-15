@@ -205,6 +205,7 @@ h1 { margin: 0; font: 700 var(--fs-metric)/1.1 var(--f-head); letter-spacing: -.
 .kpi .v { font: 700 var(--fs-metric)/1.15 var(--f-num); overflow-wrap: anywhere; font-variant-numeric: tabular-nums; }
 .kpi .n { font: 600 var(--fs-title)/1.3 var(--f-head); overflow-wrap: anywhere; }
 .kpi .m { font-size: var(--fs-small); color: var(--muted); font-family: var(--f-num); }
+.kpi-empty { flex: 1; display: flex; align-items: center; justify-content: center; color: var(--muted); }
 
 /* checkpoints */
 .checks { display: flex; flex-wrap: wrap; align-items: stretch; gap: 10px; }
@@ -362,6 +363,7 @@ select.in { width: auto; padding-right: 8px; }
 .vbtn span { font-size: var(--fs-small); font-weight: 500; opacity: .85; }
 .vbtn b { font: 600 var(--fs-body) var(--f-num); }
 .vbtn:hover { transform: translateY(-1px); background: color-mix(in srgb, var(--salary) 45%, var(--salary-dim)); }
+.vbtn:disabled, .qbtn:disabled { opacity: .55; cursor: not-allowed; transform: none; }
 .vbtn.on { background: var(--extra); color: var(--extra-ink); }
 .vbtn.on.late { opacity: .4; }
 .paidbtn { margin-top: 6px; border: 1px solid var(--line); background: var(--surface-2); border-radius: 8px; padding: 4px 10px; font-size: var(--fs-small); font-weight: 500; color: var(--fg); white-space: nowrap; }
@@ -402,9 +404,14 @@ body.isdrag, body.isdrag * { cursor: grabbing !important; user-select: none; -we
 .achip[aria-pressed="true"] { background: var(--extra); border-color: var(--extra); color: var(--extra-ink); }
 .paybtns { display: flex; gap: 6px; justify-content: flex-end; flex-wrap: wrap; }
 .pbox { max-width: 520px; max-height: calc(100vh - 32px); overflow: auto; }
-.phead { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+.phead { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; gap: 8px; }
 .phead h2 { font: 700 var(--fs-heading) var(--f-head); margin: 0; overflow-wrap: anywhere; }
 .phead small { color: var(--muted); font-size: var(--fs-control); }
+.pay-title { grid-column: 1; min-width: 0; }
+.pay-nav { grid-column: 2; display: flex; align-items: center; justify-self: center; gap: 4px; }
+.phead > #pay-close { grid-column: 3; justify-self: end; }
+.pay-nav .btn { min-width: 30px; min-height: 30px; padding: 3px 8px; }
+.pay-nav small { color: var(--muted); font-size: var(--fs-small); white-space: nowrap; }
 .pamt { display: flex; flex-direction: column; gap: 2px; }
 .pamt span { font-size: var(--fs-caption); color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: .08em; }
 .pamt strong { font: 700 var(--fs-display)/1.15 var(--f-num); }
@@ -668,8 +675,8 @@ body { background: var(--page); background-attachment: fixed; }
       </div>
       <div class="barR">
         <span class="saved" id="saved">Saved on this device</span>
-        <button class="btn icon" id="signout" hidden aria-label="Sign out" title="Sign out" style="display:inline-grid;place-items:center"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg></button>
         <button class="btn icon" id="theme" aria-label="Switch theme" style="display:inline-grid;place-items:center">Theme</button>
+        <button class="btn icon" id="signout" hidden aria-label="Sign out" title="Sign out" style="display:inline-grid;place-items:center"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg></button>
       </div>
   </div>
 
@@ -685,7 +692,7 @@ body { background: var(--page); background-attachment: fixed; }
       <div class="kpi"><div class="l">Total payroll</div><div class="v" id="k-total">₱0.00</div><div class="m" id="k-asof"></div></div>
       <div class="kpi"><div class="l"><i class="sw e"></i>Vouchers claimed</div><div class="v" id="k-adds">0</div></div>
       <div class="kpi"><div class="l">Accounts</div><div class="v" id="k-acc">0</div><div class="m" id="k-emps"></div></div>
-      <div class="kpi"><div class="l">TAKAWWW</div><div class="n" id="k-top">—</div><div class="m" id="k-topv"></div></div>
+      <div class="kpi"><div class="l">TAKAWWW</div><div class="n" id="k-top" hidden></div><div class="m" id="k-topv" hidden></div><div class="kpi-empty" id="k-top-empty">- -</div></div>
     </section>
   </details>
 
@@ -786,10 +793,10 @@ body { background: var(--page); background-attachment: fixed; }
       </select>
     </label>
     <div class="schedule-fields" id="schedule-custom" hidden>
-      <label class="field"><span>First time</span><input class="in" id="schedule-time-1" type="text" placeholder="e.g. 1 PM" aria-label="First voucher time" autocomplete="off"></label>
-      <label class="field"><span>Second time</span><input class="in" id="schedule-time-2" type="text" placeholder="e.g. 6 PM" aria-label="Second voucher time" autocomplete="off"></label>
+      <label class="field"><span>First time</span><input class="in" id="schedule-time-1" type="text" placeholder="e.g. 8:30 AM" aria-label="First voucher time" autocomplete="off"></label>
+      <label class="field"><span>Second time</span><input class="in" id="schedule-time-2" type="text" placeholder="e.g. 20:30" aria-label="Second voucher time" autocomplete="off"></label>
     </div>
-    <p class="schedule-help">Applies only to the selected date. Enter two different whole-hour times from 12 PM to 9 PM, such as 1 PM or 13:00. Vouchers expire 6 hours after they are claimed; displayed expiry is estimated from the scheduled time.</p>
+    <p class="schedule-help">Applies only to the selected date. Enter any two different times of day, such as 8:30 AM or 20:30. Vouchers expire 6 hours after they are claimed; displayed expiry is estimated from the scheduled time.</p>
     <p class="schedule-error" id="schedule-error" role="alert"></p>
     <button class="btn primary" type="submit">Apply to this day</button>
   </form>
@@ -813,11 +820,11 @@ body { background: var(--page); background-attachment: fixed; }
 </div>
 <div class="modal" id="payview" hidden role="dialog" aria-modal="true" aria-label="Payout">
   <div class="mbox pbox">
-    <div class="phead"><div><small id="pay-date"></small><h2 id="pay-name"></h2></div><button class="btn" id="pay-close">Close</button></div>
+    <div class="phead"><div class="pay-title"><small id="pay-date"></small><h2 id="pay-name"></h2></div><div class="pay-nav" id="pay-nav"><button class="btn" id="pay-prev" aria-label="Previous employee" title="Previous employee">‹</button><small id="pay-position" aria-live="polite"></small><button class="btn" id="pay-forward" aria-label="Next employee" title="Next employee">›</button></div><button class="btn" id="pay-close">Close</button></div>
     <div class="pamt"><div class="pamt-top"><span id="pay-label">Amount to pay</span><em class="pstat" id="pay-stat"></em></div><strong id="pay-amt">₱0.00</strong><small id="pay-break"></small></div>
     <section class="psec" id="sec-slots"><h3>Pay by time</h3><div class="pslots" id="pay-slots"></div></section>
     <section class="psec"><h3>Scan to pay</h3><div class="pqr" id="pay-qr"></div></section>
-    <div class="pfoot"><button class="btn" id="pay-next" hidden>Skip to next</button><button class="btn primary" id="pay-done">Mark all paid</button></div>
+    <div class="pfoot"><button class="btn primary" id="pay-done">Mark all paid</button></div>
   </div>
 </div>
 <div class="tip" id="tip" role="tooltip"></div>
@@ -828,29 +835,29 @@ body { background: var(--page); background-attachment: fixed; }
 'use strict';
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
-const START = 12, END = 21, HRS = 9, CHECKS = [12, 15, 21];
-const SCHEDULE_HOURS = Array.from({ length: END - START + 1 }, (_, i) => START + i);
+const END = 24, CHECKS = [12, 15, 21];
 const PHP = new Intl.NumberFormat('en-PH', { style: 'currency', currency: 'PHP' });
 const fmt = n => PHP.format(Math.abs(n) < 0.005 ? 0 : n);
-const hl = h => (h > 12 ? h - 12 : h) + ' PM';
-const expiryText = h => {
-  const expiry = h + 6, hour = expiry % 24;
-  return 'Expires ' + (hour % 12 || 12) + ' ' + (hour < 12 ? 'AM' : 'PM');
+const hl = h => {
+  const totalMinutes = ((Math.round(h * 60) % 1440) + 1440) % 1440;
+  const hour = Math.floor(totalMinutes / 60), minute = totalMinutes % 60;
+  return (hour % 12 || 12) + (minute ? ':' + String(minute).padStart(2, '0') : '') + (hour < 12 ? ' AM' : ' PM');
 };
+const expiryText = h => 'Expires ' + hl(h + 6);
 function parseScheduleHour(value) {
   const match = /^\s*(\d{1,2})(?::(\d{2}))?\s*(AM|PM)?\s*$/i.exec(String(value));
-  if (!match || (match[2] && match[2] !== '00')) return null;
-  const hour = Number(match[1]), meridiem = (match[3] || '').toUpperCase();
-  let result;
-  if (meridiem === 'AM') return null;
-  if (meridiem === 'PM') {
-    if (hour === 12) result = 12;
-    else if (hour >= 1 && hour <= 9) result = hour + 12;
-    else return null;
-  } else if (hour >= 12 && hour <= 21) result = hour;
-  else if (hour >= 1 && hour <= 9) result = hour + 12;
-  else return null;
-  return SCHEDULE_HOURS.includes(result) ? result : null;
+  if (!match) return null;
+  const hour = Number(match[1]), minute = Number(match[2] || 0), meridiem = (match[3] || '').toUpperCase();
+  if (minute > 59) return null;
+  let hour24;
+  if (meridiem) {
+    if (hour < 1 || hour > 12) return null;
+    hour24 = hour % 12 + (meridiem === 'PM' ? 12 : 0);
+  } else {
+    if (hour > 23) return null;
+    hour24 = match[2] || hour === 0 || hour > 12 ? hour : hour % 12 + 12;
+  }
+  return (hour24 * 60 + minute) / 60;
 }
 const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const uid = () => Math.random().toString(36).slice(2, 9);
@@ -866,8 +873,8 @@ function normalizeDaySchedules(value) {
   if (!value || typeof value !== 'object' || Array.isArray(value)) return schedules;
   for (const [day, hours] of Object.entries(value)) {
     if (!/^\d{4}-\d{2}-\d{2}$/.test(day) || !Array.isArray(hours)) continue;
-    const unique = [...new Set(hours.map(Number))].sort((a, b) => a - b);
-    if (unique.length === 2 && unique.every(h => Number.isInteger(h) && h >= START && h <= END)) schedules[day] = unique;
+    const unique = [...new Set(hours.map(Number).map(h => Math.round(h * 60)))].sort((a, b) => a - b);
+    if (unique.length === 2 && unique.every(minute => Number.isInteger(minute) && minute >= 0 && minute < 1440)) schedules[day] = unique.map(minute => minute / 60);
   }
   return schedules;
 }
@@ -900,6 +907,7 @@ function load() {
     const s = JSON.parse(raw);
     if (!Array.isArray(s.employees) || typeof s.days !== 'object') return null;
     s.ui = Object.assign({ asOf: END, sort: 'added', theme: null, collapsed: {} }, s.ui || {});
+    if (s.ui.asOf === 21) s.ui.asOf = END;
     delete s.ui.top;
     return s;
   } catch (e) { return null; }
@@ -1098,7 +1106,7 @@ const dayTotal = e => at(e, date, END).total;
 const SB_URL = 'https://spiephbukeyzwhkbhtnp.supabase.co';
 const SB_KEY = 'sb_publishable_h8lHrhhjVOy9sU9Lr86Arg_VbLRj6qY';
 let saveTimer, lastEdit = 0;
-let db = null, userCanWrite = true, flushing = false, again = false;
+let db = null, userCanWrite = true, flushing = false, again = false, realtimePullTimer;
 const lastSaved = new Map();
 const appData = () => ({ employees: S.employees, sample: S.sample, settings: S.settings, managerQrs: S.managerQrs, ...(Object.keys(S.daySchedules).length ? { daySchedules: S.daySchedules } : {}) });
 function setStatus(txt, off) { const el = $('#saved'); if (!el) return; el.classList.toggle('off', !!off); el.textContent = txt; }
@@ -1141,7 +1149,14 @@ async function makeSupabaseDb() {
     collection: name => ({
       limit() { return this; },
       async get() { const { data, error } = await sb.from(T).select('path,data').like('path', name + '/%'); if (error) throw error; return { docs: data.map(r => ({ id: r.path.slice(name.length + 1), data: () => r.data })) }; }
-    })
+    }),
+    subscribeChanges(onChange) {
+      return sb.channel('ptgayming-live-sync')
+        .on('postgres_changes', { event: '*', schema: 'public', table: T }, onChange)
+        .subscribe(status => {
+          if (status === 'CHANNEL_ERROR' || status === 'TIMED_OUT') setStatus('Realtime unavailable · checking every 15 seconds', true);
+        });
+    }
   };
 }
 function save() {
@@ -1192,7 +1207,11 @@ async function initDb() {
     if (emp.exists) { const up = applyRemote(emp, days); if (up) save(); }
     else if (!S.sample && S.employees.length) { flush(); }
     setStatus(userCanWrite ? 'Saved to database' : 'View only · changes are not saved', !userCanWrite);
-    if (SB_URL && SB_KEY) { setInterval(pull, 15000); document.addEventListener('visibilitychange', () => { if (!document.hidden) pull(); }); }
+    if (SB_URL && SB_KEY) {
+      setInterval(pull, 15000);
+      document.addEventListener('visibilitychange', () => { if (!document.hidden) pull(); });
+      d.subscribeChanges(schedulePull);
+    }
   } catch (e) { db = null; setStatus('Database unavailable · saved on this device', true); }
 }
 function applyRemote(emp, days) {
@@ -1229,6 +1248,10 @@ async function pull() {
     if (changed) { applyRemote(emp, days); setStatus('Saved to database'); }
   } catch (e) { /* try again next time */ }
 }
+function schedulePull() {
+  clearTimeout(realtimePullTimer);
+  realtimePullTimer = setTimeout(pull, 150);
+}
 /* A day keeps the account count it was recorded with, even if the employee's default changes later. */
 function freezeAccounts() {
   for (const d in S.days) for (const id in S.days[d]) {
@@ -1250,8 +1273,10 @@ const snapshot = () => JSON.stringify(S);
 /* ---------- card markup ---------- */
 function slotsHTML(e) {
   const i = info(e, date), asOf = S.ui.asOf, R = ratesFor(date);
+  const employeePaid = payState(e, date).status === 'paid';
   return checksFor(date).map(c => {
     const on = !!i.claims[c], got = gotOf(i, c), ties = tiesOf(i, c), eff = effOf(i, c), pay = slotPay(e, date, c);
+    const total = slotTotal(e, date, c), locked = employeePaid || (total > 0 && slotPaid(e, date, c) >= total - 0.004);
     const canTie = on && Math.floor(got / 2) > 0;
     const odd = on && eff > 0 && eff % 2 === 1;
     const partner = odd ? crossPairs(date, c).get(e.id) : null;
@@ -1283,7 +1308,7 @@ function slotsHTML(e) {
     }
     const gotIds = Array.isArray(i.acctGot[c]) ? i.acctGot[c] : (on ? e.accts.slice(0, got).map(a => a.id) : []);
     const chips = e.accts.map(a => `<button type="button" class="achip" data-act="acct-got" data-h="${c}" data-aid="${a.id}" aria-pressed="${gotIds.includes(a.id)}" title="${esc((a.number || 'No number') + ' · ' + (a.wallet || 'No wallet'))}">${esc(a.name)}</button>`).join('');
-    return `<div class="slot${on ? ' on' : ''}"><div class="shead"><span class="slabel">${hl(c)}${on ? `<small class="expiry-label">${expiryText(c)}</small>` : ''}</span><span class="sst">${on ? got + '/' + e.accts.length + ' got it' : 'Not claimed'}</span></div><button type="button" class="vbtn${on ? ' on' : ''}${c > asOf ? ' late' : ''}" data-act="claim" data-h="${c}" aria-pressed="${on}" data-tip="${esc(tip)}"><span>${on ? 'Claimed' : 'Claim voucher'}</span><b>${on ? fmt(pay) : i.accounts + (i.accounts === 1 ? ' account' : ' accounts')}</b></button>${on ? `<div class="gotrow"><span>Accounts that got it</span><b>${got}/${e.accts.length}</b></div>
+    return `<div class="slot${on ? ' on' : ''}"><div class="shead"><span class="slabel">${hl(c)}${on ? `<small class="expiry-label">${expiryText(c)}</small>` : ''}</span><span class="sst">${on ? got + '/' + e.accts.length + ' got it' : 'Not claimed'}</span></div><button type="button" class="vbtn${on ? ' on' : ''}${c > asOf ? ' late' : ''}" data-act="claim" data-h="${c}" aria-pressed="${on}" data-tip="${esc(tip)}" ${locked ? 'disabled' : ''}><span>${on ? 'Claimed' : 'Claim voucher'}</span><b>${on ? fmt(pay) : i.accounts + (i.accounts === 1 ? ' account' : ' accounts')}</b></button>${on ? `<div class="gotrow"><span>Accounts that got it</span><b>${got}/${e.accts.length}</b></div>
       <div class="chips" role="group" aria-label="Accounts that got the voucher at ${hl(c)}">${chips}</div>
       <button type="button" class="tiebtn" data-act="tie" data-h="${c}" aria-pressed="${ties > 0}" ${canTie ? '' : 'disabled'} title="Tie: a tied pair of accounts pays nothing">${ties ? 'Tie · ' + ties : 'Tie'}</button>
       ${pairUI}` : ''}</div>`;
@@ -1319,16 +1344,16 @@ function acctSummaryText(e) {
 const acctEditing = new Set();
 function acctsHTML(e) {
   if (acctEditing.has(e.id)) return acctsEditHTML(e).replace('<details class="accts"', '<details class="accts hasedit"').replace('<span class="am" data-am>', '<button type="button" class="btn primary esm" data-act="acct-done">Done</button><span class="am" data-am>');
-  const vrows = e.accts.map(a => `<div class="aview"><div class="an"><b>${esc(a.name)}</b><span class="wal${a.wallet ? '' : ' none'}">${esc(a.wallet || 'No wallet')}</span></div><span class="anum${a.number ? '' : ' none'}">${a.number ? esc(a.number) : 'No number'}</span><div class="aview-right">${a.linkedTo ? `<span class="linkedto">Linked to: ${esc(a.linkedTo)}</span>` : ''}</div></div>`).join('');
+  const vrows = e.accts.map(a => `<div class="aview"><div class="an"><b>${esc(a.name)}</b><span class="wal${a.wallet ? '' : ' none'}">${esc(a.wallet || 'No wallet')}</span></div><span class="anum${a.number ? '' : ' none'}">${a.number ? esc(a.number) : 'No number'}</span><div class="aview-right">${a.linkedTo ? `<span class="linkedto">Withdrawal: ${esc(a.linkedTo)}</span>` : ''}</div></div>`).join('');
   return `<details class="accts hasedit" data-id="${e.id}" ${S.ui.acctOpen[e.id] ? 'open' : ''}><summary><span>Accounts · ${e.accts.length}</span><button type="button" class="btn esm" data-act="acct-edit">Edit</button><span class="am" data-am>${acctSummaryText(e)}</span></summary><div class="arows">${vrows}</div></details>`;
 }
 function acctsEditHTML(e) {
   const n = e.accts.length;
-  const rows = e.accts.map(a => `<div class="arow" data-aid="${a.id}"><input class="in" data-act="acct-f" data-f="name" value="${esc(a.name)}" maxlength="40" aria-label="Account name"><input class="in" data-act="acct-f" data-f="number" value="${esc(a.number)}" inputmode="tel" maxlength="20" placeholder="Number" aria-label="Account number"><select class="in" data-act="acct-f" data-f="wallet" aria-label="GCash or Maya"><option value="">Wallet</option>${WALLETS.map(w => `<option ${a.wallet === w ? 'selected' : ''}>${w}</option>`).join('')}</select><input class="in" data-act="acct-f" data-f="linkedTo" value="${esc(a.linkedTo)}" placeholder="Linked to" aria-label="Linked to"><button type="button" class="link danger" data-act="del-acct" data-aid="${a.id}" ${n > 1 ? '' : 'disabled'}>Remove</button></div>`).join('');
+  const rows = e.accts.map(a => `<div class="arow" data-aid="${a.id}"><input class="in" data-act="acct-f" data-f="name" value="${esc(a.name)}" maxlength="40" aria-label="Account name"><input class="in" data-act="acct-f" data-f="number" value="${esc(a.number)}" inputmode="tel" maxlength="20" placeholder="Number" aria-label="Account number"><select class="in" data-act="acct-f" data-f="wallet" aria-label="GCash or Maya"><option value="">Wallet</option>${WALLETS.map(w => `<option ${a.wallet === w ? 'selected' : ''}>${w}</option>`).join('')}</select><input class="in" data-act="acct-f" data-f="linkedTo" value="${esc(a.linkedTo)}" placeholder="Withdrawal" aria-label="Withdrawal"><button type="button" class="link danger" data-act="del-acct" data-aid="${a.id}" ${n > 1 ? '' : 'disabled'}>Remove</button></div>`).join('');
   return `<details class="accts" data-id="${e.id}" ${S.ui.acctOpen[e.id] ? 'open' : ''}>
     <summary><span>Accounts · ${n}</span><span class="am" data-am>${acctSummaryText(e)}</span></summary>
     <div class="arows">${rows}</div>
-    <form class="addacct" data-id="${e.id}" autocomplete="off"><input class="in" name="name" placeholder="Account name" maxlength="40" aria-label="New account name"><input class="in" name="number" placeholder="Number" inputmode="tel" maxlength="20" aria-label="New account number"><select class="in" name="wallet" aria-label="GCash or Maya"><option value="">Wallet</option>${WALLETS.map(w => `<option>${w}</option>`).join('')}</select><input class="in" name="linkedTo" placeholder="Linked to" aria-label="Linked to"><button class="btn" type="submit">Add account</button></form>
+    <form class="addacct" data-id="${e.id}" autocomplete="off"><input class="in" name="name" placeholder="Account name" maxlength="40" aria-label="New account name"><input class="in" name="number" placeholder="Number" inputmode="tel" maxlength="20" aria-label="New account number"><select class="in" name="wallet" aria-label="GCash or Maya"><option value="">Wallet</option>${WALLETS.map(w => `<option>${w}</option>`).join('')}</select><input class="in" name="linkedTo" placeholder="Withdrawal" aria-label="Withdrawal"><button class="btn" type="submit">Add account</button></form>
   </details>`;
 }
 function cardHTML(e) {
@@ -1356,11 +1381,13 @@ function cardHTML(e) {
 /* ---------- render ---------- */
 function qminiHTML(e) {
   const i = info(e, date);
+  const employeePaid = payState(e, date).status === 'paid';
   return checksFor(date).map(c => {
     const on = !!i.claims[c], eff = effOf(i, c), odd = on && eff > 0 && eff % 2 === 1;
+    const total = slotTotal(e, date, c), locked = employeePaid || (total > 0 && slotPaid(e, date, c) >= total - 0.004);
     const paired = odd && (crossPairs(date, c).has(e.id) || selfPairAt(date, e, c));
     const st = odd && !paired ? '<i>needs pair</i>' : (slotTotal(e, date, c) > 0 ? '<i>' + (slotPaid(e, date, c) >= slotTotal(e, date, c) - 0.004 ? 'paid \u2713' : 'unpaid') + '</i>' : '');
-    return `<button type="button" class="qbtn${on ? ' on' : ''}${odd && !paired ? ' need' : ''}" data-act="claim" data-h="${c}" aria-pressed="${on}" aria-label="${hl(c)} voucher for ${esc(e.name)}${on ? ', ' + expiryText(c) : ''}"><span>${hl(c)}${on ? ' \u00b7 ' + gotOf(i, c) + '/' + e.accts.length + ' · ' + expiryText(c) : ''}</span><b>${on ? fmt(slotPay(e, date, c)) : 'Claim'}</b>${st}</button>`;
+    return `<button type="button" class="qbtn${on ? ' on' : ''}${odd && !paired ? ' need' : ''}" data-act="claim" data-h="${c}" aria-pressed="${on}" aria-label="${hl(c)} voucher for ${esc(e.name)}${on ? ', ' + expiryText(c) : ''}" ${locked ? 'disabled' : ''}><span>${hl(c)}${on ? ' \u00b7 ' + gotOf(i, c) + '/' + e.accts.length + ' · ' + expiryText(c) : ''}</span><b>${on ? fmt(slotPay(e, date, c)) : 'Claim'}</b>${st}</button>`;
   }).join('');
 }
 const isCol = id => { if (S.ui.collapsed[id] === undefined) S.ui.collapsed[id] = true; return !!S.ui.collapsed[id]; };
@@ -1413,8 +1440,12 @@ function refreshNumbers() {
   $('#k-adds').textContent = nAdd;
   $('#k-acc').textContent = activeEmps().reduce((s, e) => s + info(e, date).accounts, 0);
   $('#k-emps').textContent = activeEmps().length + (activeEmps().length === 1 ? ' employee' : ' employees');
-  $('#k-top').textContent = top && top.total > 0 ? top.e.name : '—';
-  $('#k-topv').textContent = top && top.total > 0 ? fmt(top.total) : '';
+  const showTop = !!(top && top.total > 0 && payState(top.e, date).status === 'paid');
+  $('#k-top').textContent = showTop ? top.e.name : '';
+  $('#k-top').hidden = !showTop;
+  $('#k-topv').textContent = showTop ? fmt(top.total) : '';
+  $('#k-topv').hidden = !showTop;
+  $('#k-top-empty').hidden = showTop;
   const slotUnpaid = {};
   activeEmps().forEach(e => checksFor(date).forEach(c => { slotUnpaid[c] = (slotUnpaid[c] || 0) + slotTotal(e, date, c) - slotPaid(e, date, c); }));
   $$('#checks .cpbtn').forEach(b => {
@@ -1565,19 +1596,19 @@ function renderHistory() {
     x.count += r.count; x.add += r.add; x.extra += r.extra; x.total += r.total; x.owed += r.owed; per.set(r.e.id, x);
   }));
   const perArr = [...per.values()].sort((a, b) => b.total - a.total);
-  const top = perArr[0];
+  const top = perArr[0], showTop = !!(top && top.total > 0 && top.owed <= 0.004);
   $('#h-kpis').innerHTML =
     `<div class="kpi"><div class="l">Total payroll</div><div class="v">${fmt(total)}</div><div class="m">${stats.length} ${stats.length === 1 ? 'day' : 'days'} with claims · ${owedAll > 0 ? fmt(owedAll) + ' unpaid' : 'all paid'}</div></div>
      <div class="kpi"><div class="l"><i class="sw e"></i>Vouchers claimed</div><div class="v">${count}</div></div>
      <div class="kpi"><div class="l"><i class="sw s"></i>Additional vouchers</div><div class="v">${fmt(extra)}</div></div>
-     <div class="kpi"><div class="l">TAKAWWW</div><div class="n">${top && top.total > 0 ? esc(top.name) : '—'}</div><div class="m">${top && top.total > 0 ? fmt(top.total) : ''}</div></div>`;
+     <div class="kpi"><div class="l">TAKAWWW</div>${showTop ? `<div class="n">${esc(top.name)}</div><div class="m">${fmt(top.total)}</div>` : '<div class="kpi-empty">- -</div>'}</div>`;
   $('#h-emp').innerHTML = perArr.length
     ? `<table class="t"><thead><tr><th>Employee</th><th class="r">Vouchers claimed</th><th class="r">Vouchers</th><th class="r">Additional</th><th class="r">Total</th><th class="r">Unpaid</th></tr></thead><tbody>${perArr.map(x => `<tr><td>${esc(x.name)}</td><td class="r">${x.count}</td><td class="r">${fmt(x.add)}</td><td class="r">${fmt(x.extra)}</td><td class="r"><b>${fmt(x.total)}</b></td><td class="r">${x.owed > 0 ? fmt(x.owed) : '—'}</td></tr>`).join('')}</tbody></table>`
     : '<div class="empty"><b>No employees yet</b>Add employees in the Tracker tab.</div>';
   $('#h-days').innerHTML = stats.length ? stats.map(d => `<details class="dayrow" data-k="${d.k}" ${openDays.has(d.k) ? 'open' : ''}>
     <summary><span class="dd">${longDay(d.k)}${d.k === todayKey() ? '<i>TODAY</i>' : ''}</span><span class="dv">${d.count} ${d.count === 1 ? 'voucher' : 'vouchers'} claimed · ${checksFor(d.k).map(hl).join(', ')} · ${d.total <= 0 ? 'no pay' : d.owed > 0 ? fmt(d.owed) + ' unpaid' : 'all paid'}</span><span class="dt">${fmt(d.total)}</span></summary>
-    <div class="dbody"><div class="tablewrap"><table class="t"><thead><tr><th>Employee</th><th>Claimed at</th><th class="r">Accounts</th><th class="r">Vouchers</th><th class="r">Additional</th><th class="r">Total</th><th class="r">Status</th></tr></thead><tbody>${d.rows.map(r => `<tr><td>${esc(ename(r.e))}</td><td>${claimTimes(r.i, d.k)}</td><td class="r">${r.i.accounts}</td><td class="r">${fmt(r.add)}</td><td class="r">${fmt(r.extra)}</td><td class="r"><b>${fmt(r.total)}</b></td><td class="r">${r.status === 'none' ? '—' : `<button type="button" class="paidbtn${r.status === 'partial' ? ' warn' : ''}" style="margin:0" data-hpaid="${d.k}" data-id="${r.e.id}" aria-pressed="${r.status === 'paid'}">${paidLabel({ status: r.status, owed: r.owed })}</button>`}</td></tr>`).join('')}</tbody></table></div>
-    <div class="acts" style="gap:8px"><button class="btn" data-hpaidday="${d.k}">${d.owed > 0 ? 'Mark day paid' : 'Unmark day paid'}</button><button class="btn" data-opendate="${d.k}">Open this day in Tracker</button></div></div></details>`).join('')
+    <div class="dbody"><div class="tablewrap"><table class="t"><thead><tr><th>Employee</th><th>Claimed at</th><th class="r">Accounts</th><th class="r">Vouchers</th><th class="r">Additional</th><th class="r">Total</th><th class="r">Status</th></tr></thead><tbody>${d.rows.map(r => `<tr><td>${esc(ename(r.e))}</td><td>${claimTimes(r.i, d.k)}</td><td class="r">${r.i.accounts}</td><td class="r">${fmt(r.add)}</td><td class="r">${fmt(r.extra)}</td><td class="r"><b>${fmt(r.total)}</b></td><td class="r">${r.status === 'none' ? '—' : `<button type="button" class="paidbtn${r.status === 'partial' ? ' warn' : ''}" style="margin:0" data-hpaid="${d.k}" data-id="${r.e.id}" aria-pressed="${r.status === 'paid'}" ${r.status === 'paid' ? 'disabled' : ''}>${paidLabel({ status: r.status, owed: r.owed })}</button>`}</td></tr>`).join('')}</tbody></table></div>
+    <div class="acts" style="gap:8px">${d.owed > 0 ? `<button class="btn" data-hpaidday="${d.k}">Mark day paid</button>` : ''}<button class="btn" data-opendate="${d.k}">Open this day in Tracker</button></div></div></details>`).join('')
     : '<div class="empty"><b>No payroll in this range</b>Claim a voucher in the Tracker tab and the day will appear here.</div>';
 }
 function renderSettings() {
@@ -1675,6 +1706,11 @@ function renderPay() {
   const ps = payState(e, date), d = at(e, date, END);
   $('#pay-date').textContent = longDay(date);
   $('#pay-name').textContent = e.name;
+  const employees = activeEmps(), employeeIndex = employees.findIndex(employee => employee.id === e.id);
+  $('#pay-nav').hidden = !payCtx.fromStart || employees.length < 2;
+  $('#pay-position').textContent = (employeeIndex + 1) + ' of ' + employees.length;
+  $('#pay-prev').disabled = employeeIndex <= 0;
+  $('#pay-forward').disabled = employeeIndex < 0 || employeeIndex >= employees.length - 1;
   $('#pay-label').textContent = ps.status === 'paid' ? 'Paid' : ps.status === 'partial' ? 'Still owed' : 'Amount to pay';
   $('#pay-amt').textContent = fmt(ps.status === 'partial' ? ps.owed : ps.total);
   const st = $('#pay-stat'); st.className = 'pstat ' + ps.status;
@@ -1689,17 +1725,29 @@ function renderPay() {
   $('#pay-qr').innerHTML = qq.length ? `<div class="qrgrid${qq.length > 1 ? ' multi' : ''}">${qq.map((v, k) => `<figure><div class="qtile"><img src="${esc(qrSource(v))}" alt="Payroll QR ${k + 1} for ${esc(e.name)}"></div>${qq.length > 1 ? `<figcaption>QR ${k + 1} of ${qq.length}</figcaption>` : ''}</figure>`).join('')}</div>${qq.length < MAX_QR ? '<button type="button" class="btn qadd" id="pay-qr-add">+ Add another QR</button>' : ''}` : `<div class="noqr"><span>No QR saved for ${esc(e.name)}</span><button type="button" class="btn qadd" id="pay-qr-add">Add QR</button></div>`;
   $('#pay-done').textContent = ps.status === 'paid' ? 'Mark all unpaid' : 'Mark all paid';
   $('#pay-done').disabled = ps.status === 'none';
-  const n = nextUnpaid(e.id); $('#pay-next').hidden = !n || n.id === e.id;
 }
-function openPay(id) { payCtx = { eid: id }; renderPay(); if (payCtx) { $('#payview').hidden = false; $('#pay-done').focus(); } }
+function openPay(id, fromStart = false) { payCtx = { eid: id, fromStart }; renderPay(); if (payCtx) { $('#payview').hidden = false; $('#pay-done').focus(); } }
 function closePay() { $('#payview').hidden = true; payCtx = null; }
+function movePay(step) {
+  if (!payCtx) return;
+  const fromStart = payCtx.fromStart;
+  const employees = activeEmps(), index = employees.findIndex(employee => employee.id === payCtx.eid);
+  if (index < 0) return;
+  const employee = employees[index + step];
+  if (!employee) return;
+  payCtx = { eid: employee.id, fromStart };
+  renderPay();
+  $('#pay-' + (step < 0 ? 'prev' : 'forward')).focus();
+}
 function finishPay() {
   const e = find(payCtx.eid); if (!e) return closePay();
+  const fromStart = payCtx.fromStart;
   const wasPaid = payState(e, date).status === 'paid';
   setPaid(date, e, !wasPaid); refresh();
   if (wasPaid) return renderPay();
+  if (!fromStart) { closePay(); return toast(e.name + ' paid'); }
   const n = nextUnpaid(null);
-  if (n) { payCtx = { eid: n.id }; renderPay(); toast(e.name + ' paid. Next: ' + n.name); }
+  if (n) { payCtx = { eid: n.id, fromStart: true }; renderPay(); toast(e.name + ' paid. Next: ' + n.name); }
   else { closePay(); toast('Everyone is paid'); }
 }
 
@@ -1900,11 +1948,12 @@ document.addEventListener('click', ev => {
   if (t.id === 'qr-close') return closeQr();
   if (t.id === 'managerqr-add') { pendingManagerQr = null; $('#manager-qr-file').multiple = true; return $('#manager-qr-file').click(); }
   if (t.id === 'pay-close') return closePay();
+  if (t.id === 'pay-prev') return movePay(-1);
+  if (t.id === 'pay-forward') return movePay(1);
   if (t.dataset.pslot && payCtx) { const e = find(payCtx.eid), h = +t.dataset.pslot; if (e) { setSlotPaid(date, e, h, slotPaid(e, date, h) < slotTotal(e, date, h) - 0.004); refresh(); renderPay(); } return; }
   if (t.id === 'pay-done' && payCtx) return finishPay();
-  if (t.id === 'pay-next' && payCtx) { const n = nextUnpaid(payCtx.eid); if (n) { payCtx = { eid: n.id }; renderPay(); } return; }
   if (t.id === 'pay-qr-add' && payCtx) { pendingQr = { eid: payCtx.eid }; $('#qr-file').multiple = true; return $('#qr-file').click(); }
-  if (t.id === 'pay-start') { const n = nextUnpaid(null); return n ? openPay(n.id) : toast('Nothing left to pay'); }
+  if (t.id === 'pay-start') { const n = nextUnpaid(null); return n ? openPay(n.id, true) : toast('Nothing left to pay'); }
   if (t.id === 'qr-prev' && qrCtx) { const n = qrCtx.manager ? S.managerQrs.length : qrsOf(find(qrCtx.eid)).length; return openQrAt((qrCtx.i + n - 1) % n); }
   if (t.id === 'qr-next' && qrCtx) { const n = qrCtx.manager ? S.managerQrs.length : qrsOf(find(qrCtx.eid)).length; return openQrAt((qrCtx.i + 1) % n); }
   if (t.id === 'qr-add-more' && qrCtx && qrCtx.manager) { pendingManagerQr = null; $('#manager-qr-file').multiple = true; return $('#manager-qr-file').click(); }
@@ -1923,7 +1972,7 @@ document.addEventListener('click', ev => {
   if (t.dataset.managerQr !== undefined) return openManagerQr(+t.dataset.managerQr);
   if (t.dataset.pf) { S.ui.pf = t.dataset.pf; applyFilter(); save(); return; }
   if (t.dataset.view) return setView(t.dataset.view);
-  if (t.dataset.hpaid) { const e = find(t.dataset.id); if (e) { setPaid(t.dataset.hpaid, e, payState(e, t.dataset.hpaid).status !== 'paid'); renderHistory(); save(); } return; }
+  if (t.dataset.hpaid) { const e = find(t.dataset.id); if (e && payState(e, t.dataset.hpaid).status !== 'paid') { setPaid(t.dataset.hpaid, e, true); renderHistory(); save(); } return; }
   if (t.dataset.hpaidday) {
     const k = t.dataset.hpaidday, snap = snapshot(), payers = S.employees.filter(e => payState(e, k).status !== 'none');
     const all = payers.length && payers.every(e => payState(e, k).status === 'paid');
@@ -1999,7 +2048,10 @@ document.addEventListener('click', ev => {
     return;
   }
   if (act === 'claim') {
-    const h = +t.dataset.h, r = rec(date, id, true), i = info(e, date);
+    const h = +t.dataset.h, i = info(e, date);
+    const total = slotTotal(e, date, h);
+    if (payState(e, date).status === 'paid' || (total > 0 && slotPaid(e, date, h) >= total - 0.004)) return;
+    const r = rec(date, id, true);
     if (typeof r.accounts !== 'number') r.accounts = i.accounts;
     const on = !!i.claims[h];
     r.acctGot = r.acctGot || {}; r.claims = r.claims || {};
@@ -2088,7 +2140,7 @@ document.addEventListener('submit', ev => {
     const mode = $('#schedule-mode').value;
     const first = parseScheduleHour($('#schedule-time-1').value), second = parseScheduleHour($('#schedule-time-2').value);
     if (mode === 'two' && (first === null || second === null)) {
-      $('#schedule-error').textContent = 'Enter two whole-hour times from 12 PM to 9 PM, such as 1 PM or 13:00.';
+      $('#schedule-error').textContent = 'Enter valid times, such as 8:30 AM or 20:30.';
       return;
     }
     if (mode === 'two' && first === second) {
@@ -2096,7 +2148,7 @@ document.addEventListener('submit', ev => {
       return;
     }
     const next = mode === 'two' ? [first, second].sort((a, b) => a - b) : CHECKS;
-    const conflicts = SCHEDULE_HOURS.filter(h => !next.includes(h) && hasSlotData(date, h));
+    const conflicts = Array.from({ length: 1440 }, (_, minute) => minute / 60).filter(h => !next.includes(h) && hasSlotData(date, h));
     if (conflicts.length) {
       $('#schedule-error').textContent = 'This date has saved claims or payments at ' + conflicts.map(hl).join(', ') + '. Keep those times or clear that saved data before changing the schedule.';
       return;
