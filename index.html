@@ -174,7 +174,7 @@ table.t tr:last-child td { border-bottom: 0; }
 .bar .btn.primary, .bar .seg button[aria-pressed="true"], .top .btn.primary, .top .seg button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); border-color: transparent; }
 @media (max-width: 720px) { .top { padding: 16px; } .top::after { font-size: 120px; top: -18px; } }
 .brand { display: flex; align-items: center; gap: 12px; min-width: 0; }
-.logo { width: 40px; height: 40px; border-radius: 10px; background: var(--accent); color: var(--accent-ink); display: grid; place-items: center; font: 700 var(--fs-subhead) var(--f-head); letter-spacing: .02em; flex: none; }
+.brand-logo { display: block; width: 215px; max-width: 100%; height: auto; }
 h1 { margin: 0; font: 700 var(--fs-metric)/1.1 var(--f-head); letter-spacing: -.01em; }
 .sub { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin-top: 6px; color: var(--muted); font-size: var(--fs-control); }
 .pill { font: 500 var(--fs-small) var(--f-num); border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 3px 10px; color: var(--fg); }
@@ -653,9 +653,8 @@ body { background: var(--page); background-attachment: fixed; }
 <div class="app">
   <header class="top">
     <div class="brand">
-      <div class="logo" aria-hidden="true">PT</div>
       <div>
-        <h1>PT Gayming Tracker</h1>
+        <img class="brand-logo" src="logo.png" alt="PT Gayming Tracker">
         <div class="sub"><span class="pill">Voucher claiming job&nbsp;&nbsp;·&nbsp;&nbsp;Higher paying than your typical job</span><span id="datelong"></span></div>
       </div>
     </div>
