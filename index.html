@@ -328,16 +328,18 @@ select.in { width: auto; padding-right: 8px; }
 .accts.hasedit > summary > span:first-child { flex: none; }
 .accts.hasedit > summary .am { margin-left: auto; }
 .esm { padding: 3px 12px; font-size: var(--fs-small); }
-.aview { display: grid; grid-template-columns: minmax(0, 1fr) 130px minmax(0, 1fr); gap: 4px 12px; align-items: center; padding: 8px 0; border-top: 1px solid var(--line); }
+.aview { display: grid; grid-template-columns: minmax(0, 1fr) 130px minmax(0, 1fr) auto; gap: 4px 12px; align-items: center; padding: 8px 0; border-top: 1px solid var(--line); }
 .aview:first-child { border-top: 0; }
 .aview .an { grid-column: 1; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; min-width: 0; }
 .aview .an b { font-weight: 600; overflow-wrap: anywhere; }
 .aview .wal { font: 600 var(--fs-caption) var(--f-body); border: 1px solid var(--line); border-radius: 999px; padding: 1px 8px; color: var(--muted); white-space: nowrap; }
 .aview .wal.none, .aview .anum.none { opacity: .6; }
-.aview .anum { grid-column: 2; font: 600 var(--fs-control) var(--f-num); text-align: center; }
+.aview .anum { grid-column: 2; font: 600 var(--fs-control) var(--f-num); text-align: center; overflow-wrap: anywhere; }
+.copy-number { padding: 3px 6px; font-size: var(--fs-caption); flex: none; }
+.aview > .copy-number { grid-column: 4; justify-self: end; }
 .aview-right { grid-column: 3; display: flex; align-items: center; justify-content: flex-start; gap: 8px; min-width: 0; }
 .aview .linkedto { min-width: 0; font-size: var(--fs-small); color: var(--muted); overflow-wrap: anywhere; text-align: left; }
-@media (max-width: 480px) { .aview { grid-template-columns: minmax(0, 1fr); } .aview .an, .aview .anum, .aview-right { grid-column: 1; } .aview .anum { text-align: center; } .aview-right { justify-content: flex-start; } }
+@media (max-width: 480px) { .aview { grid-template-columns: minmax(0, 1fr) auto; } .aview .an { grid-column: 1 / -1; } .aview .anum { grid-column: 1; text-align: left; } .aview > .copy-number { grid-column: 2; grid-row: 2; } .aview-right { grid-column: 1 / -1; justify-content: flex-start; } }
 @media (max-width: 720px) { .arow, .addacct { grid-template-columns: minmax(0, 1fr) 96px; } .arow [data-f="name"], .addacct [name="name"], .arow [data-f="linkedTo"], .addacct [name="linkedTo"] { grid-column: 1 / -1; } .addacct .btn { grid-column: 1 / -1; } .arow .link { justify-self: end; } }
 .salary-row { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 10px 14px; }
 .money { position: relative; width: 150px; }
@@ -1344,7 +1346,7 @@ function acctSummaryText(e) {
 const acctEditing = new Set();
 function acctsHTML(e) {
   if (acctEditing.has(e.id)) return acctsEditHTML(e).replace('<details class="accts"', '<details class="accts hasedit"').replace('<span class="am" data-am>', '<button type="button" class="btn primary esm" data-act="acct-done">Done</button><span class="am" data-am>');
-  const vrows = e.accts.map(a => `<div class="aview"><div class="an"><b>${esc(a.name)}</b><span class="wal${a.wallet ? '' : ' none'}">${esc(a.wallet || 'No wallet')}</span></div><span class="anum${a.number ? '' : ' none'}">${a.number ? esc(a.number) : 'No number'}</span><div class="aview-right">${a.linkedTo ? `<span class="linkedto">Withdrawal: ${esc(a.linkedTo)}</span>` : ''}</div></div>`).join('');
+  const vrows = e.accts.map(a => `<div class="aview"><div class="an"><b>${esc(a.name)}</b><span class="wal${a.wallet ? '' : ' none'}">${esc(a.wallet || 'No wallet')}</span></div><span class="anum${a.number ? '' : ' none'}">${a.number ? esc(a.number) : 'No number'}</span><div class="aview-right">${a.linkedTo ? `<span class="linkedto">Withdrawal: ${esc(a.linkedTo)}</span>` : ''}</div>${a.number ? `<button type="button" class="btn copy-number" data-copy-number="${esc(a.number)}" aria-label="Copy ${esc(a.name)} account number" title="Copy account number">Copy</button>` : ''}</div>`).join('');
   return `<details class="accts hasedit" data-id="${e.id}" ${S.ui.acctOpen[e.id] ? 'open' : ''}><summary><span>Accounts · ${e.accts.length}</span><button type="button" class="btn esm" data-act="acct-edit">Edit</button><span class="am" data-am>${acctSummaryText(e)}</span></summary><div class="arows">${vrows}</div></details>`;
 }
 function acctsEditHTML(e) {
@@ -1937,6 +1939,18 @@ async function copySummary() {
     ta.remove(); toast(ok ? 'Payroll summary copied' : 'Copy was blocked by the browser');
   }
 }
+async function copyAccountNumber(number) {
+  try {
+    await navigator.clipboard.writeText(number);
+    toast('Account number copied');
+    return;
+  } catch (e) {
+    const ta = document.createElement('textarea'); ta.value = number; document.body.appendChild(ta); ta.select();
+    let ok = false; try { ok = document.execCommand('copy'); } catch (x) {}
+    ta.remove();
+    toast(ok ? 'Account number copied' : 'Copy was blocked by the browser');
+  }
+}
 
 document.addEventListener('click', ev => {
   const t = ev.target.closest('button'); if (!t) return;
@@ -1996,6 +2010,7 @@ document.addEventListener('click', ev => {
   if (t.id === 'next') return shiftDate(1);
   if (t.id === 'today') return setDate(todayKey());
   if (t.id === 'theme') { S.ui.theme = effectiveDark() ? 'light' : 'dark'; document.documentElement.dataset.theme = S.ui.theme; applyTheme(); return save(); }
+  if (t.dataset.copyNumber !== undefined) return copyAccountNumber(t.dataset.copyNumber);
   if (t.id === 'copy') return copySummary();
   if (t.id === 'toggle-all') {
     const collapse = activeEmps().some(e => !S.ui.collapsed[e.id]);
